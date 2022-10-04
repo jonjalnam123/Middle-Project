@@ -64,7 +64,7 @@ h2 { font-weight: bold; }
 <script type="text/javascript">
 
  	$(document).ready(function() {
-				
+ 	$("#revbtn").click(function() {		
 		var hotel_no = 3
 		//console.log("no : " + no)
 			
@@ -82,7 +82,7 @@ h2 { font-weight: bold; }
 		})
 		
 	}) 
-
+ 	})
 </script>
 </head>
 <body>
