@@ -21,18 +21,18 @@ public class HotelDetailController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 상세페이지에 뿌릴 호텔정보 //
-		String parameter = req.getParameter("no"); //호텔번호 파라미터
-		
-		int hotel_no = 0;
-		
-		if(parameter != null && !"".equals(parameter)) {
-			hotel_no = Integer.parseInt(parameter);
-		}
-		
-		Hotel hoteldetail = hotelService.detail(hotel_no);
-		
-		req.setAttribute("hotelDetail", hoteldetail);
+//		// 상세페이지에 뿌릴 호텔정보 //
+//		String parameter = req.getParameter("hotel_no"); //호텔번호 파라미터
+//		
+//		int hotel_no = 0;
+//		
+//		if(parameter != null && !"".equals(parameter)) {
+//			hotel_no = Integer.parseInt(parameter);
+//		}
+//		
+//		Hotel hoteldetail = hotelService.detail(hotel_no);
+//		
+//		req.setAttribute("hotelDetail", hoteldetail);
 		
 		req.getRequestDispatcher("/WEB-INF/views/hotelDetail.jsp").forward(req, resp);
 

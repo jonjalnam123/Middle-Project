@@ -56,10 +56,10 @@ public class ReviewWriteController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//사용자가 작성한 리뷰값들이 넘어옴
-		
+		//리뷰 등록하는 서비스 실행
 		reviewService.writeReview(request);
-
-		//request.getRequestDispatcher("/WEB-INF/views/").forward(request,response);   //아리님이 쿼리스티링 전달해준 페이지 url로 되돌아가기
+		//리뷰 등록 완료. 원래 페이지로 돌아가는 리 디렉션
+		
 
 	}
 

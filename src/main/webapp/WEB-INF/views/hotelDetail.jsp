@@ -63,7 +63,7 @@ h2 { font-weight: bold; }
 
 <script type="text/javascript">
 
-	$(document).ready(function() {
+<%-- 	$(document).ready(function() {
 				
 		var hotelno = "hotelno=" + <%=hotelDetail.getHotel_no() %>
 		//console.log("no : " + no)
@@ -81,7 +81,7 @@ h2 { font-weight: bold; }
 			
 		})
 		
-	})
+	}) --%>
 
 </script>
 </head>
@@ -89,8 +89,8 @@ h2 { font-weight: bold; }
 
 <div class="container">
 	
-	<div>
-		<%-- <%=hotelDetail.getHotelPhoto() %> --%>
+<%-- 	<div>
+		<%=hotelDetail.getHotelPhoto() %>
 		<img src="/upload/<%=hotelDetail.getHotel_photo() %>" class="htimg" alt="이미지 아님">
 	</div>
 	
@@ -99,7 +99,7 @@ h2 { font-weight: bold; }
 		<hr>
 		<p>주소 : <%=hotelDetail.getHotel_addr() %></p>
 		<p>대표번호 : <%=hotelDetail.getHotel_tel() %></p>
-	</div>
+	</div> --%>
 	
 	<!-- <input type="text" id="datepicker" class="datepicker" name="checkin">
 	<input type="text" id="datepicker2" class="datepicker" name="checkout"> -->
