@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title> KH 5조 세미프로젝트 - 여기서놀자 </title>
+<title>KH 5조 세미프로젝트 - 여기서놀자</title>
 
 <!-- jQuery 2.2.4 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
