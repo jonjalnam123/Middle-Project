@@ -63,16 +63,16 @@ h2 { font-weight: bold; }
 
 <script type="text/javascript">
 
-<%-- 	$(document).ready(function() {
+ 	$(document).ready(function() {
 				
-		var hotelno = "hotelno=" + <%=hotelDetail.getHotel_no() %>
+		var hotel_no = 3
 		//console.log("no : " + no)
 			
 		/* 숙소정보 버튼 클릭시 비동기호출 */
 		$.ajax({
-			type: "POST",
-			url: "/hotel/detail",
-			data: hotelno,
+			type: "GET",
+			url: "/review",
+			data: hotel_no,
 			datatype: "html",
 			success: function(data) {
 				console.log("성공");
@@ -81,7 +81,7 @@ h2 { font-weight: bold; }
 			
 		})
 		
-	}) --%>
+	}) 
 
 </script>
 </head>
@@ -115,7 +115,7 @@ h2 { font-weight: bold; }
 		</button>
 		<!-- </a> -->
 		
-		<button class="tab_review">
+		<button class="tab_review" id="revbtn">
 		<span>리뷰</span>
 		</button>
 	</div>
