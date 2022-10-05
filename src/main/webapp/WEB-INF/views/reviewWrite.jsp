@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file ="/WEB-INF/layout/header.jsp" %>
  <%String pay_no = (String) request.getAttribute("pay_no"); %>
  <%String booking_no =(String)  request.getAttribute("booking_no"); %>
  <%String room_type = (String)  request.getAttribute("room_type"); %>
@@ -40,16 +41,8 @@
 #myform input[type=radio]:checked ~ label{
     text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
-#reviewContents {
-    width: 100%;
-    height: 150px;
-    padding: 10px;
-    box-sizing: border-box;
-    border: solid 1.5px #D3D3D3;
-    border-radius: 5px;
-    font-size: 16px;
-    resize: none;
-}
+
+
 </style>
 
 
@@ -65,13 +58,12 @@ $(document).ready(function() {
 <body>
 리뷰 쓰기
 <hr>
-<form action="/review/upload" method="POST" enctype="multipart/form-data">
+<form action="/review/write" method="POST" enctype="multipart/form-data">
 묶었던 호텔 사진 : <img src="/upload/<%=hotelPhotoLocation %>" alt="이미지 아님" width="50" height="50">
 묶었던 호텔 이름 : <%=hotel_name%>
 묶었던 객실 이름 : <%=room_type%>
  	<div class="mb-3" id="myform" >
 	<fieldset>
-		<span class="text-bold">별점을 선택해주세요</span>
 		<input type="radio" name="review_score" value="5" id="rate1"><label
 			for="rate1">★</label>
 		<input type="radio" name="review_score" value="4" id="rate2"><label
@@ -89,12 +81,18 @@ $(document).ready(function() {
 
 <label>파일 <input type="file" name="upfile"></label><br>
 <label>파일 <input type="file" name="upfile"></label><br>
-
-<button>확인</button>
-<input name="pay_no" value = "<%=pay_no%>" style="display:none;">
+<%-- <input name="pay_no" value = "<%=pay_no%>" style="display:none;">
 <input name="booking_no" value = "<%=booking_no%>" style="display:none;">
 <input name="hotel_no" value = "<%=hotel_no%>" style="display:none;">
-<input name="user_email" value = "<%=user_email%>" style="display:none;">
+<input name="user_email" value = "<%=user_email%>" style="display:none;"> --%>
+<input name="pay_no" value = "3" style="display:none;">
+<input name="booking_no" value = "3" style="display:none;">
+<input name="hotel_no" value = "3" style="display:none;">
+<input name="user_email" value = "gpfl5202" style="display:none;">
+<button>확인</button>
+
 </form>
 </body>
 </html>
+<%@include file ="/WEB-INF/layout/footer.jsp" %>
+
