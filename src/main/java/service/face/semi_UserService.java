@@ -2,7 +2,7 @@ package service.face;
 
 import javax.servlet.http.HttpServletRequest;
 
-import dto.semi_User;
+import dto.Semi_User;
 
 public interface semi_UserService {
 	
@@ -12,7 +12,7 @@ public interface semi_UserService {
 	 * @param req
 	 * @return
 	 */
-	public semi_User getLoginUser(HttpServletRequest req);
+	public Semi_User getLoginUser(HttpServletRequest req);
 	
 
 }

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.face.Semi_UserDao;
 import dao.impl.semi_UserDaoImpl;
-import dto.semi_User;
+import dto.Semi_User;
 import service.face.semi_UserService;
 import service.impl.semi_UserServiceImpl;
 
@@ -33,7 +33,7 @@ public class LoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		//전달파라미터 로그인 정보 얻어오기
-		semi_User sUser = sUserService.getLoginUser(req);
+		Semi_User sUser = sUserService.getLoginUser(req);
 		
 		int res = sUserDao.selectCntByUserEmailPw(sUser);
 		

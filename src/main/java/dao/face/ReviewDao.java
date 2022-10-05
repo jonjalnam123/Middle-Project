@@ -5,6 +5,7 @@ import java.util.List;
 
 import dto.Review;
 
+
 public interface ReviewDao {
 	
 	public List<Review> selectAll(Connection conn, int hotel_no);	
