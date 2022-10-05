@@ -11,21 +11,24 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.tomcat.util.http.fileupload.FileItem;
-import org.apache.tomcat.util.http.fileupload.FileUploadException;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import common.JDBCTemplate;
 import dao.face.HotelDao;
 import dao.face.ReviewDao;
 import dao.face.ReviewImageDao;
+import dao.face.Semi_UserDao;
 import dao.impl.HotelDaoImpl;
 import dao.impl.ReviewDaoImpl;
 import dao.impl.ReviewImageDaoImpl;
+import dao.impl.Semi_UserDaoImpl;
 import dto.Hotel;
 import dto.Review;
 import dto.ReviewImage;
+import dto.Semi_User;
 import service.face.ReviewService;
 
 
@@ -35,10 +38,11 @@ public class ReviewServiceImpl implements ReviewService{
 	ReviewDao reviewDao = new ReviewDaoImpl();
 	ReviewImageDao reviewImageDao = new ReviewImageDaoImpl();
 	HotelDao hotelDao = new HotelDaoImpl();
+	Semi_UserDao semi_UserDao = new Semi_UserDaoImpl();
 	
 	
 	@Override
-	public List<Review> selectAll(HttpServletRequest request) {
+	public List<Review> selectAllReview(HttpServletRequest request) {
 		
 		int hotel_no = Integer.parseInt(request.getParameter("hotel_no"));
 		
@@ -46,7 +50,14 @@ public class ReviewServiceImpl implements ReviewService{
 
 	}
 
+	@Override
+	public List<List<ReviewImage>> selectAllReviewImage(HttpServletRequest request) {
+		int hotel_no = Integer.parseInt(request.getParameter("hotel_no"));
+		
+		return reviewImageDao.selectAll(JDBCTemplate.getConnection(), hotel_no);
 
+	}
+	
 	@Override
 	public Hotel selectHotelByHotelNo(HttpServletRequest request, int hotel_no) {
 		
@@ -218,4 +229,16 @@ public class ReviewServiceImpl implements ReviewService{
 		}
 		
 	}
+
+	@Override
+	public List<Semi_User> selectAllReviewWriterByHotelNo(HttpServletRequest request, int hotel_no) {
+		Connection conn = JDBCTemplate.getConnection();
+		List<Semi_User> userList = semi_UserDao.selectAllReviewWriterByHotelNo(conn, hotel_no);
+		
+		System.out.println("selectAllReviewWriterByHotelNo 서비스 실행");
+
+		return userList;
+	}
+
+
 }

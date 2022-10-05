@@ -12,7 +12,7 @@ import dao.face.Semi_UserDao;
 import dto.Semi_User;
 import dto.Semi_User;
 
-public class semi_UserDaoImpl implements Semi_UserDao {
+public class Semi_UserDaoImpl implements Semi_UserDao {
 	
 	private PreparedStatement ps;
 	private ResultSet rs;
