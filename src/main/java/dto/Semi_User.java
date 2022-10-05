@@ -1,6 +1,6 @@
 package dto;
 
-public class semi_User {
+public class Semi_User {
 	
 	private int user_no;
 	private String user_name;
@@ -52,7 +52,7 @@ public class semi_User {
 		return "semi_User [user_no=" + user_no + ", user_name=" + user_name + ", user_email=" + user_email
 				+ ", user_phone=" + user_phone + ", user_pw=" + user_pw + ", user_pic=" + user_pic + "]";
 	}
-	public semi_User(int user_no, String user_name, String user_email, String user_phone, String user_pw,
+	public Semi_User(int user_no, String user_name, String user_email, String user_phone, String user_pw,
 			String user_pic) {
 		super();
 		this.user_no = user_no;
@@ -62,7 +62,7 @@ public class semi_User {
 		this.user_pw = user_pw;
 		this.user_pic = user_pic;
 	}
-	public semi_User() {
+	public Semi_User() {
 		super();
 	}
 	
