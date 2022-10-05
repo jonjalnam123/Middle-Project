@@ -71,8 +71,7 @@ h2 { font-weight: bold; }
 		/* 숙소정보 버튼 클릭시 비동기호출 */
 		$.ajax({
 			type: "GET",
-			url: "/review",
-			data: hotel_no,
+			url: "/review?hotel_no="+hotel_no,
 			datatype: "html",
 			success: function(data) {
 				console.log("성공");
