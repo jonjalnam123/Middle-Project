@@ -3,9 +3,9 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- <% List<Review> reviewList = (List) request.getAttribute("reviewList"); %>
+ <% List<Review> reviewList = (List) request.getAttribute("reviewList"); %>
 <%List<List<ReviewImage>> reviewimageList = (List) request.getAttribute("reviewimageList"); %>
-<%	request.setCharacterEncoding("UTF-8"); %> --%>
+<%	request.setCharacterEncoding("UTF-8"); %> 
 
 <!DOCTYPE html>
 <html>
@@ -27,7 +27,7 @@
 	<th>사진3</th>
 </tr>
 
-<%-- <%	for(int i=0; i< reviewList.size(); i++) { %>
+ <%	for(int i=0; i< reviewList.size(); i++) { %>
 <tr>
 	<td><%=reviewList.get(i).getUser_email() %></td>
 	<td><%=reviewList.get(i).getReview_content() %></td>
@@ -36,7 +36,7 @@
  	<td><img src="/upload/<%=reviewimageList.get(i).get(2).getStoredname() %>" alt="이미지 아님" width="50" height="50"></td>
 
 </tr>
-<%	} %> --%>
+<%	} %> 
 
 
 </table>

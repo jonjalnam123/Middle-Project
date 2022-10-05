@@ -3,7 +3,7 @@ package dao.face;
 
 import dto.semi_User;
 
-public interface semi_UserDao {
+public interface Semi_UserDao {
 	
 	public int selectCntByUserEmailPw(semi_User sUer);
 

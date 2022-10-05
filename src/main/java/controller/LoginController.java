@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.face.semi_UserDao;
+import dao.face.Semi_UserDao;
 import dao.impl.semi_UserDaoImpl;
 import dto.semi_User;
 import service.face.semi_UserService;
@@ -21,7 +21,7 @@ public class LoginController extends HttpServlet {
 	
 
 	private semi_UserService sUserService = new semi_UserServiceImpl();
-	private semi_UserDao sUserDao = new semi_UserDaoImpl();
+	private Semi_UserDao sUserDao = new semi_UserDaoImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

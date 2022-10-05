@@ -6,10 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import common.JDBCTemplate;
-import dao.face.semi_UserDao;
+import dao.face.Semi_UserDao;
 import dto.semi_User;
 
-public class semi_UserDaoImpl implements semi_UserDao {
+public class semi_UserDaoImpl implements Semi_UserDao {
 	
 	private PreparedStatement ps;
 	private ResultSet rs;
