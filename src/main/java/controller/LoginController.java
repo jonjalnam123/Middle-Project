@@ -21,7 +21,6 @@ public class LoginController extends HttpServlet {
 	
 
 	private Semi_UserService sUserService = new Semi_UserServiceImpl();
-	private Semi_UserDao sUserDao = new Semi_UserDaoImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,11 +31,28 @@ public class LoginController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		//전달파라미터 로그인 정보 얻어오기
+		//전달파라미터로 로그인 정보 얻기
 		Semi_User sUser = sUserService.getLoginUser(req);
 		
-		int res = sUserDao.selectCntByUserEmailPw(sUser);
+		//로그인 인증
+		boolean login = sUserService.login(sUser);
 		
+		if(login) {
+			
+			//로그인 사용자 정보 얻어오기
+			sUser = sUserService.info(sUser);
+			
+			//세션정보 저장
+			HttpSession session = req.getSession();
+			
+			session.setAttribute("login", login);
+			session.setAttribute("username", sUser.getUser_name());
+			session.setAttribute("userpw", sUser.getUser_pw());
+			
+		}
+		System.out.println("로그인 한 이메일 : " + sUser.getUser_email());
+		
+		resp.sendRedirect("/Semi/main");
 		
 	}
 

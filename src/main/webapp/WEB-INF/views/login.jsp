@@ -30,7 +30,7 @@
 
 .findjoin {
 	text-align: left; font-size: 14px; font-weight: bold;
-    margin: 0 0 10px 10px; cursor: pointer; color: #f06a6a;
+    margin: 0 0 10px 10px; cursor: pointer; color: #e32a62;
     
 }
 </style>
@@ -38,12 +38,14 @@
 
 <div id="login_wrap">
 	<form action="/Semi/main" method="post" name="loginform" onsubmit="return sendMain()">
-		<input type="text" name="usereamil" id="useremail" class="input" placeholder="이메일" autofocus><br>
+		<input type="text" name="usereamil" id="useremail" class="input" placeholder="이메일" 
+><br>
+<!-- 		<span id="emailMsg"></span><br> -->
 		<input type="password" name="userpw" id="userpw" class="input" placeholder="비밀번호"><br>
 		<a href="/findPw" class="findjoin" style="position: relative; left: -158px;">비밀번호찾기</a><br>
 		<button id="btnLogin">로그인</button>
 	</form>
-	<p>회원이 아니신가요? &nbsp;<a href="/Semi/join" class="findjoin">가입하기</a></p>
+	<p>회원이 아니신가요? <a href="/Semi/join" class="findjoin">가입하기</a></p>
 </div>
 
 
@@ -58,6 +60,7 @@ const sendMain = () => {
 	if(inputEmail.value == ""){
 // 		swal("", "이메일을 입력하세요", "warning");
 		alert("이메일을 입력하세요");
+// 		document.getElementById("emailMsg").innerHTML = "이메일을 입력하세요！";
 		inputEmail.focus();
 		return false;
 	}

@@ -16,10 +16,9 @@ public class Semi_UserDaoImpl implements Semi_UserDao {
 	
 	private PreparedStatement ps;
 	private ResultSet rs;
-	private Connection conn;
 
 	@Override
-	public int selectCntByUserEmailPw(Semi_User sUser) {
+	public int selectCntByUserEmailPw(Connection conn, Semi_User sUser) {
 
 		String sql = "";
 		sql += "SELECT count(*) cnt FROM semi_user";
@@ -49,6 +48,77 @@ public class Semi_UserDaoImpl implements Semi_UserDao {
 		return cnt;
 	}
 	
+	
+	
+	@Override
+	public Semi_User selectUserByUseremail(Connection conn, Semi_User sUser) {
+
+		String sql = "";
+		sql += "SELECT user_email, user_name, user_pw FROM semi_user";
+		sql += " WHERE user_email = ?";
+		
+		//조회 결과 저장 객체
+		Semi_User result = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, sUser.getUser_email());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				result = new Semi_User();
+				
+				result.setUser_email(rs.getString("user_email"));
+				result.setUser_name(rs.getString("user_name"));
+				result.setUser_pw(rs.getString("user_pw"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		
+		return result;
+	}
+	
+	//------------------------------------------------------------------------------
+
+	
+	@Override
+	public int insert(Connection conn, Semi_User sUser) {
+		
+		String sql = "";
+		sql += "INSERT INTO semi_user (user_no, user_name, user_email, user_phone, user_pw)";
+		sql += " VALUES(semi_user_seq.nextval, ?, ?, ?, ?)";
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, sUser.getUser_name());
+			ps.setString(2, sUser.getUser_email());
+			ps.setString(3, sUser.getUser_phone());
+			ps.setString(4, sUser.getUser_pw());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+	
+	
+	//------------------------------------------------------------------------------
+
 
 	@Override
 	public List<Semi_User> selectAllReviewWriterByHotelNo(Connection conn, int hotel_no) {
