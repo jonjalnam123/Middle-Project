@@ -47,12 +47,10 @@ public class ReviewController extends HttpServlet {
 		//JSP로 불러들이기
 		request.getRequestDispatcher("/WEB-INF/views/reviewShow_ok.jsp").forward(request, response);
 		
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
+		
 	}
 
 }

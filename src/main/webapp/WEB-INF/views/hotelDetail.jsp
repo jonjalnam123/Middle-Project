@@ -77,9 +77,7 @@ h2 { font-weight: bold; }
 				console.log("성공");
 				$("#result").html(data);
 			}
-			
 		})
-		
 	}) 
  	})
 </script>
