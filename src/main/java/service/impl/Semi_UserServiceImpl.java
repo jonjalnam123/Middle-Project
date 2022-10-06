@@ -5,9 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import dao.face.Semi_UserDao;
 import dao.impl.Semi_UserDaoImpl;
 import dto.Semi_User;
-import service.face.semi_UserService;
+import service.face.Semi_UserService;
 
-public class semi_UserServiceImpl implements semi_UserService {
+public class Semi_UserServiceImpl implements Semi_UserService {
 	
 	//Dao객체
 	private Semi_UserDao sUserDao = new Semi_UserDaoImpl();

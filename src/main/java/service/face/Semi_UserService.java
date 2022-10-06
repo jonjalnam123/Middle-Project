@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import dto.Semi_User;
 
-public interface semi_UserService {
+public interface Semi_UserService {
 	
 	/**
 	 * 로그인 정보 추출

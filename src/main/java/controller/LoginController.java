@@ -12,15 +12,15 @@ import javax.servlet.http.HttpSession;
 import dao.face.Semi_UserDao;
 import dao.impl.Semi_UserDaoImpl;
 import dto.Semi_User;
-import service.face.semi_UserService;
-import service.impl.semi_UserServiceImpl;
+import service.face.Semi_UserService;
+import service.impl.Semi_UserServiceImpl;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 
-	private semi_UserService sUserService = new semi_UserServiceImpl();
+	private Semi_UserService sUserService = new Semi_UserServiceImpl();
 	private Semi_UserDao sUserDao = new Semi_UserDaoImpl();
 	
 	@Override
