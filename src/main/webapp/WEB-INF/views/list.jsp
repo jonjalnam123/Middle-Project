@@ -27,8 +27,7 @@ $(document).ready(function() {
 </script>
 
 
-<h1>.</h1>
-<h1></h1><br>
+
 <br>
 <hr>
 
