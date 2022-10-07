@@ -36,14 +36,14 @@
 
 
 <div id="login_wrap">
-	<form action="/Semi/login" method="post" name="loginform" onsubmit="return sendMain()">
+	<form action="/login" method="post" name="loginform" onsubmit="return sendMain()">
 		<input type="text" name="useremail" id="useremail" class="input" placeholder="이메일" ><br>
 <!-- 		<span id="emailMsg"></span><br> -->
 		<input type="password" name="userpw" id="userpw" class="input" placeholder="비밀번호"><br>
 		<a href="/findPw" class="findjoin" style="position: relative; left: -158px;">비밀번호찾기</a><br>
 		<button id="btnLogin">로그인</button>
 	</form>
-	<p>회원이 아니신가요? <a href="/Semi/join" class="findjoin">가입하기</a></p>
+	<p>회원이 아니신가요? <a href="/join" class="findjoin">가입하기</a></p>
 </div>
 
 

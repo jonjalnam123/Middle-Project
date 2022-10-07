@@ -19,7 +19,7 @@ import service.impl.Semi_UserServiceImpl;
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-
+	//서비스 객체
 	private Semi_UserService sUserService = new Semi_UserServiceImpl();
 	
 	@Override
@@ -56,9 +56,8 @@ public class LoginController extends HttpServlet {
 			session.setAttribute("user_no", sUser.getUser_no());
 			
 		}
-		System.out.println("로그인 한 이메일 : " + sUser.getUser_email());
 		
-		resp.sendRedirect("/Semi/main");
+		resp.sendRedirect("/main");
 		
 	}
 

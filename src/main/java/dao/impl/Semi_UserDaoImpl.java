@@ -10,7 +10,6 @@ import java.util.List;
 import common.JDBCTemplate;
 import dao.face.Semi_UserDao;
 import dto.Semi_User;
-import dto.Semi_User;
 
 public class Semi_UserDaoImpl implements Semi_UserDao {
 	
@@ -49,7 +48,6 @@ public class Semi_UserDaoImpl implements Semi_UserDao {
 	}
 	
 	
-	
 	@Override
 	public Semi_User selectUserByUseremail(Connection conn, Semi_User sUser) {
 
@@ -84,6 +82,42 @@ public class Semi_UserDaoImpl implements Semi_UserDao {
 		
 		return result;
 	}
+	
+	
+	//------------------------------------------------------------------------------
+
+	@Override
+	public int selectCntByEmailPhone(Connection conn, Semi_User sUser) {
+
+		String sql = "";
+		sql += "SELECT count(*) cnt FROM semi_user";
+		sql += " WHERE user_email = ?";
+		sql += " AND user_phone = ?";
+		
+		int cnt = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, sUser.getUser_email());
+			ps.setString(2, sUser.getUser_phone());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				cnt = rs.getInt("cnt");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return cnt;
+	}
+	
+	
 	
 	//------------------------------------------------------------------------------
 

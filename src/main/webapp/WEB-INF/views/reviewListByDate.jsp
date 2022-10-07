@@ -1,12 +1,18 @@
-<%@page import="dto.Semi_User"%>
+<%@page import="dto.Semi_User_m"%>
 <%@page import="dto.ReviewImage"%>
 <%@page import="dto.Review"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% List<Review> reviewList = (List) request.getAttribute("reviewList"); %>
-<% List<List<ReviewImage>> reviewimageList = (List) request.getAttribute("reviewimageList"); %>
-<% List<Semi_User> userlist = (List) request.getAttribute("userlist"); %>
+<%
+List<Review> reviewList = (List) request.getAttribute("reviewList");
+%>
+<%
+List<List<ReviewImage>> reviewimageList = (List) request.getAttribute("reviewimageList");
+%>
+<%
+List<Semi_User_m> userlist = (List) request.getAttribute("userlist");
+%>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
 	SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm:ss");
