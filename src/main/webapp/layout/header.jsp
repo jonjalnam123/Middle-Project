@@ -26,8 +26,7 @@
 
 /* HEADER_STYLE */
 
-.header {
-	position: fixed;
+.header {	
   	top: 0;
   	width: 100%;
 	background-color: #f7323f;

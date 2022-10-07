@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file ="/WEB-INF/layout/header.jsp" %>
+<%@include file ="/layout/header.jsp" %>
  <%String pay_no = (String) request.getAttribute("pay_no"); %>
  <%String booking_no =(String)  request.getAttribute("booking_no"); %>
  <%String room_type = (String)  request.getAttribute("room_type"); %>
@@ -94,5 +94,5 @@ $(document).ready(function() {
 </form>
 </body>
 </html>
-<%@include file ="/WEB-INF/layout/footer.jsp" %>
+<%@include file ="/layout/footer.jsp" %>
 
