@@ -70,7 +70,6 @@ h2 { font-weight: bold; }
  	      var selectedOption = "byDate"
  	      $.ajax({
  	         type: "GET",
-/*  	    url: "/review/list?hotel_no=2&selectedOption=byDate", */
  	     	url: "/review/list?hotel_no="+hotel_no+"&selectedOption="+selectedOption,   
  			datatype: "html",
  	         success: function(data) {
