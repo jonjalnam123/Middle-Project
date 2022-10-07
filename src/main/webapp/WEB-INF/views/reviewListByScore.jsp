@@ -52,13 +52,43 @@ table.type01 td {
 }
 
 </style>
+<script type="text/javascript">
+	$(document).ready(function() {
+	 	$("#select").change(function() {		
+			var hotel_no = 1
+			var selectedOption = this.value;
 
+			$.ajax({
+				type: "GET" ,
+				url: "/review/list"
+				data: { "hotel_no" : hotel_no ,
+					"selectedOption" : selectedOption }
+				datatype: "html",
+				success: function(data) {
+					console.log("성공");
+					$("#result").html(data);
+				}
+				
+			})   //ajax 끝 }
+			
+		}) 
+	 	})
+</script>
 
 
 
 </head>
 <body> 
-
+<h1> 별점순 리뷰 </h1>
+     <div class="reviewArea">
+        <div class="reviewHeader">
+          <h2 class="subTitle">리뷰 총 ( <%=reviewList.size() %> ) 개</h2>
+          <select id="select">
+          <option value="byDate">최신순</option>
+            <option value="byScore">추천순</option>
+          </select>
+        </div>
+ 		<div id="result" class ="result">
 
          <%	for(int i=0; i< reviewList.size(); i++) { %>
         <ul class="reviewList">
@@ -86,6 +116,8 @@ table.type01 td {
           </li>
         </ul>
           <%	} %> 
+                    </div>
+      </div>
 
 </body>
 </html>
