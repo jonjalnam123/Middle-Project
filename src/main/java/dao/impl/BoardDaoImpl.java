@@ -214,9 +214,9 @@ public class BoardDaoImpl implements BoardDao {
 			ps = conn.prepareStatement(sql);
 
 			ps.setInt(1, board.getBoardno());
-			ps.setString(1, board.getTitle());
-			ps.setInt(2, board.getUser_no());
-			ps.setString(3, board.getContent());
+			ps.setString(2, board.getTitle());
+			ps.setInt(3, board.getUser_no());
+			ps.setString(4, board.getContent());
 
 			res = ps.executeUpdate();
 
