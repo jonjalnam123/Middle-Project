@@ -3,10 +3,16 @@ package service.impl;
 import java.sql.Connection;
 import java.util.List;
 
+import common.JDBCTemplate;
+import dao.face.MarkDao;
+import dao.impl.MarkDaoImpl;
+import dto.Mark;
+import service.face.MarkService;
+
 
 public class MarkServiceImpl implements MarkService {
 
-	private MarkDao mark2Dao = new MarkDaoImpl();
+	private MarkDao markDao = new MarkDaoImpl();
 	
 	@Override
 	public Mark update(int hotel_no, int user_no) {
@@ -19,7 +25,7 @@ public class MarkServiceImpl implements MarkService {
 			JDBCTemplate.rollback(conn);
 		}
 		
-		Mark mark = markDao.selectMark2(conn, hotel_no, user_no);
+		Mark mark = markDao.selectMark(conn, hotel_no, user_no);
 		
 		return mark;
 		
@@ -42,15 +48,15 @@ public class MarkServiceImpl implements MarkService {
 		
 	}
 	
-	@Override
-	public List<Mypage> total(int user_no) {
-		
-		Connection conn = JDBCTemplate.getConnection();
-		
-		markDao.myPageInfo(conn, user_no);
-		
-		return markDao.myPageInfo(conn, user_no);
-	}
+//	@Override
+//	public List<Mypage> total(int user_no) {
+//		
+//		Connection conn = JDBCTemplate.getConnection();
+//		
+//		markDao.myPageInfo(conn, user_no);
+//		
+//		return markDao.myPageInfo(conn, user_no);
+//	}
 	
 	
 }

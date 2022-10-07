@@ -56,5 +56,34 @@ public class HotelDaoImpl implements HotelDao {
 		//최종 결과 반환
 		return hotel;
 	}
+	
+	@Override
+	public int insertMarkByhotelno(Connection conn, int hotel_no) {
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		String sql = "";
+		sql += "UPDATE hotel";
+		sql += "	SET mark_hit = mark_hit + 1";
+		sql += " WHERE hotel_no = ?";
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, hotel_no);
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		return res;
+		
+		
+	}
 
 }

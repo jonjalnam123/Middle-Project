@@ -9,12 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dto.Hotel;
+import dto.Mark;
+import service.face.HotelService;
+import service.face.MarkService;
+import service.impl.HotelServiceImpl;
+import service.impl.MarkServiceImpl;
+
 
 @WebServlet("/mark")
 public class MarkController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	HotelService hotelService = new HotelServiceImpl();
+	MarkService markService = new MarkServiceImpl();
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -41,7 +49,7 @@ public class MarkController extends HttpServlet {
 		}
 		
 		// 토탈정보 객체(Join 저장dto)		
-		List<Mypage> myMarkList = markService.total(user_no);
+		//List<Mypage> myMarkList = markService.total(user_no);
 
 	}
 
