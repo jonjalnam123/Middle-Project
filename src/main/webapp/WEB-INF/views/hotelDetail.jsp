@@ -64,22 +64,98 @@ h2 { font-weight: bold; }
 <script type="text/javascript">
 
  	$(document).ready(function() {
- 	$("#revbtn").click(function() {		
-		var hotel_no = 3
-		//console.log("no : " + no)
+ 		
+ 	   $("#revbtn").click(function() {      
+ 	      var hotel_no = 1
+ 	      //console.log("no : " + no)
+ 	         
+ 	      /* 숙소정보 버튼 클릭시 비동기호출 */
+ 	      $.ajax({
+ 	         type: "GET",
+ 	         url: "/review/list?hotel_no="+hotel_no,
+ 	         datatype: "html",
+ 	         success: function(data) {
+ 	            console.log("성공");
+ 	            $("#result").html(data);
+ 	         }
+ 	      })
+ 	      
+ 	      	$("#select").change(function() {		
+			var hotel_no = 1
+			var selectedOption = this.value;
+			var type = "";
 			
-		/* 숙소정보 버튼 클릭시 비동기호출 */
-		$.ajax({
-			type: "GET",
-			url: "/review?hotel_no="+hotel_no,
-			datatype: "html",
-			success: function(data) {
-				console.log("성공");
-				$("#result").html(data);
+			$.ajax({
+				type: "GET",
+				url: "/review/list?hotel_no="+hotel_no,
+				datatype: "html",
+				success: function(data) {
+					console.log("성공");
+					$("#result").html(data);
+				}
+				
+			})   //ajax 끝 }
+			
+		}) 
+ 		 	/* $("#select").change(function() {		
+ 				var hotel_no = 1
+ 				var selectedOption = this.value;
+ 				var type = "";
+ 				var url = "";
+ 				if(selectedOption == "byScore") {
+ 					type = "POST"
+ 					url: "/review/list"
+ 				} else {
+ 					type = "GET"
+ 					url = "/review/list?hotel_no="+hotel_no
+ 				}
+ 										
+ 				$.ajax({
+ 					type: type,
+ 					url: url,
+ 					data: hotel_no,
+ 					datatype: "html",
+ 					 success: function(data) {
+ 						console.log("성공");
+ 						$("#result").html(data);
+ 					} 
+ 					
+ 				})   //ajax 끝 
+ 				
+ 			})  */
+ 	      
+ 	      
+ 	      
+ 	  	 }) 
+ 		
+ 	 	/* $("#select").change(function() {		
+			var hotel_no = 1
+			var selectedOption = this.value;
+			var type = "";
+			var url = "";
+			if(selectedOption == "byScore") {
+				type = "POST"
+				url: "/review/list"
+			} else {
+				type = "GET"
+				url = "/review/list?hotel_no="+hotel_no
 			}
-		})
-	}) 
- 	})
+									
+			$.ajax({
+				type: type,
+				url: url,
+				data: hotel_no,
+				datatype: "html",
+				 success: function(data) {
+					console.log("성공");
+					$("#result").html(data);
+				} 
+				
+			})   //ajax 끝 
+			
+		})  */
+	}) 		
+		
 </script>
 </head>
 <body>
