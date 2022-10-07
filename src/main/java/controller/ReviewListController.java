@@ -35,7 +35,8 @@ public class ReviewListController extends HttpServlet {
 		String dateOrScore = request.getParameter("selectedOption");
 		String url = "";
 		
-		if(dateOrScore == "byDate") {	//최신순으로 보겠다는 요청이 넘어옴
+		
+		if((dateOrScore).equals("byDate")) {	//최신순으로 보겠다는 요청이 넘어옴
 			
 			//넘겨줄 jsp url 설정
 			url = "/WEB-INF/views/reviewListByDate.jsp";
