@@ -4,7 +4,6 @@
 <%@ include file="/layout/header.jsp" %>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
 
 
 <style type="text/css">
@@ -37,9 +36,8 @@
 
 
 <div id="login_wrap">
-	<form action="/Semi/main" method="post" name="loginform" onsubmit="return sendMain()">
-		<input type="text" name="usereamil" id="useremail" class="input" placeholder="이메일" 
-><br>
+	<form action="/Semi/login" method="post" name="loginform" onsubmit="return sendMain()">
+		<input type="text" name="useremail" id="useremail" class="input" placeholder="이메일" ><br>
 <!-- 		<span id="emailMsg"></span><br> -->
 		<input type="password" name="userpw" id="userpw" class="input" placeholder="비밀번호"><br>
 		<a href="/findPw" class="findjoin" style="position: relative; left: -158px;">비밀번호찾기</a><br>
@@ -58,9 +56,7 @@ const sendMain = () => {
 	
 	//이메일이 비어있을 경우
 	if(inputEmail.value == ""){
-// 		swal("", "이메일을 입력하세요", "warning");
 		alert("이메일을 입력하세요");
-// 		document.getElementById("emailMsg").innerHTML = "이메일을 입력하세요！";
 		inputEmail.focus();
 		return false;
 	}
@@ -69,7 +65,6 @@ const sendMain = () => {
     const expEmailText = /^[A-Za-z0-9\.\-]+@[A-Za-z0-9\.\-]+\.[A-Za-z0-9\.\-]+$/;
     // 이메일값이 정규식에 부합한지 체크
     if(!expEmailText.test(inputEmail.value)) {
-//     	swal("", "올바른 이메일 형식이 아닙니다", "warning");
         alert("올바른 이메일 형식이 아닙니다");
         inputEmail.focus();
         return false;
@@ -77,7 +72,6 @@ const sendMain = () => {
     
     //비밀번호가 비어있을 경우
     if(inputPw.value == ""){
-//     	swal("", "비밀번호를 입력하세요", "warning");
 		alert("비밀번호를 입력하세요");
 		inputPw.focus();
 		return false;

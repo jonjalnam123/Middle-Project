@@ -38,6 +38,8 @@ public interface Semi_UserDao {
 	//-----------------------------------------------------------------------------
 
 	public List<Semi_User> selectAllReviewWriterByHotelNo(Connection conn, int hotel_no);
+	
+	public List<Semi_User> selectAllReviewWriterByHotelNoByScore(Connection conn, int hotel_no);
 
 
 	
