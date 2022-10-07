@@ -48,6 +48,8 @@ public class LoginController extends HttpServlet {
 			session.setAttribute("login", login);
 			session.setAttribute("username", sUser.getUser_name());
 			session.setAttribute("userpw", sUser.getUser_pw());
+			session.setAttribute("user_email", sUser.getUser_email());
+			session.setAttribute("user_no", sUser.getUser_no());
 			
 		}
 		System.out.println("로그인 한 이메일 : " + sUser.getUser_email());

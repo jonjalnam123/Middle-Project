@@ -1,0 +1,44 @@
+package service.face;
+
+import java.util.List;
+
+public interface MarkService {
+
+	/**
+	 * 찜하기 업데이트
+	 * 
+	 * @param hotelno
+	 * @param userno
+	 * @return
+	 */
+	public Mark update(int hotel_no, int user_no);
+
+	/**
+	 * 중복값 체크	 *
+	 * 
+	 * @param hotel2no
+	 * @param userno
+	 * @return
+	 */
+	public int check(int hotel_no, int user_no);
+
+	/**
+	 * 찜하기 삭제
+	 * 	
+	 * @param hotel2no
+	 * @param userno
+	 * @return
+	 */
+	public void deleteMark(int hotel_no, int user_no);
+	
+	
+	/**
+	 * 마이페이지에 반영될 토탈정보
+	 * 
+	 * @param hotel2no
+	 * @param userno
+	 * @return
+	 */
+	public List<Mypage> total(int userno);
+
+}
