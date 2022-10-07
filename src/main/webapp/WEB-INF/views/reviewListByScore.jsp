@@ -79,6 +79,7 @@ table.type01 td {
 
 </head>
 <body> 
+<<<<<<< HEAD
 <h1> 별점순 리뷰 </h1>
      <div class="reviewArea">
         <div class="reviewHeader">
@@ -89,6 +90,9 @@ table.type01 td {
           </select>
         </div>
  		<div id="result" class ="result">
+=======
+<h1>추천순 페이지 호출 성</h1>
+>>>>>>> branch 'develop' of https://github.com/heejuu321/semi.git
 
          <%	for(int i=0; i< reviewList.size(); i++) { %>
         <ul class="reviewList">
