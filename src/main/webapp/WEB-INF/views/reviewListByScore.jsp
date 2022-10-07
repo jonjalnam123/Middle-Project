@@ -58,7 +58,7 @@ table.type01 td {
 
 </head>
 <body> 
-
+<h1>추천순 페이지 호출 성</h1>
 
          <%	for(int i=0; i< reviewList.size(); i++) { %>
         <ul class="reviewList">

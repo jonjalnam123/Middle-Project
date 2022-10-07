@@ -30,7 +30,7 @@ public class ReviewListController extends HttpServlet {
 		//n번 호텔의 리뷰를 보겠다-> n번이 쿼리스트링으로 넘어옴
 		int hotel_no = Integer.parseInt(request.getParameter("hotel_no"));
 		request.setAttribute("hotel_no",hotel_no);
-
+		
 		//n번 호텔의 리뷰 리스트를 최신순으로 보여주는 서비스 작동
 		List<Review> reviewList = reviewService.selectAllReview(request);
 		System.out.println("리뷰리스트 불러오기 성공");
@@ -48,10 +48,9 @@ public class ReviewListController extends HttpServlet {
 		request.setAttribute("userlist",userlist);
 		
 		//JSP로 불러들이기
-		request.getRequestDispatcher("/WEB-INF/views/reviewListByDate.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/reviewListByDate.jsp").forward(request, response); }
 		
-		
-	}
+	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
