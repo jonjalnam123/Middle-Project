@@ -170,7 +170,7 @@ body {
 
 <body>
 	<!-- Swiper -->
-	<div class="swiper mySwiper"><h3>추천 많은 순</h3>
+	<div class="swiper mySwiper"><h3>리뷰 많은 순</h3>
 		<div class="swiper-wrapper">
 			<div class="swiper-slide">
 				<img
