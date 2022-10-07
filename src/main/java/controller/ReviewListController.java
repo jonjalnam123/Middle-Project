@@ -15,12 +15,15 @@ import dto.Semi_User;
 import service.face.ReviewService;
 import service.impl.ReviewServiceImpl;
 
-@WebServlet("/review")
-public class ReviewController extends HttpServlet {
+//with 민영
+//민영씨가 hotelDetail 페이지에서 넘겨주는 값 : hotel_no
+@WebServlet("/review/list")
+public class ReviewListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	ReviewService reviewService = new ReviewServiceImpl();
        
+	//GET : 리뷰 최신순 불러오기
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("/review [GET]");
 
@@ -45,12 +48,38 @@ public class ReviewController extends HttpServlet {
 		request.setAttribute("userlist",userlist);
 		
 		//JSP로 불러들이기
-		request.getRequestDispatcher("/WEB-INF/views/reviewShow_ok.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/reviewListByDate.jsp").forward(request, response);
+		
 		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//n번 호텔의 리뷰를 보겠다-> n번이 쿼리스트링으로 넘어옴
+		int hotel_no = Integer.parseInt(request.getParameter("hotel_no"));
+		
+		//n번 호텔의 리뷰 리스트를 별점순으로 보여주는 서비스 작동
+		List<Review> reviewList = reviewService.selectAllReviewByScore(request);
+		System.out.println("리뷰리스트(별점순) 불러오기 성공");
+		
+		//n번 호텔의 리뷰 이미지 리스트를 별점순으로 보여주는 서비스 작동
+		List<List<ReviewImage>> reviewimageList = reviewService.selectAllReviewImageByScore(request);
+		System.out.println("리뷰이미지리스트(별점순) 불러오기 성공");
+
+		//n번 호텔의 리뷰 리스트의 작성자를 별점순으로 보여주는 서비스 작동
+		List<Semi_User> userlist = reviewService.selectAllReviewWriterByHotelNoByScore(request,hotel_no);
+
+		
+		//불러온 값들 JSP에 떠넘기기
+		request.setAttribute("reviewList",reviewList);
+		request.setAttribute("reviewimageList",reviewimageList);
+		request.setAttribute("userlist",userlist);
+		
+		
+		//JSP로 불러들이기
+		request.getRequestDispatcher("/WEB-INF/views/reviewListByScore.jsp").forward(request, response);
+		
+
 	}
 
 }
