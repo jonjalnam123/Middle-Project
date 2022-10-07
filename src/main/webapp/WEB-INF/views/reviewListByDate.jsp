@@ -63,7 +63,8 @@ table.type01 td {
 			$.ajax({
 				type: "GET" ,
 				url: "/review/list"
-				data: {"selectedOption" : selectedOption }
+				data: { "hotel_no" : hotel_no ,
+					"selectedOption" : selectedOption }
 				datatype: "html",
 				success: function(data) {
 					console.log("성공");
