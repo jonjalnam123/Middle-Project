@@ -15,7 +15,7 @@ import service.face.BoardService;
 import service.impl.BoardServiceImpl;
 
 
-@WebServlet("/board/view")
+@WebServlet("/view")
 public class BoardViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -46,7 +46,7 @@ public class BoardViewController extends HttpServlet {
 
 
 		//VIEW 지정 및 응답
-		req.getRequestDispatcher("/WEB-INF/views/board/view.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/view.jsp").forward(req, resp);
 
 	}
 
