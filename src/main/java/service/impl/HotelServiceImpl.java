@@ -20,4 +20,20 @@ public class HotelServiceImpl implements HotelService {
 		return hotelDao.selectHotelByHotelNo(conn, hotel_no);
 		
 	}
+	
+	@Override
+	public Hotel insertMark(int hotel_no) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		if( hotelDao.insertMarkByhotelno(conn, hotel_no) > 0 ) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		Hotel hotel = hotelDao.selectHotelByHotelNo(conn, hotel_no);
+		
+		return hotel;
+	}
 }

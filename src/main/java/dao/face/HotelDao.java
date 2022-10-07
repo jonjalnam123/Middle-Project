@@ -8,4 +8,7 @@ public interface HotelDao {
 	
 	public Hotel selectHotelByHotelNo(Connection conn, int hotel_no);
 
+	public int insertMarkByhotelno(Connection conn, int hotel_no);
+
+
 }
