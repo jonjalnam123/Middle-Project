@@ -13,17 +13,14 @@
 <title>리뷰 작성 페이지</title>
 <!-- 카카오지도 -->
 <style type="text/css">
-
 .container {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 }
-
 .container div {
 	margin-top: 50px;
 	padding: 0 20px 0px 20px;
 }
-
 .container::before {
   content: "::before element";
   order:9999;
@@ -32,7 +29,6 @@
   height:0;
   overflow:hidden;
 }
-
 .container::after {
   content: "::before element";
   order:9999;
@@ -41,44 +37,40 @@
   height:0;
   overflow:hidden;
 }
-
 .htimg {
 	display: block;
 	width: 490px;
 	height: 350px;
 }
-
 .tab {
 	text-align: left;
 	grid-column: span 2;
 }
-
 .result {
 	text-align: left;
 	grid-column: span 2;
 }
-
 h2 { font-weight: bold; }
 </style>
 
 <script type="text/javascript">
-
  	$(document).ready(function() {
  		
  	   $("#revbtn").click(function() {      
  	      var hotel_no = 1
- 	      //console.log("no : " + no)
- 	         
- 	      /* 숙소정보 버튼 클릭시 비동기호출 */
+ 	      var selectedOption = "byDate"
  	      $.ajax({
  	         type: "GET",
- 	         url: "/review/list?hotel_no="+hotel_no,
- 	         datatype: "html",
+ 	     	url: "/review/list?hotel_no="+hotel_no+"&selectedOption="+selectedOption,   
+ 			datatype: "html",
  	         success: function(data) {
  	            console.log("성공");
  	            $("#result").html(data);
  	         }
  	      })
+ 		})
+ 		
+ 		//------------------------------------
  	      
  	      	$("#select").change(function() {		
 			var hotel_no = 1
@@ -96,64 +88,10 @@ h2 { font-weight: bold; }
 				
 			})   //ajax 끝 }
 			
-		}) 
- 		 	/* $("#select").change(function() {		
- 				var hotel_no = 1
- 				var selectedOption = this.value;
- 				var type = "";
- 				var url = "";
- 				if(selectedOption == "byScore") {
- 					type = "POST"
- 					url: "/review/list"
- 				} else {
- 					type = "GET"
- 					url = "/review/list?hotel_no="+hotel_no
- 				}
- 										
- 				$.ajax({
- 					type: type,
- 					url: url,
- 					data: hotel_no,
- 					datatype: "html",
- 					 success: function(data) {
- 						console.log("성공");
- 						$("#result").html(data);
- 					} 
- 					
- 				})   //ajax 끝 
- 				
- 			})  */
- 	      
- 	      
+ 
  	      
  	  	 }) 
- 		
- 	 	/* $("#select").change(function() {		
-			var hotel_no = 1
-			var selectedOption = this.value;
-			var type = "";
-			var url = "";
-			if(selectedOption == "byScore") {
-				type = "POST"
-				url: "/review/list"
-			} else {
-				type = "GET"
-				url = "/review/list?hotel_no="+hotel_no
-			}
-									
-			$.ajax({
-				type: type,
-				url: url,
-				data: hotel_no,
-				datatype: "html",
-				 success: function(data) {
-					console.log("성공");
-					$("#result").html(data);
-				} 
-				
-			})   //ajax 끝 
-			
-		})  */
+ 	
 	}) 		
 		
 </script>

@@ -30,7 +30,6 @@
     />
  <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" type="text/css">
 <style>
-
 table.type01 {
   border-collapse: collapse;
   text-align: center;
@@ -50,19 +49,15 @@ table.type01 td {
   vertical-align: top;
   border: 1px solid #ccc;
 }
-
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
 	 	$("#select").change(function() {		
 			var hotel_no = 1
 			var selectedOption = this.value;
-
 			$.ajax({
 				type: "GET" ,
-				url: "/review/list"
-				data: { "hotel_no" : hotel_no ,
-					"selectedOption" : selectedOption }
+				url: "/review/list?hotel_no=1&selectedOption="+selectedOption,
 				datatype: "html",
 				success: function(data) {
 					console.log("성공");
@@ -85,8 +80,8 @@ table.type01 td {
         <div class="reviewHeader">
           <h2 class="subTitle">리뷰 총 ( <%=reviewList.size() %> ) 개</h2>
           <select id="select">
-          <option value="byDate">최신순</option>
             <option value="byScore">추천순</option>
+            <option value="byDate">최신순</option>
           </select>
         </div>
  		<div id="result" class ="result">
