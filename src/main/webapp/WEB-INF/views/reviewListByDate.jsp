@@ -59,17 +59,9 @@ table.type01 td {
 	 	$("#select").change(function() {		
 			var hotel_no = 1
 			var selectedOption = this.value;
-			var type = "";
-			
-			if(selectedOption == "byScore") {
-				type = "POST"
-			} else {
-				type = "GET"
-			}
-			
-			
+
 			$.ajax({
-				type: type,
+				type: "GET" ,
 				url: "/review/list?hotel_no="+hotel_no,
 				datatype: "html",
 				success: function(data) {
