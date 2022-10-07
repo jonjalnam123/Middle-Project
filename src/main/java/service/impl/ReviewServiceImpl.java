@@ -11,10 +11,10 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.tomcat.util.http.fileupload.FileItem;
-import org.apache.tomcat.util.http.fileupload.FileUploadException;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import common.JDBCTemplate;
 import dao.face.HotelDao;
@@ -32,53 +32,23 @@ import dto.Semi_User;
 import service.face.ReviewService;
 
 
-
-public class ReviewServiceImpl implements ReviewService{
+public class ReviewServiceImpl implements ReviewService {
 
 	ReviewDao reviewDao = new ReviewDaoImpl();
 	ReviewImageDao reviewImageDao = new ReviewImageDaoImpl();
 	HotelDao hotelDao = new HotelDaoImpl();
 	Semi_UserDao semi_UserDao = new Semi_UserDaoImpl();
 	
-	
-	@Override
-	public List<Review> selectAllReview(HttpServletRequest request) {
-		
-		int hotel_no = Integer.parseInt(request.getParameter("hotel_no"));
-		
-		return reviewDao.selectAll(JDBCTemplate.getConnection(), hotel_no);
-
-	}
-
-	@Override
-	public List<List<ReviewImage>> selectAllReviewImage(HttpServletRequest request) {
-		int hotel_no = Integer.parseInt(request.getParameter("hotel_no"));
-		
-		return reviewImageDao.selectAll(JDBCTemplate.getConnection(), hotel_no);
-
-	}
-	
-	@Override
-	public Hotel selectHotelByHotelNo(HttpServletRequest request, int hotel_no) {
-		
-		Connection conn = JDBCTemplate.getConnection();
-		Hotel hotel = hotelDao.selectHotelByHotelNo(conn, hotel_no);
-		return hotel;
-	}
-	
 	@Override
 	public void writeReview(HttpServletRequest req) {
-		//--- 첨부파일 추가하여 게시글 작성 처리하기 ---
-		
-		
+
+		//--- 첨부파일 추가하여 리뷰 게시글 작성 처리하기 시작---
 		System.out.println("writeReview()");
-		
-		
-		//--- DB에 최종 데이터 삽입하기 ---
+	
+		//--- DB에 최종 데이터 삽입하기 위한 준비 ---
 		Connection conn = JDBCTemplate.getConnection();
 
-	
-		//게시글 번호 생성
+		// 리뷰 게시글 번호 생성
 		int reviewno = reviewDao.selectNextReviewno(conn);
 		
 		int res = 0;
@@ -125,8 +95,6 @@ public class ReviewServiceImpl implements ReviewService{
 		//게시글 정보 DTO객체
 		Review review = new Review();
 		
-		//게시글 첨부파일 정보 DTO객체
-		ReviewImage reviewImage = new ReviewImage();
 		
 		//파일아이템의 반복자
 		Iterator<FileItem> iter = items.iterator();
@@ -152,7 +120,7 @@ public class ReviewServiceImpl implements ReviewService{
 				} catch (UnsupportedEncodingException e) {
 					e.printStackTrace();
 				}
-				
+								
 				//key에 맞게 value를 DTO에 삽입하기
 				if( "pay_no".equals(key) ) {
 					review.setPay_no(Integer.parseInt(value));
@@ -169,14 +137,23 @@ public class ReviewServiceImpl implements ReviewService{
 				if( "review_score".equals(key) ) {
 					review.setReview_score(Integer.parseInt(value));
 				}
-				if( "user_email".equals(key) ) {
+				if( "user_no".equals(key) ) {		
+					review.setUser_no(Integer.parseInt(value));
+				}			
+				if( "room_type".equals(key) ) {		
+					review.setRoom_type(value);
+				}
+				if( "user_email".equals(key) ) {		
 					review.setUser_email(value);
 				}
-				
+								
 			} // if( item.isFormField() ) end
 			
 			//--- 3) 파일에 대한 처리 ---
 			if( !item.isFormField() ) {
+			
+				//게시글 첨부파일 정보 DTO객체
+				ReviewImage reviewImage = new ReviewImage();
 				
 				//저장 파일명 처리
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssS");
@@ -209,36 +186,86 @@ public class ReviewServiceImpl implements ReviewService{
 				} else {
 					JDBCTemplate.rollback(conn);
 				}
+			}
+		}
+			//게시글 번호 삽입
+			review.setReview_no(reviewno);
+			
+			//작성자 ID 처리
+//			review.setUser_email( (String) req.getSession().getAttribute("userEmail") );
+			
+			System.out.println(reviewno);
+			
+			if( reviewDao.insert(conn, review) > 0 ) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
+			
+	
 	}
 
-} //while( iter.hasNext() ) end
+	@Override
+	public Hotel selectHotelByHotelNo(HttpServletRequest request, int hotel_no) {
+		Connection conn = JDBCTemplate.getConnection();
+		Hotel hotel = hotelDao.selectHotelByHotelNo(conn, hotel_no);
+		return hotel;
+	}
 
+	//------------------------최신순으로 불러오는 메서드-----------------------------
+	@Override
+	public List<Review> selectAllReview(HttpServletRequest request) {
+
+		int hotel_no = Integer.parseInt(request.getParameter("hotel_no"));
 		
-		//게시글 번호 삽입
-		review.setReview_no(reviewno);
+		return reviewDao.selectAll(JDBCTemplate.getConnection(), hotel_no);
+	}
+
+	@Override
+	public List<List<ReviewImage>> selectAllReviewImage(HttpServletRequest request) {
+
+		int hotel_no = Integer.parseInt(request.getParameter("hotel_no"));
 		
-		//작성자 ID 처리
-//		review.setUser_email( (String) req.getSession().getAttribute("userEmail") );
-		//리뷰 작성일자 처리
-//		review.setReview_date(new Date());
-		
-		if( reviewDao.insert(conn, review) > 0 ) {
-			JDBCTemplate.commit(conn);
-		} else {
-			JDBCTemplate.rollback(conn);
-		}
-		
+		return reviewImageDao.selectAll(JDBCTemplate.getConnection(), hotel_no);
 	}
 
 	@Override
 	public List<Semi_User> selectAllReviewWriterByHotelNo(HttpServletRequest request, int hotel_no) {
+
 		Connection conn = JDBCTemplate.getConnection();
 		List<Semi_User> userList = semi_UserDao.selectAllReviewWriterByHotelNo(conn, hotel_no);
 		
-		System.out.println("selectAllReviewWriterByHotelNo 서비스 실행");
-
 		return userList;
 	}
+	//-------------------------별점순으로 불러오는 메서드------------------------------
 
+	@Override
+	public List<Review> selectAllReviewByScore(HttpServletRequest request) {
+		int hotel_no = Integer.parseInt(request.getParameter("hotel_no"));
+		
+		return reviewDao.selectAllByScore(JDBCTemplate.getConnection(), hotel_no);
+	}
 
+	@Override
+	public List<List<ReviewImage>> selectAllReviewImageByScore(HttpServletRequest request) {
+		int hotel_no = Integer.parseInt(request.getParameter("hotel_no"));
+		
+		return reviewImageDao.selectAllByScore(JDBCTemplate.getConnection(), hotel_no);
+	}
+
+	@Override
+	public List<Semi_User> selectAllReviewWriterByHotelNoByScore(HttpServletRequest request, int hotel_no) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		List<Semi_User> userList = semi_UserDao.selectAllReviewWriterByHotelNoByScore(conn, hotel_no);
+		
+		return userList;
+	}
+	
+	
+	
+	
+	
+	
+	
 }

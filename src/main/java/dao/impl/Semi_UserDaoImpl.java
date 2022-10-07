@@ -120,6 +120,7 @@ public class Semi_UserDaoImpl implements Semi_UserDao {
 	//------------------------------------------------------------------------------
 
 
+
 	@Override
 	public List<Semi_User> selectAllReviewWriterByHotelNo(Connection conn, int hotel_no) {
 
