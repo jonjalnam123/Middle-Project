@@ -28,7 +28,6 @@ public class Semi_UserServiceImpl implements Semi_UserService {
 	}
 	
 	
-	
 	@Override
 	public boolean login(Semi_User sUser) {
 		
@@ -45,6 +44,36 @@ public class Semi_UserServiceImpl implements Semi_UserService {
 		return sUserDao.selectUserByUseremail(JDBCTemplate.getConnection(), sUser);
 	}
 	
+	
+	//--------------------------------------------------------------------------------------------
+
+	
+	@Override
+	public Semi_User getEmailPhone(HttpServletRequest req) {
+		
+		Semi_User sUser = new Semi_User();
+		
+		sUser.setUser_email(req.getParameter("findPwEmail"));
+		sUser.setUser_phone(req.getParameter("findPwPhone"));
+		
+		return sUser;
+	}
+	
+	
+	@Override
+	public boolean exists(Semi_User sUser) {
+		if(sUserDao.selectCntByEmailPhone(JDBCTemplate.getConnection(), sUser) > 0) {
+			return true;
+		} else {
+		return false;
+		}
+	}
+	
+	
+	@Override
+	public Semi_User findPw(Semi_User sUser) {
+		return sUserDao.selectUserByUseremail(JDBCTemplate.getConnection(), sUser);
+	}
 
 	//--------------------------------------------------------------------------------------------
 

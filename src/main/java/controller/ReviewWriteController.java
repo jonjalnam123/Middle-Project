@@ -12,15 +12,15 @@ import dto.Hotel;
 import service.face.ReviewService;
 import service.impl.ReviewServiceImpl;
 
-//n번 호텔의 리뷰를 작성하겠다는 요청이 넘어옴
-//아리님, 쿼리스트링으로 넘겨주세요
-//넘겨주셔야 할 파라미터 : hotel_no, pay_no, booking_no, room_type
+//with 아리
+//아리님이 넘겨주는 파라미터 : hotel_no, pay_no, booking_no, room_type, user_no
+//아리님이 넘겨주는 방식 : get
 @WebServlet("/review/write")
 public class ReviewWriteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	ReviewService reviewService = new ReviewServiceImpl();
        
+	ReviewService reviewService = new ReviewServiceImpl();
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//n번 호텔의 리뷰를 작성하겠다는 요청이 넘어옴
 //		int hotel_no = Integer.parseInt(request.getParameter("hotel_no"));
@@ -34,32 +34,25 @@ public class ReviewWriteController extends HttpServlet {
 //		String pay_no= request.getParameter("pay_no");
 //		String booking_no = request.getParameter("booking_no");
 //		String room_type = request.getParameter("room_type");
+//		String user_no = request.getParameter("user_no");
 //		//jsp에 값 넘겨주기 
 //		request.setAttribute("pay_no",pay_no);
 //		request.setAttribute("booking_no",booking_no);
 //		request.setAttribute("room_type",room_type);
 //		request.setAttribute("hotel_name",hotel_name);
 //		request.setAttribute("hotel_no",hotel_no);
+//		request.setAttribute("user_no",user_no);
 
-		
-		/*
-		 * HttpSession session = request.getSession(); 
-		 * session.getId();
-		 */
-		
 		request.getRequestDispatcher("/WEB-INF/views/reviewWrite.jsp").forward(request,response);
-		
-
-		
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		//사용자가 작성한 리뷰값들이 넘어옴
+		//사용자가 작성한 리뷰값들이 post로 넘어옴
 		//리뷰 등록하는 서비스 실행
 		reviewService.writeReview(request);
-		//리뷰 등록 완료. 원래 페이지로 돌아가는 리 디렉션
+		//리뷰 등록 완료. 원래 페이지로 돌아가는 리다이렉트
+		// ★★★★★★★★★★★★ response.sendRedirect("/");    아리님한테 url 받기
 	}
 
 }

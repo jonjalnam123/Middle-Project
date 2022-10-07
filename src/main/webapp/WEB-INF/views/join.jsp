@@ -24,7 +24,7 @@
 }
 
 #useremail{
-	border: 1px solid #d9d9d9; width: 330px; height: 50px;
+	border: 1px solid #d9d9d9; width: 400px; height: 50px;
     margin: 5px; padding-left: 10px; border-radius: 5px; position: relative;
     box-sizing: border-box; font-size: 15px; font-weight: normal; left: -11px;
 }
@@ -35,24 +35,27 @@
     color: #fff; font-weight: bold; font-size: 18px;
 }
 
-#btnOverlap{
-	width: 48px; height: 42px; position: relative; top: -2px; margin-left: 0;
-	border: 0; box-sizing: content-box; background: linear-gradient(to left, #f857a6, #ff5858);
-	color: #fff; border-radius: 5px;
-}
+/* #btnCheck{ */
+/* 	width: 48px; height: 42px; position: relative; top: -2px; margin-left: 0; */
+/* 	border: 0; box-sizing: content-box; background: linear-gradient(to left, #f857a6, #ff5858); */
+/* 	color: #fff; border-radius: 5px; */
+/* } */
 
 </style>
 
+
 <div id="join_wrap">
-	<form action="/Semi/join" method="post" id="joinform" name="joinform" onsubmit="return sendLogin()">
+	<form action="/join" method="post" id="joinform" name="joinform" onsubmit="return sendLogin()">
+	<h1>회원가입</h1><br><br>
 		<p>이름</p>
 		<input type="text" id="username" name="username" placeholder="예)홍길동" autofocus><br><br>
 		
 		<p>이메일</p>
-		<p><input type="text" id="useremail" name="useremail" placeholder="이메일을 입력하세요"><input type="button" id="btnOverlap" value="확인" onclick="chkEmail()"></p>
+		<p><input type="text" id="useremail" name="useremail" placeholder="이메일을 입력하세요">
+<!-- 		<input type="button" id="btnCheck" value="확인" onclick="chkEmail()"></p> -->
 		<p id="result">&nbsp;</p>
 		
-		<p>휴대폰 번호</p> <p style="font-weight: normal; font-size: 11px;"> * - 없이 작성 예) 01033334444</p>
+		<p>휴대폰 번호</p> 
 		<input type="text" id="userphone" name="userphone" placeholder="휴대폰번호를 입력하세요"><br><br>
 		
 		<p>비밀번호</p> <p style="font-weight: normal; font-size: 11px;"> * 4자 이상 20자 이하</p>
@@ -68,6 +71,17 @@
 
 
 <script type="text/javascript">
+$(function(){
+	$("#userphone").on('keyup', numReplace);
+})
+
+
+function numReplace(){
+	const inputNum = document.querySelector("#userphone");
+	inputNum.value = inputNum.value.replace(/-/gi, '');
+}
+
+
 const sendLogin = () => {
 	
 	//변수선언
@@ -112,7 +126,7 @@ const sendLogin = () => {
     const expHpText = /^\d{3}\d{3,4}\d{4}$/;
     // userphone값이 정규식에 부합한지 체크
     if(!expHpText.test(inputNum.value)) {
-        alert('올바른 핸드폰 번호가 아닙니다 01012345678 형식으로 입력해주세요');
+        alert('숫자만 입력하세요');
         inputNum.focus()
         return false;
     }
@@ -144,13 +158,6 @@ const sendLogin = () => {
     }
 	
 	return true;
-}
-
-
-const chkEmail = () => {
-	
-	const inputEmail = document.querySelector("#useremail");
-	
 }
 
 </script>
