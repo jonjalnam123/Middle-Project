@@ -31,8 +31,7 @@ public class MarkedListHotelContoller extends HttpServlet {
 		request.setAttribute("markedHotelList", markedHotelList);
 		
 		request.getRequestDispatcher("/WEB-INF/views/markedHotelList.jsp").forward(request, response);		
-		
-		
+	
 
 	}
 
