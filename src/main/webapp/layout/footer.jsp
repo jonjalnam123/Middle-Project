@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+</div><!-- content 끝 -->
 <style type="text/css">
 
 /* FOOTER_STYLE */
@@ -36,10 +36,7 @@
 }
 
 </style>
-</head>
-<body>
 
-</div><!-- content 끝 -->
 
 <!--footer 시작 -->
 

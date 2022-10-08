@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+<!-- Link Swiper's CSS -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
 
 <%@ include file="/layout/header.jsp"%>
 
@@ -98,7 +103,7 @@
 }
 </style>
 
-
+<div class="main_wrap">
 <div id="sliderbox">
 
 	<ul id="slider">
@@ -116,11 +121,6 @@
 
 </div>
 
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-<!-- Link Swiper's CSS -->
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
 
 <!-- Demo styles -->
 <style>
@@ -166,9 +166,6 @@ body {
 }
 </style>
 
-</head>
-
-<body>
 	<!-- Swiper -->
 	<div class="swiper mySwiper"><h3>리뷰 많은 순</h3>
 		<div class="swiper-wrapper">
@@ -235,12 +232,6 @@ body {
 			},
 		});
 	</script>
-</body>
-</html>
 
-
-
-
-
-
+</div>
 <%@ include file="/layout/footer.jsp"%>
