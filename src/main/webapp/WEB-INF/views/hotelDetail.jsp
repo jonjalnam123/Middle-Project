@@ -179,9 +179,19 @@ h2 { font-weight: bold; }
 	<input type="text" id="datepicker2" class="datepicker" name="checkout"> -->
 	
 	<!-- 찜하기 -->
-		<div id="mark">
-			<img src="/resources/image/empty_heart.png" id="heartimg">
-		</div>
+	<div id="mark">
+		<img src="/resources/image/empty_heart.png" id="heartimg">
+	</div>
+		
+		<!-- 날짜선택 -->
+	<div class="checkDate">  
+		<div>  	
+			<p>체크인</p>  	
+			<input type="text" name="checkin" id="checkin" placeholder="체크인 날짜 선택"/>  
+			<p>체크인</p>  	
+			<input type="text" name="checkout" id="checkout" placeholder="체크아웃 날짜 선택"/>  
+ 		</div>
+	</div>
 	
 	<div class="tab">
 		<button class="room">
