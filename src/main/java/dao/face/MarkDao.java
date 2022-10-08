@@ -1,7 +1,9 @@
 package dao.face;
 
 import java.sql.Connection;
+import java.util.List;
 
+import dto.Hotel;
 import dto.Mark;
 
 
@@ -60,6 +62,7 @@ public interface MarkDao {
 	//public List<Mypage> myPageInfo(Connection conn, int user_no);
 
 	
+	public List<Hotel> markedHotelList(Connection conn, String user_email);
 	
 
 }

@@ -3,9 +3,12 @@ package service.impl;
 import java.sql.Connection;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import common.JDBCTemplate;
 import dao.face.MarkDao;
 import dao.impl.MarkDaoImpl;
+import dto.Hotel;
 import dto.Mark;
 import service.face.MarkService;
 
@@ -48,15 +51,23 @@ public class MarkServiceImpl implements MarkService {
 		
 	}
 	
-//	@Override
-//	public List<Mypage> total(int user_no) {
-//		
-//		Connection conn = JDBCTemplate.getConnection();
-//		
-//		markDao.myPageInfo(conn, user_no);
-//		
-//		return markDao.myPageInfo(conn, user_no);
-//	}
+	@Override
+	public List<Mypage> total(int user_no) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		markDao.myPageInfo(conn, user_no);
+		
+		return markDao.myPageInfo(conn, user_no);
+	}
 	
-	
+	@Override
+	public List<Hotel> markedHotelList(HttpServletRequest request) {
+
+		Connection conn = JDBCTemplate.getConnection();
+		String user_email = (String) request.getSession().getAttribute("user_email");
+
+		return markDao.markedHotelList(conn, user_email);
+		
+	}
 }

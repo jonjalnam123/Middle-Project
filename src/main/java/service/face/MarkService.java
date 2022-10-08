@@ -2,6 +2,9 @@ package service.face;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import dto.Hotel;
 import dto.Mark;
 
 public interface MarkService {
@@ -41,6 +44,15 @@ public interface MarkService {
 	 * @param userno
 	 * @return
 	 */
-//	public List<Mypage> total(int userno);
+	public List<Mypage> total(int userno);
+	
+	/**
+	 * 특정 유저가 찜한 호텔들을 전부 불러오는 메서드
+	 * 
+	 * @param 
+	 * @param 
+	 * @return
+	 */
+	public List<Hotel> markedHotelList(HttpServletRequest request);
 
 }

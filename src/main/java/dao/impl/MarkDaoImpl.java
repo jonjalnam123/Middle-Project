@@ -9,6 +9,7 @@ import java.util.List;
 
 import common.JDBCTemplate;
 import dao.face.MarkDao;
+import dto.Hotel;
 import dto.Mark;
 
 public class MarkDaoImpl implements MarkDao {
@@ -174,4 +175,58 @@ public class MarkDaoImpl implements MarkDao {
 //		return list;
 //	}
 
+	
+	@Override
+	public List<Hotel> markedHotelList(Connection conn, String user_email) {
+
+		String sql = "";
+		sql += "select h.hotel_no, h.hotel_name, h.hotel_addr, h.hotel_tel, h.hotel_info, h.hotel_photo, h.mark_hit, h.hotel_intime, h.hotel_outtime from";
+		sql += "(select * from semi_user s";
+		sql += " join mark m";
+		sql += " on m.user_no = s.user_no";
+		sql += " where user_email = ?) t";
+		sql += " left outer join hotel h";
+		sql += " on t.hotel_no = h.hotel_no";
+		
+		List<Hotel> list  = new ArrayList<>();
+		try {
+			ps = conn.prepareStatement(sql); //SQL수행 객체
+			
+			ps.setString(1, user_email);
+			
+			rs = ps.executeQuery(); //SQL수행 및 결과 집합 저장
+								
+			//조회 결과 처리
+			while(rs.next()) {
+			Hotel h = new Hotel();//결과값 저장 객체
+						
+			//결과값 한 행씩 처리
+			h.setHotel_no(rs.getInt("hotel_no"));
+			h.setHotel_name(rs.getString("hotel_name"));
+			h.setHotel_addr(rs.getString("hotel_addr"));
+			h.setHotel_tel(rs.getString("hotel_tel"));
+			h.setHotel_info(rs.getString("hotel_info"));
+			h.setHotel_photo(rs.getString("hotel_photo"));
+			h.setMark_hit(rs.getInt("mark_hit"));
+			h.setHotel_intime(rs.getString("hotel_intime"));
+			h.setHotel_outtime(rs.getString("hotel_outtime"));
+			
+						
+			//리스트에 결과값 저장
+			list.add(h);
+						
+		}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			//DB객체 닫기
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+
+		//최종 결과 반환
+	return list;
+	}
+	
 }
