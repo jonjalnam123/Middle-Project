@@ -10,7 +10,9 @@
 /* FOOTER_STYLE */
 
 .footer {
+	width: 100%;
     position: relative;
+    height: 317px;
     padding: 63px 31px 40px 31px !important;
     border-top: 1pxsolidrgba(0,0,0,0.08);
     background: rgb(245,245,245);

@@ -121,7 +121,9 @@
 .content {
 	width: 100%;
 	margin: 0 auto;
-	height: 1000px;
+	height: auto;
+	min-height: 100%;
+	padding-bottom: 40px;
 	padding-top: 72px;
 }
 
