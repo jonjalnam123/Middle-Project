@@ -14,7 +14,7 @@ import service.face.BoardService;
 import service.impl.BoardServiceImpl;
 import util.Paging;
 
-@WebServlet("/board/list")
+@WebServlet("/list")
 public class BoardListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -41,7 +41,7 @@ public class BoardListController extends HttpServlet {
 		req.setAttribute("paging", paging);
 		
 		//View 지정 및 응답
-		req.getRequestDispatcher("/WEB-INF/views/board/list.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/boardlist.jsp").forward(req, resp);
 		
 	}
 	

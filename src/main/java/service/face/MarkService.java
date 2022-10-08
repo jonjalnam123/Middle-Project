@@ -2,6 +2,8 @@ package service.face;
 
 import java.util.List;
 
+import dto.Mark;
+
 public interface MarkService {
 
 	/**
@@ -39,6 +41,6 @@ public interface MarkService {
 	 * @param userno
 	 * @return
 	 */
-	public List<Mypage> total(int userno);
+//	public List<Mypage> total(int userno);
 
 }

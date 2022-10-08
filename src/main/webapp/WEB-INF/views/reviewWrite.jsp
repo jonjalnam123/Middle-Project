@@ -61,15 +61,7 @@ rel="stylesheet"/>
       <!-- 사진 -->
       <div class="imgArea">
         <label for="upfile1">
-          사진첨부1 <input type="file" name="upfile" id="upfile1" />
-        </label>
-        <label for="upfile2">
-          사진첨부2
-          <input type="file" name="upfile" id="upfile2" />
-        </label>
-        <label for="upfile3">
-          사진첨부3
-          <input type="file" name="upfile" id="upfile3" />
+          사진첨부 <input type="file" name="upfile" id="upfile1" />
         </label>
       </div>
       <!-- 리뷰 -->

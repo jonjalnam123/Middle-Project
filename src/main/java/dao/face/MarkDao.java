@@ -1,7 +1,8 @@
 package dao.face;
 
 import java.sql.Connection;
-import java.util.List;
+
+import dto.Mark;
 
 
 public interface MarkDao {
@@ -25,7 +26,7 @@ public interface MarkDao {
 	 * @param userno
 	 * @return
 	 */
-	public Mark selectMark2(Connection conn, int hotel_no, int user_no);
+	public Mark selectMark(Connection conn, int hotel_no, int user_no);
 
 
 	/**
@@ -56,7 +57,7 @@ public interface MarkDao {
 	 * @param userno
 	 * @return
 	 */
-	public List<Mypage> myPageInfo(Connection conn, int user_no);
+	//public List<Mypage> myPageInfo(Connection conn, int user_no);
 
 	
 	

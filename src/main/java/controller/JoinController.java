@@ -32,14 +32,15 @@ public class JoinController extends HttpServlet {
 		
 		//회원가입 전달파라미터 추출
 		Semi_User sUser = sUserService.getJoinMember(req);
-		System.out.println("가입한 사람 이름 : " + sUser.getUser_name());
+		System.out.println(sUser);
 		
 		//회원가입 처리
 		sUserService.join(sUser);
 		
-		resp.sendRedirect("/Semi/login");
+		resp.sendRedirect("/login");
 		
 	}
+	
 
 }
 

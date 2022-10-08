@@ -14,7 +14,7 @@ import service.face.BoardService;
 import service.impl.BoardServiceImpl;
 
 
-@WebServlet("/board/delete")
+@WebServlet("/delete")
 public class BoardDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -28,7 +28,7 @@ public class BoardDeleteController extends HttpServlet {
 			
 			boardService.delete(board);
 			
-			resp.sendRedirect("/board/list");
+			resp.sendRedirect("/list");
 			
 		}
 

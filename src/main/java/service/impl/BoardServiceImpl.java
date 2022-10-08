@@ -11,18 +11,18 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.tomcat.util.http.fileupload.FileItem;
-import org.apache.tomcat.util.http.fileupload.FileUploadException;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import common.JDBCTemplate;
+import dto.BoardFile;
+import util.Paging;
 import dao.face.BoardDao;
 import dao.impl.BoardDaoImpl;
 import dto.Board;
-import dto.BoardFile;
 import service.face.BoardService;
-import util.Paging;
 
 public class BoardServiceImpl implements BoardService {
 
@@ -96,69 +96,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 	public void write(HttpServletRequest req) {
 
-		//		// 1 Read file content
-		//	    List<Part> fileParts;
-		//		try {
-		//			fileParts = req.getParts().stream().filter(part -> "files".equals(part.getName()) && part.getSize() > 0).collect(Collectors.toList());
-		//		
-		//		    for (Part filePart : fileParts) {
-		//		        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
-		//		        InputStream fileContent = filePart.getInputStream();
-		//		        // ... (do your job here)
-		//		    }
 
-		//		} catch (IOException e) {
-		//			// TODO Auto-generated catch block
-		//			e.printStackTrace();
-		//		} catch (ServletException e) {
-		//			// TODO Auto-generated catch block
-		//			e.printStackTrace();
-		//		} // Retrieves <input type="file" name="files" multiple="true">
-		//
-
-
-		// 2 Save file content
-		// fixme later
-
-		// 3 read other parameters
-
-
-		//		
-		//		Board board = new Board();
-		//
-		//		//제목 처리
-		//		board.setTitle( req.getParameter("title") );
-		//		System.out.println("uuu ");
-		//		Enumeration<String> parameters = req.getParameterNames();
-		//		// for (Enumeration<E> e = v.elements(); e.hasMoreElements();)
-		//		  //     System.out.println(e.nextElement());
-		//		for (;parameters.hasMoreElements();)
-		//		{
-		//			 System.out.println(parameters.nextElement());
-		//		}
-		//		System.out.println(req.getParameter("title"));
-		//		System.out.println(req.getParameter("content"));
-		//		System.out.println("uuu ");
-		//		
-		//		//본문 처리
-		//		board.setContent( req.getParameter("content") );
-		//
-		//		//작성자 ID 처리
-		//		board.setUser_no((String) req.getSession().getAttribute("user_no"));
-		//		
-
-		//
-		//
-		//		Connection conn = JDBCTemplate.getConnection();
-		//		if( boardDao.insert(conn, board) > 0 ) {
-		//			JDBCTemplate.commit(conn);
-		//		} else {
-		//			JDBCTemplate.rollback(conn);
-		//		}
-
-		//---------------------------------------------------------
-
-		//--- 첨부파일 추가하여 게시글 작성 처리하기 ---
 
 		//multipart/form-data 인코딩 확인
 		boolean isMultipart = ServletFileUpload.isMultipartContent(req);

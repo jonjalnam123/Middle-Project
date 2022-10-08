@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.util.List;
 
 import dto.Semi_User;
-import dto.Semi_User;
 
 public interface Semi_UserDao {
 	
@@ -20,6 +19,18 @@ public interface Semi_UserDao {
 	
 	
 	public Semi_User selectUserByUseremail(Connection conn, Semi_User sUser);
+	
+	//-----------------------------------------------------------------------------
+
+	
+	/**
+	 * 이메일과 폰번호 동시에 만족하는 회원 수 조회
+	 * 
+	 * @param connection
+	 * @param sUser
+	 * @return
+	 */
+	public int selectCntByEmailPhone(Connection conn, Semi_User sUser);
 	
 	
 	//-----------------------------------------------------------------------------

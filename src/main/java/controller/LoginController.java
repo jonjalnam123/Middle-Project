@@ -19,7 +19,7 @@ import service.impl.Semi_UserServiceImpl;
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-
+	//서비스 객체
 	private Semi_UserService sUserService = new Semi_UserServiceImpl();
 	
 	@Override
@@ -30,12 +30,16 @@ public class LoginController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		System.out.println("############################");
+		
 		//전달파라미터로 로그인 정보 얻기
 		Semi_User sUser = sUserService.getLoginUser(req);
+		System.out.println(sUser);
 		
 		//로그인 인증
 		boolean login = sUserService.login(sUser);
+		System.out.println(login);
+		
 		
 		if(login) {
 			
@@ -52,9 +56,8 @@ public class LoginController extends HttpServlet {
 			session.setAttribute("user_no", sUser.getUser_no());
 			
 		}
-		System.out.println("로그인 한 이메일 : " + sUser.getUser_email());
 		
-		resp.sendRedirect("/Semi/main");
+		resp.sendRedirect("/main");
 		
 	}
 

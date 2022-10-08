@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import common.JDBCTemplate;
+import dao.face.MarkDao;
+import dto.Mark;
 
 public class MarkDaoImpl implements MarkDao {
 
@@ -39,7 +41,7 @@ public class MarkDaoImpl implements MarkDao {
 	}
 
 	@Override
-	public Mark selectMark2(Connection conn, int hotel_no, int user_no) {
+	public Mark selectMark(Connection conn, int hotel_no, int user_no) {
 
 		String sql = "";
 		sql += "SELECT * FROM mark WHERE hotel_no=? and user_no=?";
@@ -130,44 +132,46 @@ public class MarkDaoImpl implements MarkDao {
 		}
 	}
 	
-	@Override
-	public List<Mypage> myPageInfo(Connection conn, int user_no) {
-		
-		String sql = "";
-		sql += "SELECT h.hotel_name, h.hotel_tel, h.hotel_photo, u.user_name";
-		sql += " FROM mark m";
-		sql += " JOIN hotel h ON (m.hotel_no = h.hotel_no)";
-		sql += " JOIN semi_user u ON (m.user_no = u.user_no)";
-		sql += " WHERE m.user_no = ?";
-		
-		List<Mypage> list = new ArrayList<>();
-		
-		try {
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, user_no);
-			rs = ps.executeQuery();
-			
-			
-			while (rs.next()) {
-
-				Mypage mypage = new Mypage();
-
-				mypage.setHotel_name(rs.getString("hotel_name"));
-				mypage.setHotel_tel(rs.getString("hotel_tel"));
-				mypage.setHotel_photo(rs.getString("hotel_photo"));
-				mypage.setUser_name(rs.getString("user_name"));
-
-				list.add(mypage);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(rs);
-			JDBCTemplate.close(ps);
-		}
-		
-		return list;
-	}
+	// 마이페이지에 보낼 데이터 조회 메소드
+	
+//	@Override
+//	public List<Mypage> myPageInfo(Connection conn, int user_no) {
+//		
+//		String sql = "";
+//		sql += "SELECT h.hotel_name, h.hotel_tel, h.hotel_photo, u.user_name";
+//		sql += " FROM mark m";
+//		sql += " JOIN hotel h ON (m.hotel_no = h.hotel_no)";
+//		sql += " JOIN semi_user u ON (m.user_no = u.user_no)";
+//		sql += " WHERE m.user_no = ?";
+//		
+//		List<Mypage> list = new ArrayList<>();
+//		
+//		try {
+//			ps = conn.prepareStatement(sql);
+//			ps.setInt(1, user_no);
+//			rs = ps.executeQuery();
+//			
+//			
+//			while (rs.next()) {
+//
+//				Mypage mypage = new Mypage();
+//
+//				mypage.setHotel_name(rs.getString("hotel_name"));
+//				mypage.setHotel_tel(rs.getString("hotel_tel"));
+//				mypage.setHotel_photo(rs.getString("hotel_photo"));
+//				mypage.setUser_name(rs.getString("user_name"));
+//
+//				list.add(mypage);
+//			}
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			JDBCTemplate.close(rs);
+//			JDBCTemplate.close(ps);
+//		}
+//		
+//		return list;
+//	}
 
 }
