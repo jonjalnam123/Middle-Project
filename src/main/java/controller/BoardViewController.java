@@ -46,7 +46,7 @@ public class BoardViewController extends HttpServlet {
 
 
 		//VIEW 지정 및 응답
-		req.getRequestDispatcher("/WEB-INF/views/view.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/boardview.jsp").forward(req, resp);
 
 	}
 

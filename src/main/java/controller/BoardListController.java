@@ -41,7 +41,7 @@ public class BoardListController extends HttpServlet {
 		req.setAttribute("paging", paging);
 		
 		//View 지정 및 응답
-		req.getRequestDispatcher("/WEB-INF/views/list.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/boardlist.jsp").forward(req, resp);
 		
 	}
 	

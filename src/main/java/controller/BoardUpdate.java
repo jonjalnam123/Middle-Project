@@ -57,7 +57,7 @@ public class BoardUpdate extends HttpServlet {
 		
 		
 		//VIEW 지정 및 응답
-		req.getRequestDispatcher("/WEB-INF/views/update.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/boardupdate.jsp").forward(req, resp);
 		
 	}
 
@@ -66,7 +66,7 @@ public class BoardUpdate extends HttpServlet {
 		
 		boardService.update(req);
 		
-		resp.sendRedirect("board/list");
+		resp.sendRedirect("/list");
 		
 	}
 }
