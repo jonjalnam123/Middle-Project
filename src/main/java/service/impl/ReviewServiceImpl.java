@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -95,6 +96,9 @@ public class ReviewServiceImpl implements ReviewService {
 		//게시글 정보 DTO객체
 		Review review = new Review();
 		
+		//게시글 첨부파일 정보 DTO객체
+		ReviewImage reviewImage = new ReviewImage();
+		
 		
 		//파일아이템의 반복자
 		Iterator<FileItem> iter = items.iterator();
@@ -152,8 +156,6 @@ public class ReviewServiceImpl implements ReviewService {
 			//--- 3) 파일에 대한 처리 ---
 			if( !item.isFormField() ) {
 			
-				//게시글 첨부파일 정보 DTO객체
-				ReviewImage reviewImage = new ReviewImage();
 				
 				//저장 파일명 처리
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssS");
@@ -212,60 +214,31 @@ public class ReviewServiceImpl implements ReviewService {
 		return hotel;
 	}
 
-	//------------------------최신순으로 불러오는 메서드-----------------------------
+	
+	
 	@Override
-	public List<Review> selectAllReview(HttpServletRequest request) {
-
-		int hotel_no = Integer.parseInt(request.getParameter("hotel_no"));
-		
-		return reviewDao.selectAll(JDBCTemplate.getConnection(), hotel_no);
-	}
-
-	@Override
-	public List<List<ReviewImage>> selectAllReviewImage(HttpServletRequest request) {
-
-		int hotel_no = Integer.parseInt(request.getParameter("hotel_no"));
-		
-		return reviewImageDao.selectAll(JDBCTemplate.getConnection(), hotel_no);
-	}
-
-	@Override
-	public List<Semi_User> selectAllReviewWriterByHotelNo(HttpServletRequest request, int hotel_no) {
+	public List<Map<String, Object>> reviewListByDate(HttpServletRequest request, int hotel_no) {
 
 		Connection conn = JDBCTemplate.getConnection();
-		List<Semi_User> userList = semi_UserDao.selectAllReviewWriterByHotelNo(conn, hotel_no);
+
+		List<Map<String, Object>> list = reviewDao.selectReviewsByDateByHotelNo(conn, hotel_no);
 		
-		return userList;
+		return list;
 	}
+	
+	
 	//-------------------------별점순으로 불러오는 메서드------------------------------
 
 	@Override
-	public List<Review> selectAllReviewByScore(HttpServletRequest request) {
-		int hotel_no = Integer.parseInt(request.getParameter("hotel_no"));
-		
-		return reviewDao.selectAllByScore(JDBCTemplate.getConnection(), hotel_no);
-	}
-
-	@Override
-	public List<List<ReviewImage>> selectAllReviewImageByScore(HttpServletRequest request) {
-		int hotel_no = Integer.parseInt(request.getParameter("hotel_no"));
-		
-		return reviewImageDao.selectAllByScore(JDBCTemplate.getConnection(), hotel_no);
-	}
-
-	@Override
-	public List<Semi_User> selectAllReviewWriterByHotelNoByScore(HttpServletRequest request, int hotel_no) {
+	public List<Map<String, Object>> reviewListByScore(HttpServletRequest request, int hotel_no) {
 		
 		Connection conn = JDBCTemplate.getConnection();
-		List<Semi_User> userList = semi_UserDao.selectAllReviewWriterByHotelNoByScore(conn, hotel_no);
+
+		List<Map<String, Object>> list = reviewDao.selectReviewsByScoreByHotelNo(conn, hotel_no);
 		
-		return userList;
+		return list;
 	}
-	
-	
-	
-	
-	
-	
+
+
 	
 }

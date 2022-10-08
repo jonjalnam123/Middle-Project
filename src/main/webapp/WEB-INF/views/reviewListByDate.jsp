@@ -2,11 +2,10 @@
 <%@page import="dto.ReviewImage"%>
 <%@page import="dto.Review"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% List<Review> reviewList = (List) request.getAttribute("reviewList"); %>
-<% List<List<ReviewImage>> reviewimageList = (List) request.getAttribute("reviewimageList"); %>
-<% List<Semi_User> userlist = (List) request.getAttribute("userlist"); %>
+<%	List<Map<String, Object>> list =(List) request.getAttribute("list"); %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
 	SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm:ss");
@@ -68,47 +67,43 @@ table.type01 td {
 					$("#result").html(data);
 				}
 				
-			})   //ajax 끝 }
+			})  
 			
 		}) 
 	 	})
 </script>
-
-
 
 </head>
 <body> 
 <h1> 최신순 리뷰 </h1>
      <div class="reviewArea">
         <div class="reviewHeader">
-          <h2 class="subTitle">리뷰 총 ( <%=reviewList.size() %> ) 개</h2>
+          <h2 class="subTitle">리뷰 총 ( <%=list.size() %> ) 개</h2>
           <select id="select">
           <option value="byDate">최신순</option>
             <option value="byScore">추천순</option>
           </select>
         </div>
  		<div id="result" class ="result">
-        <%	for(int i=0; i< reviewList.size(); i++) { %>
+        <%	for(int i=0; i< list.size(); i++) { %>
         <ul class="reviewList">
           <li>
             <div class="profile">
-              <img src="/upload/<%=userlist.get(i).getUser_pic() %>" alt="이미지 아님" width="50" height="50">
+               <img src="/upload/<%= ((Semi_User) list.get(1).get("u")).getUser_pic() %>" alt="이미지 아님" width="50" height="50">
               <div class="reviewInfo">
-                <div><%=reviewList.get(i).getReview_score() %>점</div>
+                <div><%=((Review)list.get(i).get("r")).getReview_score() %>점</div>
                 <div>
-                  <span><%=userlist.get(i).getUser_email()%></span><span><%= sf.format(reviewList.get(i).getReview_date()) %></span><span><%=reviewList.get(i).getRoom_type() %></span>
+                  <span><%= ((Semi_User) list.get(1).get("u")).getUser_email() %></span><span><%= sf.format( ((Review)list.get(i).get("r")).getReview_date()   ) %></span><span><%=((Review)list.get(i).get("r")).getRoom_type() %></span>
                 
                 </div>
               </div>
             </div>
             <div class="reviewContent">
               <div class="imgArea">
-              <%	for(int j=0; j< reviewimageList.get(i).size(); j++) { %>
-                <img src="/upload/<%=reviewimageList.get(i).get(j).getStoredname() %>" alt="이미지 아님" width="50" height="50">
-                  <%	} %> 
+                <img src="/upload/<%=((ReviewImage)list.get(i).get("ri")).getStoredname() %>" alt="이미지 아님" width="50" height="50">
               </div>
               <p>
-                <%=reviewList.get(i).getReview_content() %>
+                <%=((Review)list.get(i).get("r")).getReview_content()  %>
               </p>
             </div>
           </li>

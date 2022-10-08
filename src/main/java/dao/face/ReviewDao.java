@@ -2,6 +2,7 @@ package dao.face;
 
 import java.sql.Connection;
 import java.util.List;
+import java.util.Map;
 
 import dto.Review;
 
@@ -11,9 +12,8 @@ public interface ReviewDao {
 	
 	public int insert(Connection conn, Review review);
 	
-	public List<Review> selectAll(Connection conn, int hotel_no);
-	
-	//--------------------별점순
-	public List<Review> selectAllByScore(Connection conn, int hotel_no);
+	public List<Map<String, Object>> selectReviewsByDateByHotelNo(Connection conn, int hotel_no);
+
+	public List<Map<String, Object>> selectReviewsByScoreByHotelNo(Connection conn, int hotel_no);
 
 }

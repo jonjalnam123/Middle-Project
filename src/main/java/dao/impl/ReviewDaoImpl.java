@@ -8,11 +8,15 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import common.JDBCTemplate;
 import dao.face.ReviewDao;
 import dto.Review;
+import dto.ReviewImage;
+import dto.Semi_User;
 
 public class ReviewDaoImpl implements ReviewDao {
 	
@@ -82,80 +86,29 @@ public class ReviewDaoImpl implements ReviewDao {
 		
 		return res;
 	}
-
-	//--------------최신순------------------------
-	@Override			
-	public List<Review> selectAll(Connection conn, int hotel_no) {
-
-		//SQL작성
-		String sql = "";
-		sql += "select * from review r";
-		sql += " where hotel_no = ?";
-		sql += " ORDER BY review_date desc";
-				
-		//결과 저장할 List
-		List<Review> reviewList = new ArrayList<>();
-				
-		try {
-			ps = conn.prepareStatement(sql); //SQL수행 객체
-			
-			ps.setInt(1, hotel_no);
-			
-			rs = ps.executeQuery(); //SQL수행 및 결과 집합 저장
-								
-			//조회 결과 처리
-			while(rs.next()) {
-			Review r = new Review(); //결과값 저장 객체
-						
-			//결과값 한 행씩 처리
-			r.setPay_no(rs.getInt("pay_no"));
-			r.setReview_no(rs.getInt("review_no"));
-			r.setHotel_no(rs.getInt("hotel_no"));
-			r.setBooking_no(rs.getInt("booking_no"));
-			r.setUser_email(rs.getString("user_email"));
-			r.setReview_content(rs.getString("review_content"));
-			r.setReview_score(rs.getInt("review_score"));
-			r.setUser_no(rs.getInt("user_no"));
-			r.setRoom_type(rs.getString("room_type"));
-			
-			String dateStr = rs.getString("review_date");
-	        SimpleDateFormat formatter = new SimpleDateFormat("yyyy.mm.dd hh:mm");
-	        Date date = formatter.parse(dateStr);
-			r.setReview_date(date);
-						
-			//리스트에 결과값 저장
-			reviewList.add(r);
-						
-		}
-				
-		} catch (SQLException | ParseException e) {
-			e.printStackTrace();
-		} finally {
-			//DB객체 닫기
-			JDBCTemplate.close(rs);
-			JDBCTemplate.close(ps);
-		}
-
-		//최종 결과 반환
-	return reviewList;
-	}
-
-	//------------------별점순------------------------
-	
 	
 	@Override
-	public List<Review> selectAllByScore(Connection conn, int hotel_no) {
+	public List<Map<String, Object>> selectReviewsByDateByHotelNo(Connection conn, int hotel_no) {
 
 		//SQL작성
 		String sql = "";
-		sql += "select * from review r";
+		sql += "select  s.user_name, s.user_phone, s.user_pw, s.user_pic, t.pay_no, t.review_no, t.hotel_no, t.booking_no, t.user_email, t.review_content, t.review_score, t.user_no, t.room_type, t.review_date, t.reviewimage_no, t.originname, t.storedname  from";
+		sql += " (select r.pay_no, r.review_no, r.hotel_no, r.booking_no, r.user_email, r.review_content, r.review_score, r.user_no, r.room_type, r.review_date, i.reviewimage_no, i.originname, i.storedname from review r";
+		sql += " join reviewimage i";
+		sql += " on r.review_no = i.review_no) t";
+		sql += " join semi_user s";
+		sql += " on t.user_no = s.user_no";
 		sql += " where hotel_no = ?";
-		sql += " ORDER BY r.review_score desc";
-		sql += " , r.review_date desc";
-				
+		sql += " order by t.review_date desc";
+		
 		//결과 저장할 List
-		List<Review> reviewList = new ArrayList<>();
-				
+		List<Map<String, Object>> resultlist = new ArrayList<>();
+		Map<String, Object> map;
+		//결과값 저장 객체
+		Review r = new Review(); 
+		ReviewImage ri = new ReviewImage();
+		Semi_User u = new Semi_User();
+		
 		try {
 			ps = conn.prepareStatement(sql); //SQL수행 객체
 			
@@ -165,11 +118,12 @@ public class ReviewDaoImpl implements ReviewDao {
 								
 			//조회 결과 처리
 			while(rs.next()) {
-			Review r = new Review(); //결과값 저장 객체
+
 						
 			//결과값 한 행씩 처리
 			r.setPay_no(rs.getInt("pay_no"));
 			r.setReview_no(rs.getInt("review_no"));
+			//System.out.println(rs.getInt("review_no"));
 			r.setHotel_no(rs.getInt("hotel_no"));
 			r.setBooking_no(rs.getInt("booking_no"));
 			r.setUser_email(rs.getString("user_email"));
@@ -179,16 +133,41 @@ public class ReviewDaoImpl implements ReviewDao {
 			r.setRoom_type(rs.getString("room_type"));
 			
 			String dateStr = rs.getString("review_date");
-	        SimpleDateFormat formatter = new SimpleDateFormat("yyyy.mm.dd hh:mm");
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy.mm.dd hh:mm");
 	        Date date = formatter.parse(dateStr);
 			r.setReview_date(date);
-						
-			//리스트에 결과값 저장
-			reviewList.add(r);
+			
+			//결과값 한 행씩 처리
+			ri.setReviewimage_no( rs.getInt("reviewimage_no") );
+			ri.setReview_no( rs.getInt("review_no") );
+			ri.setOriginname( rs.getString("originname") );
+			ri.setStoredname( rs.getString("storedname") );
+
+			
+			//결과값 한 행씩 처리
+			u.setUser_no(rs.getInt("user_no"));
+			u.setUser_name(rs.getString("user_name"));
+			u.setUser_email(rs.getString("user_email"));			
+			u.setUser_phone(rs.getString("user_phone"));
+			u.setUser_pw(rs.getString("user_pw"));
+			u.setUser_pic(rs.getString("user_pic"));
+		
+			//넣을 map 생성
+			map = new HashMap<>();
+			
+			map.put("r", r);
+			map.put("ri", ri);
+			map.put("u", u);
+			
+			//list에 map 넣기
+			resultlist.add(map);
 						
 		}
 				
-		} catch (SQLException | ParseException e) {
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			//DB객체 닫기
@@ -197,8 +176,102 @@ public class ReviewDaoImpl implements ReviewDao {
 		}
 
 		//최종 결과 반환
-	return reviewList;
+	return resultlist;
 	}
+	
+
+	@Override
+	public List<Map<String, Object>> selectReviewsByScoreByHotelNo(Connection conn, int hotel_no) {
+		//SQL작성
+		String sql = "";
+		sql += "select  s.user_name, s.user_phone, s.user_pw, s.user_pic, t.pay_no, t.review_no, t.hotel_no, t.booking_no, t.user_email, t.review_content, t.review_score, t.user_no, t.room_type, t.review_date, t.reviewimage_no, t.originname, t.storedname  from";
+		sql += " (select r.pay_no, r.review_no, r.hotel_no, r.booking_no, r.user_email, r.review_content, r.review_score, r.user_no, r.room_type, r.review_date, i.reviewimage_no, i.originname, i.storedname from review r";
+		sql += " join reviewimage i";
+		sql += " on r.review_no = i.review_no) t";
+		sql += " join semi_user s";
+		sql += " on t.user_no = s.user_no";
+		sql += " where hotel_no = ?";
+		sql += " order by t.review_score desc, t.review_date";
+		
+		//결과 저장할 List
+		List<Map<String, Object>> resultlist = new ArrayList<>();
+		Map<String, Object> map;
+		//결과값 저장 객체
+		Review r = new Review(); 
+		ReviewImage ri = new ReviewImage();
+		Semi_User u = new Semi_User();
+		
+		try {
+			ps = conn.prepareStatement(sql); //SQL수행 객체
+			
+			ps.setInt(1, hotel_no);
+			
+			rs = ps.executeQuery(); //SQL수행 및 결과 집합 저장
+								
+			//조회 결과 처리
+			while(rs.next()) {
+
+						
+			//결과값 한 행씩 처리
+			r.setPay_no(rs.getInt("pay_no"));
+			r.setReview_no(rs.getInt("review_no"));
+			//System.out.println(rs.getInt("review_no"));
+			r.setHotel_no(rs.getInt("hotel_no"));
+			r.setBooking_no(rs.getInt("booking_no"));
+			r.setUser_email(rs.getString("user_email"));
+			r.setReview_content(rs.getString("review_content"));
+			r.setReview_score(rs.getInt("review_score"));
+			r.setUser_no(rs.getInt("user_no"));
+			r.setRoom_type(rs.getString("room_type"));
+			
+			String dateStr = rs.getString("review_date");
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy.mm.dd hh:mm");
+	        Date date = formatter.parse(dateStr);
+			r.setReview_date(date);
+			
+			//결과값 한 행씩 처리
+			ri.setReviewimage_no( rs.getInt("reviewimage_no") );
+			ri.setReview_no( rs.getInt("review_no") );
+			ri.setOriginname( rs.getString("originname") );
+			ri.setStoredname( rs.getString("storedname") );
+
+			
+			//결과값 한 행씩 처리
+			u.setUser_no(rs.getInt("user_no"));
+			u.setUser_name(rs.getString("user_name"));
+			u.setUser_email(rs.getString("user_email"));			
+			u.setUser_phone(rs.getString("user_phone"));
+			u.setUser_pw(rs.getString("user_pw"));
+			u.setUser_pic(rs.getString("user_pic"));
+		
+			//넣을 map 생성
+			map = new HashMap<>();
+			
+			map.put("r", r);
+			map.put("ri", ri);
+			map.put("u", u);
+			
+			//list에 map 넣기
+			resultlist.add(map);
+						
+		}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			//DB객체 닫기
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+
+		//최종 결과 반환
+	return resultlist;
+	}
+
+
 	
 }
 

@@ -1,6 +1,7 @@
 package service.face;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,19 +19,14 @@ public interface ReviewService {
 	public Hotel selectHotelByHotelNo(HttpServletRequest request, int hotel_no);
 	
 	//--------------리뷰 list 최신순에 필요한 메서드
-
-	public List<Review> selectAllReview(HttpServletRequest request);
 	
-	public List<List<ReviewImage>> selectAllReviewImage(HttpServletRequest request);
+	public List< Map<String, Object>> reviewListByDate(HttpServletRequest request, int hotel_no);
 	
-	public List<Semi_User> selectAllReviewWriterByHotelNo(HttpServletRequest request, int hotel_no);
 	
 	//--------------리뷰 list 별점순에 필요한 메서드
 	
-	public List<Review> selectAllReviewByScore(HttpServletRequest request);
+	public List< Map<String, Object>> reviewListByScore(HttpServletRequest request, int hotel_no);
 	
-	List<List<ReviewImage>> selectAllReviewImageByScore(HttpServletRequest request);
 	
-	public List<Semi_User> selectAllReviewWriterByHotelNoByScore(HttpServletRequest request, int hotel_no);
 
 }
