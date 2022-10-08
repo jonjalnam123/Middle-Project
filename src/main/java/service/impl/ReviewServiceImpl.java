@@ -218,10 +218,10 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	@Override
 	public List<Map<String, Object>> reviewListByDate(HttpServletRequest request, int hotel_no) {
-
+		
 		Connection conn = JDBCTemplate.getConnection();
 
-		List<Map<String, Object>> list = reviewDao.selectReviewsByDateByHotelNo(conn, hotel_no);
+		List<Map<String, Object>> list = reviewDao.selectReviewsByScoreByHotelNo(conn, hotel_no);
 		
 		return list;
 	}

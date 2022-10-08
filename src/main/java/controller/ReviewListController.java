@@ -37,29 +37,24 @@ public class ReviewListController extends HttpServlet {
 		String dateOrScore = request.getParameter("selectedOption");
 		String url = "";
 		
-		if(dateOrScore.equals("byDate")) {	//최신순으로 보겠다는 요청이 넘어옴
+		if("byDate".equals(dateOrScore)) {	//최신순으로 보겠다는 요청이 넘어옴
 			
 			//넘겨줄 jsp url 설정
-			url = "/WEB-INF/views/reviewListByDate.jsp";
-			
+			url = "/WEB-INF/views/reviewListByDate.jsp";			
 			List<Map<String, Object>> list = reviewService.reviewListByDate(request,hotel_no);
-
+			//불러온 값들 JSP에 떠넘기기
 			request.setAttribute("list",list);
 			
 		} else {     //별점순으로 보겠다는 요청이 넘어옴
 			
 			//넘겨줄 jsp url 설정
 			url = "/WEB-INF/views/reviewListByScore.jsp";
-			
 			List<Map<String, Object>> list = reviewService.reviewListByScore(request,hotel_no);
 			//불러온 값들 JSP에 떠넘기기
 			request.setAttribute("list",list);
 		}
-		
 		//if문에 따라 달라진 url을 호출함
 		request.getRequestDispatcher(url).forward(request, response);
-
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -104,10 +104,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		//결과 저장할 List
 		List<Map<String, Object>> resultlist = new ArrayList<>();
 		Map<String, Object> map;
-		//결과값 저장 객체
-		Review r = new Review(); 
-		ReviewImage ri = new ReviewImage();
-		Semi_User u = new Semi_User();
+
 		
 		try {
 			ps = conn.prepareStatement(sql); //SQL수행 객체
@@ -119,7 +116,11 @@ public class ReviewDaoImpl implements ReviewDao {
 			//조회 결과 처리
 			while(rs.next()) {
 
-						
+			//결과값 저장 객체
+			Review r = new Review(); 
+			ReviewImage ri = new ReviewImage();
+			Semi_User u = new Semi_User();
+				
 			//결과값 한 행씩 처리
 			r.setPay_no(rs.getInt("pay_no"));
 			r.setReview_no(rs.getInt("review_no"));
@@ -196,10 +197,6 @@ public class ReviewDaoImpl implements ReviewDao {
 		//결과 저장할 List
 		List<Map<String, Object>> resultlist = new ArrayList<>();
 		Map<String, Object> map;
-		//결과값 저장 객체
-		Review r = new Review(); 
-		ReviewImage ri = new ReviewImage();
-		Semi_User u = new Semi_User();
 		
 		try {
 			ps = conn.prepareStatement(sql); //SQL수행 객체
@@ -211,7 +208,11 @@ public class ReviewDaoImpl implements ReviewDao {
 			//조회 결과 처리
 			while(rs.next()) {
 
-						
+			//결과값 저장 객체
+			Review r = new Review(); 
+			ReviewImage ri = new ReviewImage();
+			Semi_User u = new Semi_User();
+				
 			//결과값 한 행씩 처리
 			r.setPay_no(rs.getInt("pay_no"));
 			r.setReview_no(rs.getInt("review_no"));

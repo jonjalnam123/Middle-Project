@@ -81,7 +81,7 @@ table.type01 td {
           <h2 class="subTitle">리뷰 총 ( <%=list.size() %> ) 개</h2>
           <select id="select">
           <option value="byDate">최신순</option>
-            <option value="byScore">추천순</option>
+            <option value="byScore">별점순</option>
           </select>
         </div>
  		<div id="result" class ="result">
@@ -89,11 +89,11 @@ table.type01 td {
         <ul class="reviewList">
           <li>
             <div class="profile">
-               <img src="/upload/<%= ((Semi_User) list.get(1).get("u")).getUser_pic() %>" alt="이미지 아님" width="50" height="50">
+               <img src="/upload/<%= ((Semi_User) list.get(i).get("u")).getUser_pic() %>" alt="이미지 아님" width="50" height="50">
               <div class="reviewInfo">
                 <div><%=((Review)list.get(i).get("r")).getReview_score() %>점</div>
                 <div>
-                  <span><%= ((Semi_User) list.get(1).get("u")).getUser_email() %></span><span><%= sf.format( ((Review)list.get(i).get("r")).getReview_date()   ) %></span><span><%=((Review)list.get(i).get("r")).getRoom_type() %></span>
+                  <span><%= ((Semi_User) list.get(i).get("u")).getUser_email() %></span><span><%= sf.format( ((Review)list.get(i).get("r")).getReview_date()   ) %></span><span><%=((Review)list.get(i).get("r")).getRoom_type() %></span>
                 
                 </div>
               </div>
