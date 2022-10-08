@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>KH 5조 세미프로젝트 - 여기서놀자</title>
+
 <style type="text/css">
 
 /* FOOTER_STYLE */
