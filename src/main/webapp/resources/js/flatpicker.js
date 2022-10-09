@@ -20,8 +20,8 @@ $(function() {
 		onChange: function() {
 			to = $("#checkout").val();
 			$.ajax({
-				type: "POST",
-				url: "/reserv",
+				type: "GET",
+				url: "/hotel/booking",
 				data: { "to": to, "from": from },
 				dataType: "text",
 				success: function(data) {

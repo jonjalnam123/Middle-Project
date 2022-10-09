@@ -23,6 +23,11 @@ public class BookingController extends HttpServlet {
 		HttpSession session = req.getSession();
 		Integer user_no = (Integer) session.getAttribute("user_no");
 		
+		// 체크인, 체크아웃 날짜 
+		String from = (String) req.getParameter("from");			
+		String to = (String) req.getParameter("to");
+		System.out.println("체크인날짜 : " + from + "체크아웃날짜 : " + to );
+		
 		
 		
 	}

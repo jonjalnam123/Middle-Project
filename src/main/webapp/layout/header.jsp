@@ -16,7 +16,6 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
 <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
-<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
 
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/flatpicker.js"></script>
 

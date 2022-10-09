@@ -2,7 +2,6 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <% List<Room> roominfo = (List) request.getAttribute("roominfo"); %>
 
 <style type="text/css">
