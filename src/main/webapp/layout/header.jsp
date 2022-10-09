@@ -156,6 +156,7 @@
 		<%	if( null != session.getAttribute("login") && (Boolean)session.getAttribute("login") ) { %>
 			<a href="#"><button class="button">문의게시판</button></a>
 			<a href="#"><button class="button">숙소예약</button></a>
+			<a href="/hotel/insert"><button class="button">호텔등록</button></a>
 			<div class="dropdown">
 					<a href="#"><button class="button" id="dropdown-btn">내정보</button></a>
 				<div class="dropdown-submenu">
