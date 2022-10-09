@@ -2,15 +2,13 @@ package controller;
 
 
 import java.io.IOException;
-
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
 
 import dto.Room;
 import service.face.RoomService;
@@ -30,7 +28,7 @@ public class RoomDetailController extends HttpServlet {
 
 		int hotel_no = Integer.parseInt(req.getParameter("hotel_no"));
 		
-		Room roominfo = roomService.detail(hotel_no);
+		List<Room> roominfo = roomService.detail(hotel_no);
 		req.setAttribute("roominfo", roominfo);
 		
 		resp.sendRedirect("/roomDetail");

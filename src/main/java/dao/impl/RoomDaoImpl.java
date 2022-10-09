@@ -34,9 +34,9 @@ public class RoomDaoImpl  implements RoomDao {
 				room.setHotel_no(rs.getInt("hotel_no"));
 				room.setRoom_no(rs.getInt("room_no"));
 				room.setRoom_type(rs.getString("room_type"));
-				room.setPeople(rs.getInt("people"));
-				room.setMax_people(rs.getInt("max_people"));
-				room.setRoom_price(rs.getInt("room_price"));
+				room.setPeople(rs.getString("people"));
+				room.setMax_people(rs.getString("max_people"));
+				room.setRoom_price(rs.getString("room_price"));
 				room.setRoom_img(rs.getString("room_img"));
 				
 				list.add(room);
@@ -102,9 +102,9 @@ public class RoomDaoImpl  implements RoomDao {
 					room.setRoom_no(rs.getInt("room_no"));
 					room.setHotel_no(rs.getInt("hotel_no"));
 					room.setRoom_type(rs.getString("room_type"));
-					room.setPeople(rs.getInt("people"));
-					room.setMax_people(rs.getInt("max_people"));
-					room.setRoom_price(rs.getInt("room_price"));
+					room.setPeople(rs.getString("people"));
+					room.setMax_people(rs.getString("max_people"));
+					room.setRoom_price(rs.getString("room_price"));
 					room.setRoom_img(rs.getString("room_img"));
 				}
 			} catch (SQLException e) {
@@ -117,6 +117,44 @@ public class RoomDaoImpl  implements RoomDao {
 			
 			return room;
 			
+		}
+		
+		@Override
+		public List<Room> roomInfoByHotelNo(Connection conn, int hotel_no) {
+			
+			PreparedStatement ps = null;
+			ResultSet rs = null;
+			
+			List<Room> list = new ArrayList<>();
+			
+			String sql = "";
+			sql += "select * from room WHERE hotel_no=?";
+			
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, hotel_no);
+				rs = ps.executeQuery();
+				
+				while( rs.next() ) {
+					Room room = new Room();
+					
+					room.setRoom_no(rs.getInt("room_no"));
+					room.setHotel_no(rs.getInt("hotel_no"));
+					room.setRoom_type(rs.getString("room_type"));
+					room.setPeople(rs.getString("people"));
+					room.setMax_people(rs.getString("max_people"));
+					room.setRoom_price(rs.getString("room_price"));
+					room.setRoom_img(rs.getString("room_img"));
+					
+					list.add(room);
+					
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			return list;
 		}
 	}
 

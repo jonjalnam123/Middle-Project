@@ -21,4 +21,7 @@ public interface RoomService {
 	 * @return
 	 */
 	public Room add(Room roomparam);
+
+	
+	public List<Room> detail(int hotel_no);
 }

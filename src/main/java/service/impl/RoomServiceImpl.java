@@ -39,6 +39,15 @@ public class RoomServiceImpl implements RoomService {
 			return null;
 		}
 	}
+	
+	
+	@Override
+	public List<Room> detail(int hotel_no) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		return roomDao.roomInfoByHotelNo(conn, hotel_no);
+	}
 }
 
 
