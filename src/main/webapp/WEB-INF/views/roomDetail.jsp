@@ -4,11 +4,26 @@
     pageEncoding="UTF-8"%>
 
 <% List<Room> roominfo = (List) request.getAttribute("roominfo"); %>
-		<% for (int i = 0; i < roominfo.size(); i++) { %>
-<table>
+
+<style type="text/css">
+
+table {
+border: 1px solid #ccc;
+}
+
+tr, td {
+text-align: center;
+vertical-align : middle;
+font-size: 30px;
+}
+
+</style>
+
+<% for (int i = 0; i < roominfo.size(); i++) { %>
+<table class="table">
 
 		<tr>
-			<td rowspan="5">
+			<td rowspan="5" style="width: 500px;">
 			<img src="/upload/<%=roominfo.get(i).getRoom_img() %>" class="roomimg" alt="이미지 아님">
 			</td>
 			<td colspan="3"><%=roominfo.get(i).getRoom_type() %></td>
