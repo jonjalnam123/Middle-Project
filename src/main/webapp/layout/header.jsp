@@ -36,6 +36,9 @@
 <style type="text/css">
 
 /* HEADER_STYLE */
+html, body {
+height: 100%;
+}
 
 .header {	
   	top: 0;
@@ -150,7 +153,7 @@
 	<div class="header">
 		<div class="section"> 
 		<h1>
-			<a href="#" title="여기서놀자">여기서놀자</a>
+			<a href="/main" title="여기서놀자">여기서놀자</a>
 		</h1>
 		<div class="btn">
 		<%	if( null != session.getAttribute("login") && (Boolean)session.getAttribute("login") ) { %>
@@ -170,7 +173,7 @@
 		<% if( null == session.getAttribute("login") || !(Boolean)session.getAttribute("login") ) { %>
 			<a href="#"><button class="button">문의게시판</button></a> 
 			<a href="#"><button class="button">숙소예약</button></a> 
-			<a href="#"><button class="button">로그인</button></a>
+			<a href="/login"><button class="button">로그인</button></a>
 		<% } %>
 		</div>
 		</div>
