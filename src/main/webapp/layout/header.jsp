@@ -17,7 +17,7 @@
 <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
 <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
 
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/flatpicker.js"></script>
+<%-- <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/flatpicker.js?ver=221009"></script> --%>
 
 <!-- 부트스트랩 3 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">

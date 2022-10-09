@@ -19,8 +19,10 @@ $(function() {
 		dateFormat: "Y년 m월 d일",
 		onChange: function() {
 			to = $("#checkout").val();
+			console.log(to);
+			console.log(from);
 			$.ajax({
-				type: "GET",
+				type: "POST",
 				url: "/hotel/booking",
 				data: { "to": to, "from": from },
 				dataType: "text",

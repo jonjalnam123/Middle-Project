@@ -17,17 +17,24 @@ public class BookingController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/hotel/booking [GET] 호출 성공");
 		
-		int hotel_no = Integer.parseInt(req.getParameter("hotel_no"));
-		int room_no = Integer.parseInt(req.getParameter("hotel_no"));
-		
-		HttpSession session = req.getSession();
-		Integer user_no = (Integer) session.getAttribute("user_no");
-		
-		// 체크인, 체크아웃 날짜 
 		String from = (String) req.getParameter("from");			
 		String to = (String) req.getParameter("to");
 		System.out.println("체크인날짜 : " + from + "체크아웃날짜 : " + to );
 		
+
+		
+		HttpSession session = req.getSession();
+		Integer user_no = (Integer) session.getAttribute("user_no");
+		
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 체크인, 체크아웃 날짜 
+		String hotel_no = req.getParameter("hotel_no");
+		String room_no = req.getParameter("room_no");
+		
+		System.out.println("호텔번호 : " + hotel_no + "룸번호 : " + room_no);
 		
 		
 	}
