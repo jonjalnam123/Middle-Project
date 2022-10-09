@@ -14,6 +14,7 @@ import java.util.Map;
 
 import common.JDBCTemplate;
 import dao.face.ReviewDao;
+import dao.face.ReviewImageDao;
 import dto.Review;
 import dto.ReviewImage;
 import dto.Semi_User;
@@ -104,6 +105,9 @@ public class ReviewDaoImpl implements ReviewDao {
 		//결과 저장할 List
 		List<Map<String, Object>> resultlist = new ArrayList<>();
 		Map<String, Object> map;
+		List<ReviewImage> imageList;
+		
+		ReviewImageDao reviewImageDao = new ReviewImageDaoImpl();
 
 		
 		try {
@@ -139,10 +143,13 @@ public class ReviewDaoImpl implements ReviewDao {
 			r.setReview_date(date);
 			
 			//결과값 한 행씩 처리
-			ri.setReviewimage_no( rs.getInt("reviewimage_no") );
-			ri.setReview_no( rs.getInt("review_no") );
-			ri.setOriginname( rs.getString("originname") );
-			ri.setStoredname( rs.getString("storedname") );
+//			ri.setReviewimage_no( rs.getInt("reviewimage_no") );
+//			ri.setReview_no( rs.getInt("review_no") );
+//			ri.setOriginname( rs.getString("originname") );
+//			ri.setStoredname( rs.getString("storedname") );
+			
+			imageList = reviewImageDao.selectImageByReviewNO(conn,rs.getInt("review_no") );
+
 
 			
 			//결과값 한 행씩 처리
@@ -157,7 +164,7 @@ public class ReviewDaoImpl implements ReviewDao {
 			map = new HashMap<>();
 			
 			map.put("r", r);
-			map.put("ri", ri);
+			map.put("ri", imageList);
 			map.put("u", u);
 			
 			//list에 map 넣기
@@ -185,18 +192,17 @@ public class ReviewDaoImpl implements ReviewDao {
 	public List<Map<String, Object>> selectReviewsByScoreByHotelNo(Connection conn, int hotel_no) {
 		//SQL작성
 		String sql = "";
-		sql += "select  s.user_name, s.user_phone, s.user_pw, s.user_pic, t.pay_no, t.review_no, t.hotel_no, t.booking_no, t.user_email, t.review_content, t.review_score, t.user_no, t.room_type, t.review_date, t.reviewimage_no, t.originname, t.storedname  from";
-		sql += " (select r.pay_no, r.review_no, r.hotel_no, r.booking_no, r.user_email, r.review_content, r.review_score, r.user_no, r.room_type, r.review_date, i.reviewimage_no, i.originname, i.storedname from review r";
-		sql += " join reviewimage i";
-		sql += " on r.review_no = i.review_no) t";
+		sql += "select * from review r";
 		sql += " join semi_user s";
-		sql += " on t.user_no = s.user_no";
-		sql += " where hotel_no = ?";
-		sql += " order by t.review_score desc, t.review_date";
+		sql += " on r.user_no = s.user_no";
+		sql += " where hotel_no = ? ";
 		
 		//결과 저장할 List
 		List<Map<String, Object>> resultlist = new ArrayList<>();
 		Map<String, Object> map;
+		List<ReviewImage> imageList;
+		
+		ReviewImageDao reviewImageDao = new ReviewImageDaoImpl();
 		
 		try {
 			ps = conn.prepareStatement(sql); //SQL수행 객체
@@ -231,11 +237,13 @@ public class ReviewDaoImpl implements ReviewDao {
 			r.setReview_date(date);
 			
 			//결과값 한 행씩 처리
-			ri.setReviewimage_no( rs.getInt("reviewimage_no") );
-			ri.setReview_no( rs.getInt("review_no") );
-			ri.setOriginname( rs.getString("originname") );
-			ri.setStoredname( rs.getString("storedname") );
-
+//			ri.setReviewimage_no( rs.getInt("reviewimage_no") );
+//			ri.setReview_no( rs.getInt("review_no") );
+//			ri.setOriginname( rs.getString("originname") );
+//			ri.setStoredname( rs.getString("storedname") );
+			
+			imageList = reviewImageDao.selectImageByReviewNO(conn,rs.getInt("review_no") );
+			
 			
 			//결과값 한 행씩 처리
 			u.setUser_no(rs.getInt("user_no"));
@@ -249,7 +257,7 @@ public class ReviewDaoImpl implements ReviewDao {
 			map = new HashMap<>();
 			
 			map.put("r", r);
-			map.put("ri", ri);
+			map.put("ri", imageList);
 			map.put("u", u);
 			
 			//list에 map 넣기

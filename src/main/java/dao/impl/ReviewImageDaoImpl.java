@@ -15,7 +15,6 @@ public class ReviewImageDaoImpl implements ReviewImageDao {
 	
 	private PreparedStatement ps; //SQL수행 객체
 	private ResultSet rs; //SQL조회 결과 객체
-	private PreparedStatement pstmt = null;
 
 	@Override
 	public int insert(Connection conn, ReviewImage reviewImage) {
@@ -42,6 +41,40 @@ public class ReviewImageDaoImpl implements ReviewImageDao {
 		}
 		
 		return res;
+	}
+
+	@Override
+	public List<ReviewImage> selectImageByReviewNO(Connection conn, int review_no) {
+
+		String sql = "";
+		sql += "SELECT review_no, reviewimage_no, originname, storedname FROM REVIEWIMAGE";
+		sql += " WHERE review_no = ?";
+
+		List<ReviewImage> list =  new ArrayList<>();
+		
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, review_no);
+			
+			rs = ps.executeQuery();						
+			while( rs.next() ) {
+				ReviewImage reviewImage = new ReviewImage();
+				
+				reviewImage.setReview_no(rs.getInt("review_no"));
+				reviewImage.setReviewimage_no( rs.getInt("reviewimage_no") );
+				reviewImage.setOriginname( rs.getString("originname") );
+				reviewImage.setStoredname( rs.getString("storedname") );				
+				list.add(reviewImage);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return list;
 	}
 
 
