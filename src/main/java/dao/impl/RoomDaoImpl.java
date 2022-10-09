@@ -64,11 +64,10 @@ public class RoomDaoImpl  implements RoomDao {
 				ps = conn.prepareStatement(sql);
 				
 				ps.setInt(1, roomparam.getHotel_no());
-				//ps.setInt(2, roomparam.getRoom_no());
 				ps.setString(2, roomparam.getRoom_type());
-				ps.setInt(3, roomparam.getPeople());
-				ps.setInt(4, roomparam.getMax_people());
-				ps.setInt(5, roomparam.getRoom_price());
+				ps.setString(3, roomparam.getPeople());
+				ps.setString(4, roomparam.getMax_people());
+				ps.setString(5, roomparam.getRoom_price());
 				ps.setString(6, roomparam.getRoom_img());
 				
 				result = ps.executeUpdate();
