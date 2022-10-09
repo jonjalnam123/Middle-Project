@@ -38,7 +38,7 @@ font-size: 30px;
 				<td colspan="2"><%=roominfo.get(i).getRoom_price() %></td>
 			</tr>
 			<tr>
-				<td colspan="3">예약하기</td>
+				<a href="/hotel/payment?room_no=<%=roominfo.get(i).getRoom_no()%>&hotel_no=<%=roominfo.get(i).getHotel_no()%>"><td colspan="3"><button>예약하기</button></a></td>
 			</tr>
 	</table>
 			<hr>
