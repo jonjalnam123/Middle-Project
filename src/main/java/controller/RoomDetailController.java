@@ -25,13 +25,15 @@ public class RoomDetailController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
-		int hotel_no = Integer.parseInt(req.getParameter("hotel_no"));
+		System.out.println("/room/detail [POST] 전달성공");
+		
+		//int hotel_no = Integer.parseInt(req.getParameter("hotel_no"));
+		int hotel_no = 1;
 		
 		List<Room> roominfo = roomService.detail(hotel_no);
 		req.setAttribute("roominfo", roominfo);
 		
-		resp.sendRedirect("/roomDetail");
+		req.getRequestDispatcher("/WEB-INF/views/roomDetail.jsp").forward(req, resp);
 
 	}
 

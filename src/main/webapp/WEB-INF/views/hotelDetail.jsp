@@ -56,12 +56,12 @@ h2 { font-weight: bold; }
 <script type="text/javascript">
  	$(document).ready(function() {
  		
-		$("#roominfo").click(function() {
+		$("#roombtn").click(function() {
  			
  			var hotel_no = "hotel_no=" + 1 				
  				$.ajax({
  					type: "POST",
- 					url: "/hotel/detail",
+ 					url: "/room/detail",
  					data: hotel_no,
  					datatype: "html",
  					success: function(data) {
@@ -206,7 +206,7 @@ h2 { font-weight: bold; }
 	</div>
 	
 	<div class="tab">
-		<button class="room" id="roominfo">
+		<button class="room" id="roombtn">
 		<span>객실정보</span>
 		</button>
 	
