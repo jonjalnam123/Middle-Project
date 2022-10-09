@@ -29,7 +29,6 @@
     />
  <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" type="text/css">
 <style>
-
 table.type01 {
   border-collapse: collapse;
   text-align: center;
@@ -49,10 +48,7 @@ table.type01 td {
   vertical-align: top;
   border: 1px solid #ccc;
 }
-
 </style>
-
-
 <script type="text/javascript">
 	$(document).ready(function() {
 	 	$("#select").change(function() {		
@@ -67,7 +63,7 @@ table.type01 td {
 					$("#result").html(data);
 				}
 				
-			})  
+			})   //ajax 끝 }
 			
 		}) 
 	 	})
@@ -75,13 +71,13 @@ table.type01 td {
 
 </head>
 <body> 
-<h1> 최신순 리뷰 </h1>
+ <h1> 최신순 리뷰 </h1>
      <div class="reviewArea">
         <div class="reviewHeader">
           <h2 class="subTitle">리뷰 총 ( <%=list.size() %> ) 개</h2>
           <select id="select">
-          <option value="byDate">최신순</option>
-            <option value="byScore">별점순</option>
+          	<option value="byDate">최신순</option>
+          	<option value="byScore">추천순</option>
           </select>
         </div>
  		<div id="result" class ="result">
@@ -100,7 +96,9 @@ table.type01 td {
             </div>
             <div class="reviewContent">
               <div class="imgArea">
-                <img src="/upload/<%=((ReviewImage)list.get(i).get("ri")).getStoredname() %>" alt="이미지 아님" width="50" height="50">
+              <% for(int j=0; j < ((List<ReviewImage>) list.get(i).get("ri")).size()  ; j++) { %>
+                <img src="/upload/<%=((List<ReviewImage>) list.get(i).get("ri")).get(j).getStoredname() %>" alt="이미지 아님" width="50" height="50">
+              <% } %>
               </div>
               <p>
                 <%=((Review)list.get(i).get("r")).getReview_content()  %>
@@ -111,7 +109,5 @@ table.type01 td {
           <%	} %> 
           </div>
       </div>
-      
-
 </body>
 </html>
