@@ -122,7 +122,7 @@ public class HotelDaoImpl implements HotelDao {
 	public int hotelNextSeq(Connection conn) {
 		
 		String sql = "";
-		sql += "select hotel_seq.nextval from hotel";
+		sql += "select hotel_seq.nextval from dual";
 		
 		int seqNum = 0;
 		

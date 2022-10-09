@@ -10,7 +10,7 @@ label {
 	margin: 0 0 20px 0;
 }
 
-.content_wrap #joinform {
+#joinform {
 	width: 400px;
 	margin: 80px auto;
 }
@@ -66,7 +66,7 @@ height: 300px;
 
 
 <div class="joinBtn">
-<button class="button" style="display: inline-block;">등록하기</button>
+<button class="button" style="background: #f7323f;">등록하기</button>
 </div>
 
 </div>
