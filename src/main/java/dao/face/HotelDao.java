@@ -10,5 +10,5 @@ public interface HotelDao {
 
 	public int insertMarkByhotelno(Connection conn, int hotel_no);
 
-
+	public int hotelInsert(Connection conn, Hotel hotelparam);
 }

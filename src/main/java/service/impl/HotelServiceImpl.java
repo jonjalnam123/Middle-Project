@@ -36,4 +36,23 @@ public class HotelServiceImpl implements HotelService {
 		
 		return hotel;
 	}
+	
+	@Override
+	public Hotel join(Hotel hotelparam) {
+
+		Connection conn = JDBCTemplate.getConnection();
+
+		int result = hotelDao.hotelInsert(conn, hotelparam);
+
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+			return hotelparam;
+		} else {
+			JDBCTemplate.rollback(conn);
+			return null;
+		}
+	}
+	
+
 }
+
