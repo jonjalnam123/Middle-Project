@@ -37,7 +37,7 @@ height: 300px;
 <h1 style="text-align: center;">호텔등록 페이지</h1>
 
 
-<form action="/hotel2/join" method="post" enctype="multipart/form-data">
+<form action="/hotel/insert" method="post" enctype="multipart/form-data">
 
 <div id="joinform">
 <label for="hotel_name">호텔명</label>
@@ -72,4 +72,4 @@ height: 300px;
 </div>
 </form>
 
-<%@ include file="/layout/header.jsp" %>
+<%@ include file="/layout/footer.jsp" %>

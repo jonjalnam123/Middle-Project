@@ -86,25 +86,26 @@ public class HotelDaoImpl implements HotelDao {
 	}
 
 	@Override
-	public int hotelInsert(Connection conn, Hotel hotelparam) {
+	public int hotelInsert(Connection conn, Hotel hotelparam, int nextSeq) {
 
 		String sql = "";
 		sql += "INSERT INTO hotel VALUES";
-		sql += "(hotel_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?)";
+		sql += "(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		int result = 0;
 
 		try {
 			ps = conn.prepareStatement(sql);
 
-			ps.setString(1, hotelparam.getHotel_name());
-			ps.setString(2, hotelparam.getHotel_addr());
-			ps.setString(3, hotelparam.getHotel_tel());
-			ps.setString(4, hotelparam.getHotel_info());
-			ps.setString(5, hotelparam.getHotel_photo());
-			ps.setInt(6, hotelparam.getMark_hit());
-			ps.setString(7, hotelparam.getHotel_intime());
-			ps.setString(8, hotelparam.getHotel_outtime());
+			ps.setInt(1, nextSeq);
+			ps.setString(2, hotelparam.getHotel_name());
+			ps.setString(3, hotelparam.getHotel_addr());
+			ps.setString(4, hotelparam.getHotel_tel());
+			ps.setString(5, hotelparam.getHotel_info());
+			ps.setString(6, hotelparam.getHotel_photo());
+			ps.setInt(7, hotelparam.getMark_hit());
+			ps.setString(8, hotelparam.getHotel_intime());
+			ps.setString(9, hotelparam.getHotel_outtime());
 
 			result = ps.executeUpdate();
 
@@ -115,6 +116,30 @@ public class HotelDaoImpl implements HotelDao {
 		}
 
 		return result;
+	}
+	
+	@Override
+	public int hotelNextSeq(Connection conn) {
+		
+		String sql = "";
+		sql += "select hotel_seq.nextval from hotel";
+		
+		int seqNum = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				seqNum = rs.getInt(1);
+			}
+		
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return seqNum;
 	}
 
 }
