@@ -63,6 +63,12 @@ rel="stylesheet"/>
         <label for="upfile1">
           사진첨부 <input type="file" name="upfile" id="upfile1" />
         </label>
+        <label for="upfile2">
+          사진첨부 <input type="file" name="upfile" id="upfile2" />
+        </label>
+        <label for="upfile3">
+          사진첨부 <input type="file" name="upfile" id="upfile3" />
+        </label>
       </div>
       <!-- 리뷰 -->
       <div class="reviewArea" >
