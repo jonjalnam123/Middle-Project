@@ -75,7 +75,7 @@ h2 { font-weight: bold; }
  		/* 숙소정보 버튼 클릭시 비동기호출 */
  		$("#infobtn").click(function() {
  			
- 			var hotel_no = "hotel_no=" + 1 <%-- <%=hotelDetail.getHotel_no() %> --%> 				
+ 			var hotel_no = "hotel_no=" + <%=hotelDetail.getHotel_no() %>				
  				$.ajax({
  					type: "POST",
  					url: "/hotel/detail",
