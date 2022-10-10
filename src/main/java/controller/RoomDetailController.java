@@ -35,5 +35,5 @@ public class RoomDetailController extends HttpServlet {
       req.getRequestDispatcher("/WEB-INF/views/roomDetail.jsp").forward(req, resp);
 
    }
-
+ 
 }

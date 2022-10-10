@@ -71,5 +71,5 @@ public class Roominfo extends HttpServlet {
       req.getRequestDispatcher("/WEB-INF/views/roomcheck.jsp").forward(req, resp);
 
    }
-   
+  
 }

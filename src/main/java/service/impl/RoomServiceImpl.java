@@ -45,11 +45,26 @@ public class RoomServiceImpl implements RoomService {
 
    }
 
+<<<<<<< HEAD
    @Override
    public List<Room> detail(int hotel_no) {
       Connection conn = JDBCTemplate.getConnection();
       return roomDao.roomInfoByHotelNo(conn,hotel_no);
    }
+=======
+	@Override
+	public List<Room> detail(int hotel_no) {
+		Connection conn = JDBCTemplate.getConnection();
+		return roomDao.roomInfoByHotelNo(conn,hotel_no);
+	}
+
+
+
+
+
+
+}
+>>>>>>> branch 'develop' of https://github.com/heejuu321/semi.git
 
 
 
