@@ -24,6 +24,14 @@ public interface RoomDao {
 	 */
 	public int insert(Connection conn, Room roomparam);
 
+	/**
+	 * 
+	 * @param conn
+	 * @param hotel_no
+	 * @return
+	 */
+	public Room selectroomByRoomNo(Connection conn, int hotel_no);
+
 
 
 }

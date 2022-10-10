@@ -44,6 +44,7 @@ height: 100%;
   	top: 0;
   	width: 100%;
 	background-color: #f7323f;
+	position: relative;
 }
 
 .header.scrolled {
