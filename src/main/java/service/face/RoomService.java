@@ -9,7 +9,7 @@ public interface RoomService {
 	/**
 	 * 객실 목록 전체 조회
 	 * 
-	 * @return list<Room> 
+	 * @return list<Room> //
 	 */
 	public List<Room> list();
 

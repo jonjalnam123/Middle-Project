@@ -27,7 +27,7 @@ public class BookingController extends HttpServlet {
 		Integer user_no = (Integer) session.getAttribute("user_no");
 		
 	}
-	
+	//
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 체크인, 체크아웃 날짜 

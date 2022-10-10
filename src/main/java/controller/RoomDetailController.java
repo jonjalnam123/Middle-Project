@@ -22,13 +22,12 @@ public class RoomDetailController extends HttpServlet {
 	//서비스 객체
 	RoomService roomService = new RoomServiceImpl();
 
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		System.out.println("/room/detail [POST] 전달성공");
-		
-		//int hotel_no = Integer.parseInt(req.getParameter("hotel_no"));
-		int hotel_no = 1;
+
+		int hotel_no = Integer.parseInt(req.getParameter("hotel_no"));
 		
 		List<Room> roominfo = roomService.detail(hotel_no);
 		req.setAttribute("roominfo", roominfo);

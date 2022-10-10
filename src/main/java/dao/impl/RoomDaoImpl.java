@@ -114,7 +114,7 @@ public class RoomDaoImpl  implements RoomDao {
 				JDBCTemplate.close(ps);
 			}
 			
-			
+			//
 			return room;
 			
 		}
@@ -157,5 +157,3 @@ public class RoomDaoImpl  implements RoomDao {
 			return list;
 		}
 	}
-
-

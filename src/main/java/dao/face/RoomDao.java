@@ -27,5 +27,7 @@ public interface RoomDao {
 	public List<Room> roomInfoByHotelNo(Connection conn, int hotel_no);
 
 
+	
+
 
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ include file="/layout/header.jsp" %>
+
 
 <style type="text/css">
 
@@ -66,9 +66,17 @@ height: 300px;
 <label for="room_price">객실가격</label>
 <input type="text" name="room_price" id="room_price"><br>
 
+<!--  객실 타입 사진1 -->
 <label for="room_img">객실사진</label>
 <input type="file" name="room_img" id="room_img"><br>
 
+<!--  객실 타입 사진 2-->
+<label for="room_img">객실사진</label>
+<input type="file" name="room_img" id="room_img"><br>
+
+<!--  객실 타입 사진 3 -->
+<label for="room_img">객실사진</label>
+<input type="file" name="room_img" id="room_img"><br>
 
 
 <div class="addBtn">
@@ -77,5 +85,3 @@ height: 300px;
 
 </div>
 </form>
-
-<%@ include file="/layout/footer.jsp" %>

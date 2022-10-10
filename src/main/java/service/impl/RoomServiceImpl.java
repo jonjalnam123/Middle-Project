@@ -1,7 +1,6 @@
 package service.impl;
 
 import java.sql.Connection;
-
 import java.util.List;
 
 import common.JDBCTemplate;
@@ -39,16 +38,26 @@ public class RoomServiceImpl implements RoomService {
 			return null;
 		}
 	}
-	
-	
+
+
+	public List<Room> getList() {
+		return roomDao.selectAll(JDBCTemplate.getConnection());
+
+	}
+
 	@Override
 	public List<Room> detail(int hotel_no) {
-		
 		Connection conn = JDBCTemplate.getConnection();
-		
-		return roomDao.roomInfoByHotelNo(conn, hotel_no);
+		return roomDao.roomInfoByHotelNo(conn,hotel_no);
 	}
+
+
+
+
+
+
 }
+
 
 
 

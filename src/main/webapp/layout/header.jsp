@@ -16,8 +16,9 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
 <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
+<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
 
-<%-- <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/flatpicker.js?ver=221009"></script> --%>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/flatpicker.js"></script>
 
 <!-- 부트스트랩 3 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -43,6 +44,7 @@ height: 100%;
   	top: 0;
   	width: 100%;
 	background-color: #f7323f;
+	position: relative;
 }
 
 .header.scrolled {
@@ -159,7 +161,6 @@ height: 100%;
 			<a href="#"><button class="button">문의게시판</button></a>
 			<a href="#"><button class="button">숙소예약</button></a>
 			<a href="/hotel/insert"><button class="button">호텔등록</button></a>
-			<a href="/room/info"><button class="button">객실등록</button></a>
 			<div class="dropdown">
 					<a href="#"><button class="button" id="dropdown-btn">내정보</button></a>
 				<div class="dropdown-submenu">
