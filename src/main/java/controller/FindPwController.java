@@ -46,7 +46,7 @@ public class FindPwController extends HttpServlet {
 			HttpSession session = req.getSession();
 			
 			session.setAttribute("exists", exists);
-			session.setAttribute("username", sUser.getUser_name());
+			session.setAttribute("useremail", sUser.getUser_email());
 			session.setAttribute("userpw", sUser.getUser_pw());
 		}
 		

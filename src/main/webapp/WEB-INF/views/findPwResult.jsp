@@ -7,23 +7,45 @@
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
-<%-- 비로그인 상태 --%>
+
+<style type="text/css">
+.not-found {text-align: center; position:relative; top: 100px;}
+.found {text-align: center; position:relative; top: 100px;}
+
+.not-found > strong { font-size: 20px; }
+
+.found > p { font-size: 20px; }
+.found > strong { font-size: 20px; text-decoration: underline; color: #e32a62;}
+
+.not-found > button{
+	width: 400px; height: 50px; margin: 10px; border-radius: 5px; border: 0; cursor: pointer;
+    background: linear-gradient(to left, #f857a6, #ff5858);
+    color: #fff; font-weight: bold; font-size: 18px;
+}
+
+.found > form > button{
+	width: 400px; height: 50px; margin: 10px; border-radius: 5px; border: 0; cursor: pointer;
+    background: linear-gradient(to left, #f857a6, #ff5858);
+    color: #fff; font-weight: bold; font-size: 18px;
+}
+</style>
+
+<div class="not-found">
 <%	if( session.getAttribute("exists") == null ) { %>
-<strong>등록된 정보가 없습니다</strong><br><br>
+<strong>등록된 정보가 없습니다.</strong><br><br><br><br>
 <button id="btnBack">다시 찾기</button>
-<!-- <button onclick="location.href='./member/login'">로그인</button> -->
 <%	} %>
+</div>
 
-<%-- 로그인 상태 --%>
+<div class="found">
 <%	if( session.getAttribute("exists") != null && (boolean) session.getAttribute("exists") ) { %>
-<strong><%=session.getAttribute("username") %>님의 비밀번호는</strong><br><br>
-<strong><%=session.getAttribute("userpw") %>입니다</strong><br><br>
+<p><%=session.getAttribute("useremail") %>님의 비밀번호는</p>
+<strong>"<%=session.getAttribute("userpw") %>" 입니다</strong><br><br><br><br>
 <form action="/findPw/result" method="post">
-<button>로그인 하러가기</button>
+<button id="btnGologin">로그인 하러가기</button>
 </form>
-<!-- <button onclick="location.href='./member/logout'">로그아웃</button> -->
 <%	} %>
-
+</div>
 
 <script type="text/javascript">
 //취소 버튼

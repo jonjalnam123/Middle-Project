@@ -7,7 +7,7 @@
 
 
 <style type="text/css">
-#login_wrap{ text-align: center; position: relative; top: 187px; }
+#login_wrap{ text-align: center; }
 
 #useremail {
 	border: 1px solid #d9d9d9; width: 400px; height: 50px;
@@ -37,6 +37,7 @@
 
 <div id="login_wrap">
 	<form action="/login" method="post" name="loginform" onsubmit="return sendMain()">
+		<h1>로그인</h1><br>
 		<input type="text" name="useremail" id="useremail" class="input" placeholder="이메일" ><br>
 <!-- 		<span id="emailMsg"></span><br> -->
 		<input type="password" name="userpw" id="userpw" class="input" placeholder="비밀번호"><br>
