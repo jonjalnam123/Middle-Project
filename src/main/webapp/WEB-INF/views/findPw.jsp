@@ -7,11 +7,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 <style type="text/css">
-#findPw_wrap {
-	text-align: center;
-	position: relative;
-	top: 187px;
-}
+#findPw_wrap { text-align: center; }
 
 #findPwform > p{  
 	position: relative; left: 566px; font-size: 17px; font-weight: bold; margin: 0;
@@ -31,13 +27,13 @@
 }
 
 #btnFindPw{
-	width: 180px; height: 50px; margin: 10px; border-radius: 5px; border: 0; cursor: pointer;
+	width: 190px; height: 50px; margin: 10px; border-radius: 5px; border: 0; cursor: pointer;
     background: linear-gradient(to left, #f857a6, #ff5858);
     color: #fff; font-weight: bold; font-size: 18px;
 }
 
 #btnCancel{
-	width: 180px; height: 50px; margin: 10px; border-radius: 5px; border: 0; cursor: pointer;
+	width: 190px; height: 50px; margin: 10px; border-radius: 5px; border: 0; cursor: pointer;
     background: linear-gradient(to left, #f857a6, #ff5858);
     color: #fff; font-weight: bold; font-size: 18px;
 }
@@ -48,13 +44,12 @@
 
 <div id="findPw_wrap">
 <h1>비밀번호 찾기</h1><br><br>
-	<form action="/findPw" method="post" id="findPwform" name="findPwform" onsubmit="return find_pw()">
+	<form action="/findPw" method="post" id="findPwform" name="findPwform" onsubmit="return chk_input()">
 		<p>이메일</p>
 		<p><input type="text" id="findPwEmail" name="findPwEmail" placeholder="이메일을 입력하세요" autofocus><br><br>
 		
 		<p>휴대폰 번호</p>
 		<input type="text" id="findPwPhone" name="findPwPhone" placeholder="휴대폰번호를 입력하세요"><br><br>
-		
 		<button id="btnFindPw">확인</button> <button id="btnCancel">취소</button>
 	</form>
 </div>
@@ -79,19 +74,19 @@ function numReplace(){
 }
 
 
-function find_pw(){
+function chk_input(){
 	const frm = document.findPwform;
 // 	const email = document.querySelector("#findPwEmail");
 // 	const phone = document.querySelector("#findPwPhone");
 	
 	if(frm.findPwEmail.value == ''){
-		alert("이메일 입력!")
+		alert("이메일을 입력하세요")
 		findPwEmail.focus();
 		return false;
 	}
 	
 	if(frm.findPwPhone.value == ''){
-		alert("휴대폰번호 입력!")
+		alert("휴대폰번호를 입력하세요")
 		findPwPhone.focus();
 		return false;
 	}
@@ -102,6 +97,7 @@ function find_pw(){
 // 	frm.action="./findPwResult.jsp"; //넘어간화면
 // 	frm.submit(); //등록이 될수 있는 조건이면, 정보를 보내겠다.
  }
+ 
 </script>
 
 
