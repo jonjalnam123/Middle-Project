@@ -59,6 +59,23 @@ h2 { font-weight: bold; }
 <script type="text/javascript">
  	$(document).ready(function() {
  		
+	$("#roonBtn").click(function() {
+ 			
+ 			var hotel_no = "hotel_no=" + <%=hotelDetail.getHotel_no() %> 				
+ 				$.ajax({
+ 					type: "POST",
+ 					url: "/hotel/detail",
+ 					data: hotel_no,
+ 					datatype: "html",
+ 					success: function(data) {
+ 						console.log("성공");
+ 						$("#result").html(data);
+ 					}
+ 				
+ 				})
+ 				
+ 			})
+ 		
  		/* 숙소정보 버튼 클릭시 비동기호출 */
  		$("#infobtn").click(function() {
  			
@@ -194,7 +211,7 @@ h2 { font-weight: bold; }
 	</div>
 	
 	<div class="tab">
-		<button class="room">
+		<button class="room" id="roomBtn">
 		<span>객실정보</span>
 		</button>
 	

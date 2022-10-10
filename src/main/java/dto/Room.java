@@ -5,14 +5,14 @@ public class Room {
 	private int room_no; // 객실번호
 	private int hotel_no; // 호텔번호
 	private String room_type; //객실타입
-	private int people; // 기준인원
-	private int max_people; //최대인원
-	private int room_price; //객실가격
+	private String people; // 기준인원
+	private String max_people; //최대인원
+	private String room_price; //객실가격
 	private String room_img; //객실사진
 	
 	public Room() { }
 
-	public Room(int room_no, int hotel_no, String room_type, int people, int max_people, int room_price,
+	public Room(int room_no, int hotel_no, String room_type, String people, String max_people, String room_price,
 			String room_img) {
 		super();
 		this.room_no = room_no;
@@ -54,27 +54,27 @@ public class Room {
 		this.room_type = room_type;
 	}
 
-	public int getPeople() {
+	public String getPeople() {
 		return people;
 	}
 
-	public void setPeople(int people) {
+	public void setPeople(String people) {
 		this.people = people;
 	}
 
-	public int getMax_people() {
+	public String getMax_people() {
 		return max_people;
 	}
 
-	public void setMax_people(int max_people) {
+	public void setMax_people(String max_people) {
 		this.max_people = max_people;
 	}
 
-	public int getRoom_price() {
+	public String getRoom_price() {
 		return room_price;
 	}
 
-	public void setRoom_price(int room_price) {
+	public void setRoom_price(String room_price) {
 		this.room_price = room_price;
 	}
 
@@ -85,6 +85,4 @@ public class Room {
 	public void setRoom_img(String room_img) {
 		this.room_img = room_img;
 	}
-
-	
 }

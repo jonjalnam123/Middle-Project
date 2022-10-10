@@ -1,13 +1,11 @@
 package service.impl;
 
 import java.sql.Connection;
-
 import java.util.List;
 
 import common.JDBCTemplate;
 import dao.face.RoomDao;
 import dao.impl.RoomDaoImpl;
-import dto.Hotel;
 import dto.Room;
 import service.face.RoomService;
 
@@ -48,10 +46,13 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	@Override
-	public Room detail(int hotel_no) {
+	public List<Room> detail(int hotel_no) {
 		Connection conn = JDBCTemplate.getConnection();
-		return roomDao.selectroomByRoomNo(conn,hotel_no);
+		return roomDao.roomInfoByHotelNo(conn,hotel_no);
 	}
+
+
+
 
 
 
