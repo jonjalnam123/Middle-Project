@@ -17,24 +17,23 @@ import service.impl.RoomServiceImpl;
 
 @WebServlet("/room/detail")
 public class RoomDetailController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
 
-	//서비스 객체
-	RoomService roomService = new RoomServiceImpl();
+   //서비스 객체
+   RoomService roomService = new RoomServiceImpl();
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		System.out.println("/room/detail [POST] 전달성공");
-		
-		//int hotel_no = Integer.parseInt(req.getParameter("hotel_no"));
-		int hotel_no = 1;
-		
-		List<Room> roominfo = roomService.detail(hotel_no);
-		req.setAttribute("roominfo", roominfo);
-		
-		req.getRequestDispatcher("/WEB-INF/views/roomDetail.jsp").forward(req, resp);
+   @Override
+   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-	}
+
+      int hotel_no = Integer.parseInt(req.getParameter("hotel_no"));
+      
+      List<Room> roominfo = roomService.detail(hotel_no);
+      req.setAttribute("roominfo", roominfo);
+      
+      req.getRequestDispatcher("/WEB-INF/views/roomDetail.jsp").forward(req, resp);
+
+   }
 
 }
