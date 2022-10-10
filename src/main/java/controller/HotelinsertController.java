@@ -34,6 +34,7 @@ public class HotelinsertController extends HttpServlet {
 		// 서버상의 실제경로를 찾아냄
 		ServletContext context = getServletContext();
 		String path = context.getRealPath("upload");
+		System.out.println(path);
 
 		File directory = new File(path);
 		directory.mkdir();

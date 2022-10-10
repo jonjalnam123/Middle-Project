@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
 <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
 
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/flatpicker.js?ver=221009"></script>    
+<%-- <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/flatpicker.js"></script>   --%>  
 <% List<Room> roominfo = (List) request.getAttribute("roominfo"); %>
 
 <style type="text/css">
@@ -31,19 +31,10 @@ $(document).ready(function() {
 	var from = "";
 	var to = "";
 	$(document).on("click", "#bookingBtn", function() {
-	<% for (int i = 0; i < roominfo.size(); i++) { %>
+<%-- 	<% for (int i = 0; i < roominfo.size(); i++) { %>
 		var hotel_no = <%=roominfo.get(i).getHotel_no() %> 	
  		var room_no = <%=roominfo.get(i).getRoom_no() %>  
-		$.ajax({
-			type: "POST",
-			url: "/hotel/booking",
-			data: { "to": to, "from": from, "hotel_no": hotel_no, "room_no": <%=roominfo.get(i).getRoom_no() %> },
-			//dataType: "text",
-			success: function(data) {
-				console.log("전달성공");
-			}
-		}); 
-	<% } %>
+	<% } %> --%>
 	});
 	var checkin = flatpickr("#checkin", {
 		locale: "ko",
@@ -65,6 +56,15 @@ $(document).ready(function() {
 			console.log(to);
 			console.log(from); 
 				
+		$.ajax({
+			type: "GET",
+			url: "/hotel/booking",
+			data: { "to": to, "from": from},
+			//dataType: "text",
+			success: function(data) {
+				console.log("전달성공");
+			}
+		}); 
 			}
 		})
 	
@@ -103,7 +103,7 @@ $(document).ready(function() {
 				<td colspan="2"><%=roominfo.get(i).getRoom_price() %></td>
 			</tr>
 			<tr>
-				<td colspan="3"><button id="bookingBtn">예약하기</button></td>
+				<td colspan="3"><a href="/hotel/booking?hotel_no=<%=roominfo.get(i).getHotel_no()%>&room_no=<%=roominfo.get(i).getRoom_no()%>"><button id="bookingBtn">예약하기</button></a></td>
 			</tr>
 	</table>
 

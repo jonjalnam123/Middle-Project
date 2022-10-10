@@ -22,7 +22,7 @@ public class MarkDaoImpl implements MarkDao {
 
 		String sql = "";
 		sql += "INSERT INTO mark VALUES";
-		sql += "(mark2_seq.nextval, ?, ?)";
+		sql += "(mark_seq.nextval, ?, ?)";
 
 		int updateRes = 0;
 
