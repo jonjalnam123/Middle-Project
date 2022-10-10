@@ -1,19 +1,14 @@
 package dao.impl;
 
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import common.JDBCTemplate;
 import dao.face.RoomDao;
-import dto.Review;
 import dto.Room;
 
 public class RoomDaoImpl  implements RoomDao {
@@ -39,9 +34,9 @@ public class RoomDaoImpl  implements RoomDao {
 				room.setHotel_no(rs.getInt("hotel_no"));
 				room.setRoom_no(rs.getInt("room_no"));
 				room.setRoom_type(rs.getString("room_type"));
-				room.setPeople(rs.getInt("people"));
-				room.setMax_people(rs.getInt("max_people"));
-				room.setRoom_price(rs.getInt("room_price"));
+				room.setPeople(rs.getString("people"));
+				room.setMax_people(rs.getString("max_people"));
+				room.setRoom_price(rs.getString("room_price"));
 				room.setRoom_img(rs.getString("room_img"));
 				
 				list.add(room);
@@ -69,11 +64,10 @@ public class RoomDaoImpl  implements RoomDao {
 				ps = conn.prepareStatement(sql);
 				
 				ps.setInt(1, roomparam.getHotel_no());
-				//ps.setInt(2, roomparam.getRoom_no());
 				ps.setString(2, roomparam.getRoom_type());
-				ps.setInt(3, roomparam.getPeople());
-				ps.setInt(4, roomparam.getMax_people());
-				ps.setInt(5, roomparam.getRoom_price());
+				ps.setString(3, roomparam.getPeople());
+				ps.setString(4, roomparam.getMax_people());
+				ps.setString(5, roomparam.getRoom_price());
 				ps.setString(6, roomparam.getRoom_img());
 				
 				result = ps.executeUpdate();
@@ -85,48 +79,8 @@ public class RoomDaoImpl  implements RoomDao {
 			
 		}
 		
-		public Room selectByNo(Connection conn, int hotel_no) {
+		public Room selectByNo(Connection conn, int room_no) {
 			
-			PreparedStatement ps = null;
-			ResultSet rs = null;
-			
-			String sql = "";
-			sql += "SELECT  room_no, hotel_no, room_type, people, max_people, room_price, room_img ";
-			sql += " FROM room";
-			sql += " WHERE hotel_no = ?";
-			
-			Room room = null;
-			
-			try {
-				ps = conn.prepareStatement(sql);
-				//ps.setInt(1, room_no);
-				rs = ps.executeQuery();
-				
-				while(rs.next()) {
-					room = new Room();
-					
-					room.setRoom_no(rs.getInt("room_no"));
-					room.setHotel_no(rs.getInt("hotel_no"));
-					room.setRoom_type(rs.getString("room_type"));
-					room.setPeople(rs.getInt("people"));
-					room.setMax_people(rs.getInt("max_people"));
-					room.setRoom_price(rs.getInt("room_price"));
-					room.setRoom_img(rs.getString("room_img"));
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				JDBCTemplate.close(rs);
-				JDBCTemplate.close(ps);
-			}
-			
-			
-			return room;
-			
-		}
-
-		@Override
-		public Room selectroomByRoomNo(Connection conn, int room_no) {
 			PreparedStatement ps = null;
 			ResultSet rs = null;
 			
@@ -148,9 +102,9 @@ public class RoomDaoImpl  implements RoomDao {
 					room.setRoom_no(rs.getInt("room_no"));
 					room.setHotel_no(rs.getInt("hotel_no"));
 					room.setRoom_type(rs.getString("room_type"));
-					room.setPeople(rs.getInt("people"));
-					room.setMax_people(rs.getInt("max_people"));
-					room.setRoom_price(rs.getInt("room_price"));
+					room.setPeople(rs.getString("people"));
+					room.setMax_people(rs.getString("max_people"));
+					room.setRoom_price(rs.getString("room_price"));
 					room.setRoom_img(rs.getString("room_img"));
 				}
 			} catch (SQLException e) {
@@ -160,19 +114,46 @@ public class RoomDaoImpl  implements RoomDao {
 				JDBCTemplate.close(ps);
 			}
 			
-			
+			//
 			return room;
+			
 		}
 		
-}
+		@Override
+		public List<Room> roomInfoByHotelNo(Connection conn, int hotel_no) {
 			
+			PreparedStatement ps = null;
+			ResultSet rs = null;
 			
+			List<Room> list = new ArrayList<>();
+			
+			String sql = "";
+			sql += "select * from room WHERE hotel_no=?";
+			
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, hotel_no);
+				rs = ps.executeQuery();
 				
+				while( rs.next() ) {
+					Room room = new Room();
+					
+					room.setRoom_no(rs.getInt("room_no"));
+					room.setHotel_no(rs.getInt("hotel_no"));
+					room.setRoom_type(rs.getString("room_type"));
+					room.setPeople(rs.getString("people"));
+					room.setMax_people(rs.getString("max_people"));
+					room.setRoom_price(rs.getString("room_price"));
+					room.setRoom_img(rs.getString("room_img"));
+					
+					list.add(room);
+					
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			
-		
-			
-
-	
-		
-		
-
+			return list;
+		}
+	}

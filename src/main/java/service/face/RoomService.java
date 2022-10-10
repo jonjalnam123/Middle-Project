@@ -9,7 +9,7 @@ public interface RoomService {
 	/**
 	 * 객실 목록 전체 조회
 	 * 
-	 * @return list<Room> 
+	 * @return list<Room> //
 	 */
 	public List<Room> list();
 
@@ -22,9 +22,6 @@ public interface RoomService {
 	 */
 	public Room add(Room roomparam);
 
-
-	public Room detail(int hotel_no);
-
-
 	
+	public List<Room> detail(int hotel_no);
 }
