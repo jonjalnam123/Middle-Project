@@ -57,9 +57,9 @@ public class Roominfo extends HttpServlet {
 
       roomparam.setHotel_no(Integer.parseInt(mul.getParameter("hotel_no")));
       roomparam.setRoom_type(mul.getParameter("room_type"));
-      roomparam.setPeople(Integer.parseInt(mul.getParameter("people")));
-      roomparam.setMax_people(Integer.parseInt(mul.getParameter("max_people")));
-      roomparam.setRoom_price(Integer.parseInt(mul.getParameter("room_price")));
+      roomparam.setPeople(mul.getParameter("people"));
+      roomparam.setMax_people(mul.getParameter("max_people"));
+      roomparam.setRoom_price(mul.getParameter("room_price"));
       roomparam.setRoom_img(mul.getFilesystemName("room_img"));
 
       System.out.println("room param "+   roomparam);

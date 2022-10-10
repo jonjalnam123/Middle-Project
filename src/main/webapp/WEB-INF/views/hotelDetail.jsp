@@ -6,14 +6,10 @@
 <% Integer user_no = (Integer) session.getAttribute("user_no"); %>
 <% String user_email = (String) session.getAttribute("user_email"); %>
 <% Integer like_check = (Integer) request.getAttribute("like_check"); %>
-
-<!DOCTYPE html>
-<html>
-<head>
+<%@ include file="/layout/header.jsp"%>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c2f47283a16fca78743abba9b8a1f5ba&autoload=false"></script>
-<meta charset="UTF-8">
-<title>리뷰 작성 페이지</title>
+
 <!-- 카카오지도 -->
 <style type="text/css">
 .container {
@@ -58,6 +54,23 @@ h2 { font-weight: bold; }
 
 <script type="text/javascript">
  	$(document).ready(function() {
+ 		
+		$("#roombtn").click(function() {
+ 			
+ 			var hotel_no = "hotel_no=" + 1 				
+ 				$.ajax({
+ 					type: "POST",
+ 					url: "/room/detail",
+ 					data: hotel_no,
+ 					datatype: "html",
+ 					success: function(data) {
+ 						console.log("성공");
+ 						$("#result").html(data);
+ 					}
+ 				
+ 				})
+ 				
+ 			})
  		
  		/* 숙소정보 버튼 클릭시 비동기호출 */
  		$("#infobtn").click(function() {
@@ -158,8 +171,6 @@ h2 { font-weight: bold; }
 	}) 		
 		
 </script>
-</head>
-<body>
 
 <div class="container">
 	
@@ -183,18 +194,18 @@ h2 { font-weight: bold; }
 		<img src="/resources/image/empty_heart.png" id="heartimg">
 	</div>
 		
-		<!-- 날짜선택 -->
-	<div class="checkDate">  
+ 		
+	<!-- <div class="checkDate">  
 		<div>  	
 			<p>체크인</p>  	
 			<input type="text" name="checkin" id="checkin" placeholder="체크인 날짜 선택"/>  
 			<p>체크인</p>  	
 			<input type="text" name="checkout" id="checkout" placeholder="체크아웃 날짜 선택"/>  
  		</div>
-	</div>
+	</div>  -->
 	
 	<div class="tab">
-		<button class="room">
+		<button class="room" id="roombtn">
 		<span>객실정보</span>
 		</button>
 	
@@ -211,5 +222,4 @@ h2 { font-weight: bold; }
 		</div>
 </div>	
 	
-</body>
-</html>
+<%@ include file="/layout/footer.jsp"%>
