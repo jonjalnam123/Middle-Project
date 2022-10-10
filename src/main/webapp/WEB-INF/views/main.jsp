@@ -8,8 +8,10 @@
 
 <%@ include file="/layout/header.jsp"%>
 
+
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 
 
@@ -69,8 +71,14 @@
 
 <style type="text/css">
 
+.middle{
+	margin: 0 auto;
+	height: 800px;
+}
+
 /* 이미지 슬라이더 박스 */
 #sliderbox {
+	
 	width: 800px;
 	height: 400px;
 	position: absolute;
@@ -82,6 +90,7 @@
 	/* div영역을 벗어난 부분 안보이도록 처리 */
 	overflow: hidden;
 	/* 	overflow: visible; */
+	margin-top: 8%;
 }
 
 #slider {
@@ -100,30 +109,52 @@
 #slider li img {
 	width: 800px;
 	height: 400px;
+	
 }
+
+
+#sliderbox {
+  	width: 650px;
+    height: 400px; 
+
+    overflow: hidden;
+    }
+    
+.img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
+
 </style>
 
+<div class="middle">
 <div class="main_wrap">
 <div id="sliderbox">
 
 	<ul id="slider">
 		<li><img
-			src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA3MDVfMTQ3%2FMDAxNjI1NDg5MjE1NzEy.2yovtiQdxCcRAnN2sEehW2qYfWiSFgK9FVqQs_-_gpgg.DliWzZs0G2KXQQpv8N-quQBr47vLhEM9DbvcfyX9DK8g.JPEG.tesslove2000%2F112.jpg&type=a340"></li>
+			src="https://image.goodchoice.kr/resize_1000X500x0/affiliate/2022/04/20/625f9e785a3cd.jpg"></li>
 		<li><img
-			src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA3MDdfMTg0%2FMDAxNjU3MTgxOTI3NzEw.-Lg-w9wefWisb5ZRDffUUkGuD3byR4Nnk2-iaKi0Makg.wQNbFhGH_OMkor71W42oLXIKHyuvDoc1o4GL9X2f6yEg.JPEG.seosanpost%2F34260_34751_5142.jpg&type=a340"></li>
+			src="https://image.goodchoice.kr/resize_1000X500x0/affiliate/2019/07/16/5d2d628cede99.jpg"></li>
 		<li><img
-			src="https://ldb-phinf.pstatic.net/20190212_66/1549945977305nNUCX_JPEG/jAcHTcXXNgO2Sznd43k2qtBE.jpg"></li>
+			src="https://image.goodchoice.kr/resize_1000X500x0/affiliate/2017/09/13/59b8f2e3242cb.jpg"></li>
 		<li><img
-			src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fwww.hotelscombined.co.kr%2Frimg%2Fhimg%2Ff8%2F55%2F45%2Frevato-12950-13687875-568470.jpg%3Fwidth%3D720%26height%3D576%26crop%3Dtrue&type=sc960_832"></li>
+			src="https://image.goodchoice.kr/resize_1000X500x0/affiliate/2018/02/20/5a8bda503a8f6.jpg"></li>
 		<li><img
-			src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20140907_259%2Fiayns_14100918572365tFBH_JPEG%2FP3280251.JPG&type=a340"></li>
+			src="https://image.goodchoice.kr/resize_1000X500x0/affiliate/2022/03/09/622809eb68406.jpg"></li>
 	</ul>
 
 </div>
-
+</div>
 
 <!-- Demo styles -->
 <style>
+.middle2{
+	margin: 0 auto;
+	height: 800px;
+}
+
 body {
 	margin: 0;
 	padding: 0;
@@ -136,6 +167,7 @@ body {
 	top: 80%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	margin-top: 15%;
 	
 }
 
@@ -156,6 +188,7 @@ body {
 	-ms-flex-align: center;
 	-webkit-align-items: center;
 	align-items: center;
+	overflow: hidden;
 }
 
 .swiper-slide img {
@@ -163,23 +196,30 @@ body {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	overflow: hidden;
+}
+
+.swiper > mySwiper {
+	font-size: 10px;
 }
 </style>
 
-	<!-- Swiper -->
+		<!-- Swiper -->
+	<div class="middle2">
 	<div class="swiper mySwiper"><h3>리뷰 많은 순</h3>
+	<i class="fa-solid fa-magnifying-glass"></i>
 		<div class="swiper-wrapper">
 			<div class="swiper-slide">
 				<img
-					src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA3MDVfMTQ3%2FMDAxNjI1NDg5MjE1NzEy.2yovtiQdxCcRAnN2sEehW2qYfWiSFgK9FVqQs_-_gpgg.DliWzZs0G2KXQQpv8N-quQBr47vLhEM9DbvcfyX9DK8g.JPEG.tesslove2000%2F112.jpg&type=a340">
+					src="https://image.goodchoice.kr/resize_1000X500x0/affiliate/2019/07/16/5d2d628cede99.jpg">
 			</div>
 			<div class="swiper-slide">
 				<img
-					src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA3MDdfMTg0%2FMDAxNjU3MTgxOTI3NzEw.-Lg-w9wefWisb5ZRDffUUkGuD3byR4Nnk2-iaKi0Makg.wQNbFhGH_OMkor71W42oLXIKHyuvDoc1o4GL9X2f6yEg.JPEG.seosanpost%2F34260_34751_5142.jpg&type=a340">
+					src="https://image.goodchoice.kr/resize_1000X500x0/affiliate/2017/09/13/59b8f2e3242cb.jpg">
 			</div>
 			<div class="swiper-slide">
 				<img
-					src="https://ldb-phinf.pstatic.net/20190212_66/1549945977305nNUCX_JPEG/jAcHTcXXNgO2Sznd43k2qtBE.jpg">
+					src="https://image.goodchoice.kr/resize_1000X500x0/affiliate/2022/04/20/625f9e785a3cd.jpg">
 			</div>
 			<div class="swiper-slide">
 				<img
@@ -232,6 +272,8 @@ body {
 			},
 		});
 	</script>
-
 </div>
+</div>
+
+
 <%@ include file="/layout/footer.jsp"%>
