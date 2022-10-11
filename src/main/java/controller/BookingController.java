@@ -26,44 +26,54 @@ public class BookingController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/hotel/booking [GET] 호출 성공");
 
-		int hotel_no = Integer.parseInt(req.getParameter("hotel_no"));
-		int room_no = Integer.parseInt(req.getParameter("room_no"));
-		System.out.println(hotel_no);
-		System.out.println(room_no);
-		
-
 		HttpSession session = req.getSession();
 		int user_no = (Integer) session.getAttribute("user_no");
+		int hotel_no = Integer.parseInt(req.getParameter("hotel_no"));
+		int room_no = Integer.parseInt(req.getParameter("room_no"));
+		String room_price = req.getParameter("room_price");
+		String check_in = req.getParameter("check_in");
+		String check_out = req.getParameter("check_out");
+		
+		System.out.println("호텔번호 :" + hotel_no);
+		System.out.println("유저번호 :" + user_no);
+		System.out.println("객실번호 :" + room_no);
+		System.out.println("객실가격 :" + room_price);
+		System.out.println("체크인 :" + check_in);
+		System.out.println("체크아웃 :" + check_out);
 
 		String from = "";
 		String to = "";
+
 		
-		if (req.getParameter("from") != null && req.getParameter("to") != null) {
+		//if (req.getParameter("from") != null && req.getParameter("to") != null) {
+			
+			
 			from = (String) req.getParameter("from");
 			to = (String) req.getParameter("to");
 
-			SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyyMMdd");
-			SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy-MM-dd");
-			Date date1 = null;
-			Date date2 = null;
-
-			try {
-				date1 = beforeFormat.parse(from);
-				date2 = beforeFormat.parse(to);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			from = afterFormat.format(date1);
-			to = afterFormat.format(date2);
+//			SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyyMMdd");
+//			SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy-MM-dd");
+//			Date date1 = null;
+//			Date date2 = null;
+//
+//			try {
+//				date1 = beforeFormat.parse(from);
+//				date2 = beforeFormat.parse(to);
+//			} catch (ParseException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//
+//			from = afterFormat.format(date1);
+//			to = afterFormat.format(date2);
 
 			System.out.println(from);
 			System.out.println(to);
-
-		}
 			
-		Booking booking = bookingService.insert(hotel_no, room_no, user_no, from, to);
+		//}
+		Booking booking = bookingService.insert(hotel_no, room_no, user_no, from, to, room_price);
+		System.out.println(booking);
+			
 }
 
 	//

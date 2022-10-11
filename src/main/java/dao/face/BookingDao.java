@@ -6,6 +6,9 @@ import dto.Booking;
 
 public interface BookingDao {
 
-	Booking bookingInsert(Connection conn, int hotel_no, int room_no, int user_no, String from, String to);
+	int bookingInsert(Connection conn, int hotel_no, int room_no, int user_no, String from, String to, String room_price);
+
+	Booking SelectAllBooking(Connection conn, int hotel_no, int room_no, int user_no, String from, String to,
+			String room_price);
 
 }
