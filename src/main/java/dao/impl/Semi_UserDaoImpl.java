@@ -86,7 +86,7 @@ public class Semi_UserDaoImpl implements Semi_UserDao {
 	}
 	
 	
-	//------------------------------------------------------------------------------
+	//----------------------------------비밀번호 찾기--------------------------------------------
 
 	@Override
 	public int selectCntByEmailPhone(Connection conn, Semi_User sUser) {
@@ -120,9 +120,74 @@ public class Semi_UserDaoImpl implements Semi_UserDao {
 	}
 	
 	
+	@Override
+	public Semi_User findPwByUseremailPhone(Connection conn, Semi_User sUser) {
+		String sql = "";
+		sql += "SELECT user_pw FROM semi_user";
+		sql += " WHERE user_email = ?";
+		sql += " AND user_phone = ?";
+		
+		//조회 결과 저장 객체
+		Semi_User result = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, sUser.getUser_email());
+			ps.setString(1, sUser.getUser_phone());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				result = new Semi_User();
+				
+				result.setUser_pw(rs.getString("user_pw"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		
+		return result;
+	}
 	
-	//------------------------------------------------------------------------------
+	
+	//------------------------------------회원가입------------------------------------------
 
+	
+	@Override
+	public int selectCntByUserEmail(Connection conn, Semi_User sUser) {
+		
+		String sql = "";
+		sql += "SELECT count(*) cnt FROM semi_user";
+		sql += " WHERE user_email = ?";
+		
+		int cnt = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, sUser.getUser_email());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				cnt = rs.getInt("cnt");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return cnt;
+	}
+
+	
 	
 	@Override
 	public int insert(Connection conn, Semi_User sUser) {
