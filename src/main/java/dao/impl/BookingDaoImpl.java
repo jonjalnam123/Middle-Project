@@ -116,7 +116,7 @@ public class BookingDaoImpl implements BookingDao {
 	public Reserve SelectAllByBookingNo(Connection conn, int booking_no) {
 
 		String sql = "select h.hotel_name, h.hotel_intime, h.hotel_outtime, r.room_type,";
-		sql += " b.room_price, b.hotel_in, b.hotel_out, u.user_name, u.user_phone";
+		sql += " r.room_price, b.hotel_in, b.hotel_out, u.user_name, u.user_phone";
 		sql += " FROM hotel h";
 		sql += " JOIN room r ON (h.hotel_no = r.hotel_no)";
 		sql += " JOIN booking b ON (r.room_no = b.room_no)";
