@@ -60,19 +60,20 @@ public class Semi_UserServiceImpl implements Semi_UserService {
 	}
 	
 	
+	
 	@Override
-	public boolean exists(Semi_User sUser) {
+	public int exists(Semi_User sUser) {
 		if(sUserDao.selectCntByEmailPhone(JDBCTemplate.getConnection(), sUser) > 0) {
-			return true;
+			return 1;
 		} else {
-		return false;
+		return 0;
 		}
 	}
 	
 	
 	@Override
 	public Semi_User findPw(Semi_User sUser) {
-		return sUserDao.selectUserByUseremail(JDBCTemplate.getConnection(), sUser);
+		return sUserDao.findPwByUseremailPhone(JDBCTemplate.getConnection(), sUser);
 	}
 
 	//--------------------------------------------------------------------------------------------
@@ -97,6 +98,15 @@ public class Semi_UserServiceImpl implements Semi_UserService {
 		return sUser;
 	}
 	
+	
+	@Override
+	public int existsEmail(Semi_User sUser) {
+		if(sUserDao.selectCntByUserEmail(JDBCTemplate.getConnection(), sUser) > 0) {
+			return 1;
+		} else {
+		return 0;
+		}
+	}
 	
 	@Override
 	public void join(Semi_User sUser) {
