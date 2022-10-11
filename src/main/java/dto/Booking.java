@@ -11,7 +11,7 @@ public class Booking {
 	private int room_price;
 	@Override
 	public String toString() {
-		return "Booking [booking_no=" + booking_no + ", room_no=" + room_no + ", user_no=" + user_no + ", hptel_no="
+		return "Booking [booking_no=" + booking_no + ", room_no=" + room_no + ", user_no=" + user_no + ", hotel_no="
 				+ hotel_no + ", hotel_in=" + hotel_in + ", hotel_out=" + hotel_out + ", room_price=" + room_price + "]";
 	}
 	public Booking(int booking_no, int room_no, int user_no, int hotel_no, String hotel_in, String hotel_out,
