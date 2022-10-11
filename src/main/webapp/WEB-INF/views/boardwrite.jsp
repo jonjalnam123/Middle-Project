@@ -3,8 +3,21 @@
 
 <%@ include file="/layout/header.jsp"%>
 
+<style type="text/css">
+
+.table table-stripped {
+ margin: 5%;
+}
+.text-center {
+	margin-bottom: 3%;
+}
+
+</style>
+	
+
 <script type="text/javascript">
 $(document).ready(function() {
+
 	
 	//작성버튼
 	$("#btnWrite").click(function() {

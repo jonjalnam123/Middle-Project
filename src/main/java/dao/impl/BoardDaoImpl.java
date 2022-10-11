@@ -232,7 +232,7 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public String selectNickByBoard(Connection conn, Board viewBoard) {
 		String sql = "";
-		sql += "SELECT usernick FROM member";
+		sql += "SELECT user_email FROM semi_user";
 		sql += " WHERE user_no = ?";
 
 		//결과 저장할 변수
@@ -246,7 +246,7 @@ public class BoardDaoImpl implements BoardDao {
 			rs = ps.executeQuery();
 
 			while( rs.next() ) {
-				usernick = rs.getString("usernick");
+				usernick = rs.getString("user_email");
 			}
 
 		} catch (SQLException e) {
