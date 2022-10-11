@@ -3,8 +3,8 @@
     pageEncoding="UTF-8"%>
     
 <% Hotel hotelDetail = (Hotel) request.getAttribute("hotelDetail"); %>
-<% Integer user_no = (Integer) session.getAttribute("user_no"); %>
-<% String user_email = (String) session.getAttribute("user_email"); %>
+<% Integer user_no = (Integer) session.getAttribute("userno"); %>
+<% String user_email = (String) session.getAttribute("useremail"); %>
 <% Integer like_check = (Integer) request.getAttribute("like_check"); %>
 <%@ include file="/layout/header.jsp"%>
 
@@ -177,7 +177,7 @@ h2 { font-weight: bold; }
 <div class="container">
 	
  	<div>
-		<%=hotelDetail.getHotel_photo() %>
+		<%-- <%=hotelDetail.getHotel_photo() %> --%>
 		<img src="/upload/<%=hotelDetail.getHotel_photo() %>" class="htimg" alt="이미지 아님">
 	</div>
 	

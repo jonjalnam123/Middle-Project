@@ -71,8 +71,8 @@ public class BookingController extends HttpServlet {
 			System.out.println(to);
 			
 		//}
-		Booking booking = bookingService.insert(hotel_no, room_no, user_no, from, to, room_price);
-		System.out.println(booking);
+		//Booking booking = bookingService.insert(hotel_no, room_no, user_no, from, to, room_price);
+		//System.out.println(booking);
 			
 }
 

@@ -51,15 +51,15 @@ public class MarkServiceImpl implements MarkService {
 		
 	}
 	
-	@Override
-	public List<Mypage> total(int user_no) {
-		
-		Connection conn = JDBCTemplate.getConnection();
-		
-		markDao.myPageInfo(conn, user_no);
-		
-		return markDao.myPageInfo(conn, user_no);
-	}
+//	@Override
+//	public List<Mypage> total(int user_no) {
+//		
+//		Connection conn = JDBCTemplate.getConnection();
+//		
+//		markDao.myPageInfo(conn, user_no);
+//		
+//		return markDao.myPageInfo(conn, user_no);
+//	}
 	
 	@Override
 	public List<Hotel> markedHotelList(HttpServletRequest request) {

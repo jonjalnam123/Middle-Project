@@ -44,7 +44,7 @@ public interface MarkService {
 	 * @param userno
 	 * @return
 	 */
-	public List<Mypage> total(int userno);
+//	public List<Mypage> total(int userno);
 	
 	/**
 	 * 특정 유저가 찜한 호텔들을 전부 불러오는 메서드
