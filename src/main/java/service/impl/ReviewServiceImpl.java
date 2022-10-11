@@ -221,7 +221,7 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		Connection conn = JDBCTemplate.getConnection();
 
-		List<Map<String, Object>> list = reviewDao.selectReviewsByScoreByHotelNo(conn, hotel_no);
+		List<Map<String, Object>> list = reviewDao.selectReviewsByDateByHotelNo(conn, hotel_no);
 		
 		return list;
 	}
