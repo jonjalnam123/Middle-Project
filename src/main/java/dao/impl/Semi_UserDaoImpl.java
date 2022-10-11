@@ -52,7 +52,7 @@ public class Semi_UserDaoImpl implements Semi_UserDao {
 	public Semi_User selectUserByUseremail(Connection conn, Semi_User sUser) {
 
 		String sql = "";
-		sql += "SELECT user_email, user_name, user_pw FROM semi_user";
+		sql += "SELECT user_email, user_name, user_pw, user_no, user_phone FROM semi_user";
 		sql += " WHERE user_email = ?";
 		
 		//조회 결과 저장 객체
@@ -70,6 +70,8 @@ public class Semi_UserDaoImpl implements Semi_UserDao {
 				result.setUser_email(rs.getString("user_email"));
 				result.setUser_name(rs.getString("user_name"));
 				result.setUser_pw(rs.getString("user_pw"));
+				result.setUser_no(rs.getInt("user_no"));
+				result.setUser_phone(rs.getString("user_phone"));
 			}
 			
 		} catch (SQLException e) {
