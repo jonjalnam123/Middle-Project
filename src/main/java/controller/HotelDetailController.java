@@ -25,8 +25,8 @@ public class HotelDetailController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		//int hotel_no = Integer.parseInt(req.getParameter("hotel_no"));
-		int hotel_no = 4;
+		int hotel_no = Integer.parseInt(req.getParameter("hotel_no"));
+		//int hotel_no = 4;
 
 		HttpSession session = req.getSession();
 		Integer user_no = (Integer) session.getAttribute("userno");

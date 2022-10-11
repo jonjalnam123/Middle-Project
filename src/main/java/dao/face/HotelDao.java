@@ -1,6 +1,7 @@
 package dao.face;
 
 import java.sql.Connection;
+import java.util.List;
 
 import dto.Hotel;
 
@@ -13,4 +14,6 @@ public interface HotelDao {
 	public int hotelInsert(Connection conn, Hotel hotelparam, int nextSeq);
 
 	public int hotelNextSeq(Connection conn);
+
+	public List<Hotel> selectAllHotelList(Connection conn);
 }

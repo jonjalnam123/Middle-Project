@@ -1,6 +1,7 @@
 package service.impl;
 
 import java.sql.Connection;
+import java.util.List;
 
 import common.JDBCTemplate;
 import dao.face.HotelDao;
@@ -52,6 +53,14 @@ public class HotelServiceImpl implements HotelService {
 			JDBCTemplate.rollback(conn);
 			return null;
 		}
+	}
+	
+	@Override
+	public List<Hotel> list() {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		return hotelDao.selectAllHotelList(conn);
 	}
 	
 
