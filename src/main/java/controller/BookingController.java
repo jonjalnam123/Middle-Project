@@ -39,13 +39,13 @@ public class BookingController extends HttpServlet {
 		System.out.println("유저번호 :" + user_no);
 		System.out.println("객실번호 :" + room_no);
 		System.out.println("객실가격 :" + room_price);
-		System.out.println("from : " + from);
-		System.out.println("to : " + to);
+		System.out.println("체크인날짜 : " + from);
+		System.out.println("체크아웃날짜 : " + to);
 		
 //		String from = "";
 //		String to = "";
 //
-//
+//		if문으로 활용하기
 //		if (req.getParameter("from") != null && req.getParameter("to") != null) {
 //
 //			 if (req.getParameter("from") != null && req.getParameter("to") != null) {
@@ -85,8 +85,9 @@ public class BookingController extends HttpServlet {
 //		System.out.println("from : " + from);
 //		System.out.println("to : " + to);
 //		
-		 Booking booking = bookingService.insert(hotel_no, room_no, user_no, from, to, room_price);
-		 System.out.println(booking);
+		// 예약DB 삽입 후 반환
+		Booking booking = bookingService.insert(hotel_no, room_no, user_no, from, to, room_price);
+		System.out.println(booking);
 	}
 
 	//
@@ -95,21 +96,21 @@ public class BookingController extends HttpServlet {
 		System.out.println("/hotel/booking [POST] 요청 성공");
 //		String hotel_no = req.getParameter("hotel_no");
 //		String room_no = req.getParameter("room_no");
-		
-		HttpSession session = req.getSession();
-		int user_no = (Integer) session.getAttribute("userno");
-		int hotel_no = Integer.parseInt(req.getParameter("hotel_no"));
-		int room_no = Integer.parseInt(req.getParameter("room_no"));
-		String room_price = req.getParameter("room_price");
-		String from = (String) req.getParameter("checkin");
-		String to = (String) req.getParameter("checkout");
-		
-		System.out.println("호텔번호 :" + hotel_no);
-		System.out.println("유저번호 :" + user_no);
-		System.out.println("객실번호 :" + room_no);
-		System.out.println("객실가격 :" + room_price);
-		System.out.println("from : " + from);
-		System.out.println("to : " + to);
+//		
+//		HttpSession session = req.getSession();
+//		int user_no = (Integer) session.getAttribute("userno");
+//		int hotel_no = Integer.parseInt(req.getParameter("hotel_no"));
+//		int room_no = Integer.parseInt(req.getParameter("room_no"));
+//		String room_price = req.getParameter("room_price");
+//		String from = (String) req.getParameter("checkin");
+//		String to = (String) req.getParameter("checkout");
+//		
+//		System.out.println("호텔번호 :" + hotel_no);
+//		System.out.println("유저번호 :" + user_no);
+//		System.out.println("객실번호 :" + room_no);
+//		System.out.println("객실가격 :" + room_price);
+//		System.out.println("from : " + from);
+//		System.out.println("to : " + to);
 		
 //		Booking booking = bookingService.insert(hotel_no, room_no, user_no, from, to, room_price);
 //		System.out.println(booking);
