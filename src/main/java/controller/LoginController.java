@@ -39,12 +39,14 @@ public class LoginController extends HttpServlet {
 		//로그인 인증
 		boolean login = sUserService.login(sUser);
 		System.out.println(login);
-		
-		
+						
 		if(login) {
+			
+			
 			
 			//로그인 사용자 정보 얻어오기
 			sUser = sUserService.info(sUser);
+			
 			
 			//세션정보 저장
 			HttpSession session = req.getSession();
