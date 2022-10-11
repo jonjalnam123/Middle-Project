@@ -14,15 +14,22 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c2f47283a16fca78743abba9b8a1f5ba&autoload=false"></script>
 <!-- 카카오지도 -->
+
+
+
+
 <style type="text/css">
+
 .container {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 }
+
 .container div {
 	margin-top: 50px;
 	padding: 0 20px 0px 20px;
 }
+
 .container::before {
   content: "::before element";
   order:9999;
@@ -31,6 +38,7 @@
   height:0;
   overflow:hidden;
 }
+
 .container::after {
   content: "::before element";
   order:9999;
@@ -39,6 +47,7 @@
   height:0;
   overflow:hidden;
 }
+
 .htimg {
 	display: block;
 	width: 490px;
@@ -50,11 +59,13 @@
 .htinfo {
 font-family: 'Jua', sans-serif;
 }
+
 .tab {
 	
 	text-align: left;
 	grid-column: span 2;	
 	font-family: 'Jua', sans-serif;
+	margin-bottom: -5%;
 }
 
 .room {
@@ -102,7 +113,18 @@ font-family: 'Jua', sans-serif;
 	text-align: left;
 	grid-column: span 2;
 }
-h2 { font-weight: bold; }
+
+h2 { 
+	font-weight: bold; 
+}
+
+#mark {
+	margin-top: -60%;
+	margin-left: 160%;
+}
+
+
+
 </style>
 
 <script type="text/javascript">

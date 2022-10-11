@@ -8,6 +8,10 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
 <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
 
 <%-- <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/flatpicker.js"></script>   --%>  
 <% List<Room> roominfo = (List) request.getAttribute("roominfo"); %>
@@ -15,13 +19,68 @@
 <style type="text/css">
 
 table {
-border: 1px solid #ccc;
+	border: #ccc;
+	margin: 5%;
+	font-family: 'Jua', sans-serif;
+	margin-left: -10%;
+
 }
 
+
 tr, td {
-text-align: center;
-vertical-align : middle;
-font-size: 30px;
+	text-align: center;
+	vertical-align : middle;
+	font-size: 20px;
+}
+
+.checkDate {
+	border-radius: 5px;
+	margin-bottom: 5%;
+	font-family: 'Jua', sans-serif;
+	margin-left: -5%;
+	margin-top: -5%;
+	
+}
+
+#bookingBtn {
+width: 180px;
+	height: 40px;
+ 	color: #fff; 
+ 	background: #FF5050;
+ 	border:none;
+ 	border-radius: 5px;
+
+}
+
+#bookingBtn:hover {
+ background: #B90000;
+}
+
+.roomimg {
+	width: 350px;
+	height: 250px;
+	border:none;
+	border-radius: 10px;
+}
+
+#checkin {
+	margin: 10px;
+	width: 160px;
+ 	height: 35px;
+ 	border: 3px solid #FFCA9B;
+ 	border-radius: 10px;
+ 	text-align: center;
+
+}
+
+#checkout {
+	margin: 10px;
+	width: 160px;
+ 	height: 35px;
+ 	border: 3px solid #FFCA9B;
+ 	border-radius: 10px;
+ 	text-align: center;
+
 }
 
 
@@ -81,10 +140,10 @@ $(document).ready(function() {
  <form action="/hotel/booking">
 	<div class="checkDate">
 		<div>  	
-			<p>체크인</p>  	
+			<b>체크인</b>	
 			<input type="text" name="checkin" id="checkin" placeholder="체크인 날짜 선택" value=""/>
 			  
-			<p>체크인</p>  	
+			<b>체크아웃</b>	
 			<input type="text" name="checkout" id="checkout" placeholder="체크아웃 날짜 선택" value=""/> 
 	
  		</div>
@@ -93,9 +152,9 @@ $(document).ready(function() {
 <% for (int i = 0; i < roominfo.size(); i++) { %>
 
 <table class="table">
-	
+
 		<tr>
-			<td rowspan="5" style="width: 500px;">
+			<td rowspan="3">
 			<img src="/upload/<%=roominfo.get(i).getRoom_img() %>" class="roomimg" alt="이미지 아님">
 			</td>
 			<td colspan="3"><%=roominfo.get(i).getRoom_type() %></td>
@@ -110,12 +169,13 @@ $(document).ready(function() {
 				<td colspan="2"><%=roominfo.get(i).getRoom_price() %></td>
 			</tr>
 			<tr>
-				<td><input type="hidden" name="hotel_no" value = "<%=roominfo.get(i).getHotel_no()%>"></td>
+				<td><input type="hidden" name="hotel_no" id="hotel_no"value = "<%=roominfo.get(i).getHotel_no()%>"></td>
 			    <td><input type="hidden" id="room_price" name="room_price" value="<%=roominfo.get(i).getRoom_price() %>"></td>
-				<td colspan="3">
+				<td colspan="2">
 			<button type="submit" id="bookingBtn" name="room_no" value="<%=roominfo.get(i).getRoom_no()%>">예약하기</button></td>
+				
 			</tr>
 	</table>
-			<hr>
+			
 			<% } %>
 </form> 
