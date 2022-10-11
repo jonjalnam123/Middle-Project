@@ -1,7 +1,10 @@
+<%@page import="dto.Reserve"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%@ include file="/layout/header.jsp" %>
+<% Reserve reserve = (Reserve) request.getAttribute("reserve"); %>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
@@ -120,15 +123,14 @@ function selectAll(selectAll)  {
 
 
 <div id="bookinginfo">
-	<form action="/booking" method="post">
 		<h2>예약 정보</h2>
 			<hr>
 		<h4>예약자정보</h4>
-			<input type="text" name="username" id="username" class="input" placeholder="홍길동" ><br>
+			<input type="text" name="username" id="username" class="input" placeholder="<%=reserve.getUser_name() %>" readonly /><br>
 		<h4>휴대폰 번호</h4>
-			<input type="text" name="userphone" id="userphone" class="input" placeholder="01012345678"><br>
+			<input type="text" name="userphone" id="userphone" class="input" placeholder="<%=reserve.getUser_phone() %>" readonly /><br>
 		<hr>
-		<h3><b>총액</b></h3>
+		<h3><b>총액 : <%=reserve.getRoom_price() %></b></h3>
 			<hr>
 		<h4><b>결제 수단</b></h4>
 		<select class="form-control">
@@ -147,18 +149,21 @@ function selectAll(selectAll)  {
 
 		<div class="right">
 			<div>
-			<h5>숙소명</h5><br><br>
-			<h5>객실명</h5><br><br>
-			<h5>체크인 시간</h5><br><br>
-			<h5>체크아웃 시간</h5><br><hr>
-			<h5>총 결제금액(VAT포함)</h5><br><br>
+			<h5>숙소명</h5>
+			<h3><%=reserve.getHotel_name() %></h3>
+			<h5>객실명</h5>
+			<h3><%=reserve.getRoom_type() %></h3>
+			<h5>체크인 시간</h5>
+			<h3><%=reserve.getHotel_in() %>, <%=reserve.getHotel_intime() %></h3>
+			<h5>체크아웃 시간</h5>
+			<h3><%=reserve.getHotel_out() %>, <%=reserve.getHotel_outtime() %></h3>
+			<h5>총 결제금액(VAT포함)</h5>
+			<h3><%=reserve.getRoom_price() %>원</h3>
+			
 			</div>
 		</div>	
-		
 			<div class="btn">
-			<button id="payBtn">결제하기</button>
+			<a href="/payedList"><button id="payBtn">결제하기</button></a>
 		</div>
-	</form>
-
 
 <%@ include file="/layout/footer.jsp" %>
