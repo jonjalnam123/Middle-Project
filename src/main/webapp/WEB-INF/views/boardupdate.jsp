@@ -8,7 +8,12 @@
 <%	Board updateBoard = (Board) request.getAttribute("updateBoard"); %>
 <%	BoardFile boardFile = (BoardFile) request.getAttribute("boardFile"); %>
 
+<style type="text/css">
+.text-center {
+	margin-bottom: 3%;
+}
 
+</style>
 
 
 <script type="text/javascript">

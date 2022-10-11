@@ -70,15 +70,6 @@ height: 300px;
 <label for="room_img">객실사진</label>
 <input type="file" name="room_img" id="room_img"><br>
 
-<!--  객실 타입 사진 2-->
-<label for="room_img">객실사진</label>
-<input type="file" name="room_img" id="room_img"><br>
-
-<!--  객실 타입 사진 3 -->
-<label for="room_img">객실사진</label>
-<input type="file" name="room_img" id="room_img"><br>
-
-
 <div class="addBtn">
 <button class="button">등록하기</button>
 </div>

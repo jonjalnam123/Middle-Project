@@ -26,11 +26,11 @@ public class HotelDetailController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		//int hotel_no = Integer.parseInt(req.getParameter("hotel_no"));
-		int hotel_no = 1;
+		int hotel_no = 4;
 
 		HttpSession session = req.getSession();
-		Integer user_no = (Integer) session.getAttribute("user_no");
-		
+		Integer user_no = (Integer) session.getAttribute("userno");
+		//System.out.println(user_no);
 		// 좋아요 클릭상태 체크
 		// 클릭전 -> 빈하트, 클릭후 -> 꽉찬하트로 보여지게함
 		if (user_no != null) {

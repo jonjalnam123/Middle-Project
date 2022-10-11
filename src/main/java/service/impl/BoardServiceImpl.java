@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -223,7 +224,9 @@ public class BoardServiceImpl implements BoardService {
 		board.setBoardno(boardno);
 
 		//작성자 ID 처리
-		board.setUser_no( (String) req.getSession().getAttribute("user_no") );
+		
+		HttpSession session = req.getSession();
+		board.setUser_no((Integer) session.getAttribute("userno"));
 
 		if( boardDao.insert(conn, board) > 0 ) {
 			JDBCTemplate.commit(conn);

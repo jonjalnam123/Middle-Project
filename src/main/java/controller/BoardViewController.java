@@ -35,8 +35,8 @@ public class BoardViewController extends HttpServlet {
 		req.setAttribute("viewBoard", viewBoard);
 
 
-		//작성자 닉네임 전달
-		req.setAttribute("writerNick", boardService.getWriteNick(viewBoard));
+		//작성자 이메일 전달
+		req.setAttribute("writerEmail", boardService.getWriteNick(viewBoard));
 
 		//첨부파일 정보 조회
 		BoardFile boardFile = boardService.viewFile(viewBoard);

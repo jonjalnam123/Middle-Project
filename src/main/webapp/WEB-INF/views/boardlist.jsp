@@ -15,7 +15,10 @@ td:nth-child(2) {
 	text-align: justify;
 }
 
-body{padding-bottom : 200px;} 
+body{padding-bottom : 300px;} 
+
+
+
 </style>
 
 <script type="text/javascript">
@@ -26,15 +29,14 @@ $(document).ready(function() {
 })
 </script>
 
-
-
 <br>
 <hr>
+
 
 <table class="table table-striped table-hover table-condensed">
 <tr>
 	<th style="width: 10%">글번호</th>
-	<th style="width: 10%">아이디</th>
+	<th style="width: 10%">회원번호</th>
 	<th style="width: 25%">제목</th>
 	<th style="width: 15%">작성일</th>
 	<th style="width: 20%">조회수</th>
@@ -57,7 +59,9 @@ $(document).ready(function() {
 </table>
 
 <div id="btnBox" class="pull-right">
+   <%   if( null != session.getAttribute("login") && (Boolean)session.getAttribute("login") ) { %>
 	<button id="btnWrite" class="btn btn-outline-dark">글쓰기</button>
+	   <% } %>
 </div>
 
 <div class="clearfix"></div>

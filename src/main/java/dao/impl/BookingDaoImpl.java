@@ -18,13 +18,11 @@ public class BookingDaoImpl implements BookingDao {
 
 	@Override
 	public int bookingInsert(Connection conn, int hotel_no, int room_no, int user_no, String from, String to,
-			String room_price) {
+			int room_price) {
 
 		String sql = "";
 		sql += "INSERT INTO booking VALUES(booking_seq.nextval, ?, ?, ?, ?, ?, ?)";
 
-		Booking booking = null;
-		int result = 0;
 		System.out.println(hotel_no);
 		System.out.println(user_no);
 		System.out.println(room_no);
@@ -32,40 +30,35 @@ public class BookingDaoImpl implements BookingDao {
 		System.out.println(from);
 		System.out.println(to);
 
+		int result = 0;
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, room_no);
 			ps.setInt(2, hotel_no);
 			ps.setInt(3, user_no);
-
+			
+			// 스트링 -> Date 변환
 			SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyyMMdd");
 			SimpleDateFormat afterFormat = new SimpleDateFormat("yyyyMMdd");
 			Date date1 = null;
 			Date date2 = null;
 
-			try {
-				date1 = beforeFormat.parse(from);
-				date2 = beforeFormat.parse(to);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
+			date1 = beforeFormat.parse(from);
+			date2 = beforeFormat.parse(to);
 			from = afterFormat.format(date1);
 			to = afterFormat.format(date2);
 			ps.setString(4, from);
 			ps.setString(5, to);
-			ps.setString(6, room_price);
+			ps.setInt(6, room_price);
 
 			result = ps.executeUpdate();
-			if (result > 0) {
-				JDBCTemplate.commit(conn);
-			} else {
-				JDBCTemplate.rollback(conn);
-			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
 		}
 
 		return result;
@@ -73,7 +66,7 @@ public class BookingDaoImpl implements BookingDao {
 
 	@Override
 	public Booking SelectAllBooking(Connection conn, int hotel_no, int room_no, int user_no, String from, String to,
-			String room_price) {
+			int room_price) {
 
 		String sql = "";
 		sql += "SELECT * FROM BOOKING WHERE hotel_no=? and room_no=? and user_no=?";
@@ -82,7 +75,7 @@ public class BookingDaoImpl implements BookingDao {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, hotel_no);
 			ps.setInt(2, room_no);
-			ps.setInt(1, user_no);
+			ps.setInt(3, user_no);
 
 			rs = ps.executeQuery();
 
@@ -95,6 +88,7 @@ public class BookingDaoImpl implements BookingDao {
 				booking.setHotel_no(rs.getInt("hotel_no"));
 				booking.setUser_no(rs.getInt("user_no"));
 
+				// Date -> String 변환
 				Date hotelin = rs.getDate("hotel_in");
 				Date hotelout = rs.getDate("hotel_out");
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -102,7 +96,7 @@ public class BookingDaoImpl implements BookingDao {
 				String hotel_out = format.format(hotelout);
 
 				booking.setHotel_in(hotel_in);
-				booking.setHotel_out(rs.getString(hotel_out));
+				booking.setHotel_out(hotel_out);
 				booking.setRoom_price(rs.getInt("room_price"));
 
 			}

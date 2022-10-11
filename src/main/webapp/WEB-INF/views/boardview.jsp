@@ -5,7 +5,7 @@
 
 <%	Board viewBoard = (Board) request.getAttribute("viewBoard"); %>
 <%	BoardFile boardFile = (BoardFile) request.getAttribute("boardFile"); %>
-
+<% String user_email = (String) request.getAttribute("writerEmail"); %>
 
 
 <%@ include file="/layout/header.jsp" %>
@@ -42,7 +42,7 @@ $(document).ready(function() {
 })
 </script>
 
-<h1>게시글 상세보기</h1>
+<h2>문의게시판</h2>
 <hr>
 <br>
 <br>
@@ -57,7 +57,7 @@ $(document).ready(function() {
 
 
 <tr>
-<td class="info" style= "background-color: #eeeeee; text-align: center;">아이디</td><td><%=viewBoard.getUser_no() %></td>
+<td class="info" style= "background-color: #eeeeee; text-align: center;">회원 이메일</td><td><%=user_email %></td>
 </tr>
 
 <tr>

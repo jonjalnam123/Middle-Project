@@ -31,6 +31,8 @@ public class MarkController extends HttpServlet {
 		int hotel_no = Integer.parseInt(req.getParameter("hotel_no"));
 		int user_no = Integer.parseInt(req.getParameter("user_no"));
 
+		System.out.println("유저번호 : " + user_no);
+		System.out.println("호텔번호 : " + hotel_no);
 		// 해당 호텔 찜하기 + 1 후, 반영된 호텔DTO 반환(확인용)
 		Hotel markResult = hotelService.insertMark(hotel_no);
 

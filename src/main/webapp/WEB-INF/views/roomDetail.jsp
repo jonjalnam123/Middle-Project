@@ -30,12 +30,15 @@ font-size: 30px;
 $(document).ready(function() {
 	var from = "";
 	var to = "";
-<%-- 	$(document).on("click", "#bookingBtn", function() {
 	<% for (int i = 0; i < roominfo.size(); i++) { %>
+<%--  	$(document).on("click", "#bookingBtn", function() {
+	
 		var hotel_no = <%=roominfo.get(i).getHotel_no() %> 	
  		var room_no = <%=roominfo.get(i).getRoom_no() %>  
-	<% } %>
-	}); --%>
+ 		var room_price = '<%=roominfo.get(i).getRoom_price() %>' 
+  		$("#room_price").val(room_price); 
+	});  --%>
+	<% } %> 
 	var checkin = flatpickr("#checkin", {
 		locale: "ko",
 		minDate: "today",
@@ -57,8 +60,8 @@ $(document).ready(function() {
 			console.log(to);
 			console.log(from); 
 			$("#checkout").val(to);
-		/* 		
-		$.ajax({
+		 		
+		/* $.ajax({
 			type: "GET",
 			url: "/hotel/booking",
 			data: { "to": to, "from": from},
@@ -66,7 +69,7 @@ $(document).ready(function() {
 			success: function(data) {
 				console.log("전달성공");
 			}
-		});  */
+		});   */
 			}
 		})
 	
@@ -75,21 +78,22 @@ $(document).ready(function() {
 
 </script>
 	<!-- 날짜선택 -->
+ <form action="/hotel/booking">
 	<div class="checkDate">
 		<div>  	
-		<form action="/hotel/booking" method="get"> 
 			<p>체크인</p>  	
-			<input type="text" name="checkin" id="checkin" placeholder="체크인 날짜 선택" value=""/>  
+			<input type="text" name="checkin" id="checkin" placeholder="체크인 날짜 선택" value=""/>
+			  
 			<p>체크인</p>  	
 			<input type="text" name="checkout" id="checkout" placeholder="체크아웃 날짜 선택" value=""/> 
+	
  		</div>
 	</div>
 	
 <% for (int i = 0; i < roominfo.size(); i++) { %>
 
-
 <table class="table">
-
+	
 		<tr>
 			<td rowspan="5" style="width: 500px;">
 			<img src="/upload/<%=roominfo.get(i).getRoom_img() %>" class="roomimg" alt="이미지 아님">
@@ -106,10 +110,12 @@ $(document).ready(function() {
 				<td colspan="2"><%=roominfo.get(i).getRoom_price() %></td>
 			</tr>
 			<tr>
-				<td colspan="3"><a href="/hotel/booking?hotel_no=<%=roominfo.get(i).getHotel_no()%>&room_no=<%=roominfo.get(i).getRoom_no()%>&room_price=<%=roominfo.get(i).getRoom_price()%>&check_in=checkin&check_out=checkout"><button id="bookingBtn">예약하기</button></a></td>
+				<td><input type="hidden" name="hotel_no" value = "<%=roominfo.get(i).getHotel_no()%>"></td>
+			    <td><input type="hidden" id="room_price" name="room_price" value="<%=roominfo.get(i).getRoom_price() %>"></td>
+				<td colspan="3">
+			<button type="submit" id="bookingBtn" name="room_no" value="<%=roominfo.get(i).getRoom_no()%>">예약하기</button></td>
 			</tr>
 	</table>
-		</form>   
-
 			<hr>
 			<% } %>
+</form> 

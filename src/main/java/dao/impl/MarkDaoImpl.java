@@ -20,6 +20,7 @@ public class MarkDaoImpl implements MarkDao {
 	@Override
 	public int updateMark(Connection conn, int hotel_no, int user_no) {
 
+		System.out.println(user_no);
 		String sql = "";
 		sql += "INSERT INTO mark VALUES";
 		sql += "(mark_seq.nextval, ?, ?)";
@@ -28,8 +29,8 @@ public class MarkDaoImpl implements MarkDao {
 
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, hotel_no);
-			ps.setInt(2, user_no);
+			ps.setInt(1, user_no);
+			ps.setInt(2, hotel_no);
 
 			updateRes = ps.executeUpdate();
 
