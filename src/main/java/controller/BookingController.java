@@ -1,9 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dto.Booking;
+import dto.Reserve;
 import service.face.BookingService;
 import service.impl.BookingServiceImpl;
 
@@ -42,10 +40,21 @@ public class BookingController extends HttpServlet {
 		System.out.println("체크인날짜 : " + from);
 		System.out.println("체크아웃날짜 : " + to);
 		
+		// 예약DB 삽입 후 반환
+		Booking booking = bookingService.insert(hotel_no, room_no, user_no, from, to, room_price);
+		System.out.println(booking);
+		
+		// 결제페이지에 반영될 종합 정보
+		Reserve reserve = bookingService.selectAll(booking.getBooking_no());
+		System.out.println(reserve);
+		
+		req.setAttribute("reserve", reserve);		
+		req.getRequestDispatcher("/WEB-INF/views/bookingPage.jsp").forward(req, resp);
+		
 //		String from = "";
 //		String to = "";
 //
-//		if문으로 활용하기
+//		//if문으로 활용하기
 //		if (req.getParameter("from") != null && req.getParameter("to") != null) {
 //
 //			 if (req.getParameter("from") != null && req.getParameter("to") != null) {
@@ -85,9 +94,6 @@ public class BookingController extends HttpServlet {
 //		System.out.println("from : " + from);
 //		System.out.println("to : " + to);
 //		
-		// 예약DB 삽입 후 반환
-		Booking booking = bookingService.insert(hotel_no, room_no, user_no, from, to, room_price);
-		System.out.println(booking);
 	}
 
 	//

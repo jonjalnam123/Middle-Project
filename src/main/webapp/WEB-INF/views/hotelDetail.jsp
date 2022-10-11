@@ -8,18 +8,28 @@
 <% Integer like_check = (Integer) request.getAttribute("like_check"); %>
 <%@ include file="/layout/header.jsp"%>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c2f47283a16fca78743abba9b8a1f5ba&autoload=false"></script>
 <!-- 카카오지도 -->
+
+
+
+
 <style type="text/css">
+
 .container {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 }
+
 .container div {
 	margin-top: 50px;
 	padding: 0 20px 0px 20px;
 }
+
 .container::before {
   content: "::before element";
   order:9999;
@@ -28,6 +38,7 @@
   height:0;
   overflow:hidden;
 }
+
 .container::after {
   content: "::before element";
   order:9999;
@@ -36,20 +47,84 @@
   height:0;
   overflow:hidden;
 }
+
 .htimg {
 	display: block;
 	width: 490px;
 	height: 350px;
+	border: 0px;
+	border-radius: 10px;
 }
+
+.htinfo {
+font-family: 'Jua', sans-serif;
+}
+
 .tab {
+	
 	text-align: left;
-	grid-column: span 2;
+	grid-column: span 2;	
+	font-family: 'Jua', sans-serif;
+	margin-bottom: -5%;
 }
+
+.room {
+    width: 80px;
+	height: 40px;
+ 	color: #fff; 
+ 	background: #FF5050;
+ 	border:none;
+ 	border-radius: 5px;
+}
+
+.room:hover {
+ background: #B90000;
+}
+
+
+.intro {
+	width: 80px;
+	height: 40px;
+	color: #fff; 
+ 	background: #FF5050;
+ 	border:none;
+ 	border-radius: 5px;
+
+}
+
+.intro:hover {
+	background: #B90000;
+}
+
+.tab_review {
+	width: 80px;
+	height: 40px;
+	color: #fff; 
+ 	background: #FF5050;
+	border:none;
+	border-radius: 5px;
+}
+
+.tab_review:hover {
+	background: #B90000;
+}
+
 .result {
 	text-align: left;
 	grid-column: span 2;
 }
-h2 { font-weight: bold; }
+
+h2 { 
+	font-weight: bold; 
+}
+
+#mark {
+	margin-top: -60%;
+	margin-left: 160%;
+}
+
+
+
 </style>
 
 <script type="text/javascript">
@@ -181,11 +256,11 @@ h2 { font-weight: bold; }
 		<img src="/upload/<%=hotelDetail.getHotel_photo() %>" class="htimg" alt="이미지 아님">
 	</div>
 	
-	<div>
+	<div class="htinfo">
 		<h2><%=hotelDetail.getHotel_name() %></h2>
 		<hr>
-		<p>주소 : <%=hotelDetail.getHotel_addr() %></p>
-		<p>대표번호 : <%=hotelDetail.getHotel_tel() %></p>
+		<h3>주소 : <%=hotelDetail.getHotel_addr() %></h3>
+		<h3>대표번호 : <%=hotelDetail.getHotel_tel() %></h3>
 	</div> 
 	
 	<!-- <input type="text" id="datepicker" class="datepicker" name="checkin">
@@ -196,15 +271,7 @@ h2 { font-weight: bold; }
 		<img src="/resources/image/empty_heart.png" id="heartimg">
 	</div>
 		
-		<!-- 날짜선택 -->
-	<!-- <div class="checkDate">  
-		<div>  	
-			<p>체크인</p>  	
-			<input type="text" name="checkin" id="checkin" placeholder="체크인 날짜 선택"/>  
-			<p>체크인</p>  	
-			<input type="text" name="checkout" id="checkout" placeholder="체크아웃 날짜 선택"/>  
- 		</div>
-	</div> -->
+
 	
 	<div class="tab">
 		<button class="room" id="roomBtn">

@@ -6,6 +6,7 @@ import common.JDBCTemplate;
 import dao.face.BookingDao;
 import dao.impl.BookingDaoImpl;
 import dto.Booking;
+import dto.Reserve;
 import service.face.BookingService;
 
 public class BookingServiceImpl implements BookingService {
@@ -27,6 +28,14 @@ public class BookingServiceImpl implements BookingService {
 
 		// DB삽입
 		return bookingDao.SelectAllBooking(conn, hotel_no, room_no, user_no, from, to, room_price);
+	}
+	
+	@Override
+	public Reserve selectAll(int booking_no) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		return bookingDao.SelectAllByBookingNo(conn, booking_no);
 	}
 
 }
