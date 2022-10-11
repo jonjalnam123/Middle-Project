@@ -39,7 +39,7 @@ $(document).ready(function() {
 	var checkin = flatpickr("#checkin", {
 		locale: "ko",
 		minDate: "today",
-		dateFormat: "Y년 m월 d일",
+		dateFormat: "Ymd",
 
 		onChange: function(dateStr, dateObj) {
 			checkout.set("minDate", dateObj);
@@ -50,7 +50,7 @@ $(document).ready(function() {
 	var checkout = flatpickr("#checkout", {
 		locale: "ko",
 		minDate: "today",
-		dateFormat: "Y년 m월 d일",
+		dateFormat: "Ymd",
 		onChange: function() {
 			to = $("#checkout").val();
 			console.log(to);
