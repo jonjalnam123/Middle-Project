@@ -176,8 +176,8 @@ h2 { font-weight: bold; }
 
 <div class="container">
 	
-<%-- 	<div>
-		<%=hotelDetail.getHotelPhoto() %>
+ 	<div>
+		<%=hotelDetail.getHotel_photo() %>
 		<img src="/upload/<%=hotelDetail.getHotel_photo() %>" class="htimg" alt="이미지 아님">
 	</div>
 	
@@ -186,7 +186,7 @@ h2 { font-weight: bold; }
 		<hr>
 		<p>주소 : <%=hotelDetail.getHotel_addr() %></p>
 		<p>대표번호 : <%=hotelDetail.getHotel_tel() %></p>
-	</div> --%>
+	</div> 
 	
 	<!-- <input type="text" id="datepicker" class="datepicker" name="checkin">
 	<input type="text" id="datepicker2" class="datepicker" name="checkout"> -->
@@ -197,14 +197,14 @@ h2 { font-weight: bold; }
 	</div>
 		
 		<!-- 날짜선택 -->
-	<div class="checkDate">  
+	<!-- <div class="checkDate">  
 		<div>  	
 			<p>체크인</p>  	
 			<input type="text" name="checkin" id="checkin" placeholder="체크인 날짜 선택"/>  
 			<p>체크인</p>  	
 			<input type="text" name="checkout" id="checkout" placeholder="체크아웃 날짜 선택"/>  
  		</div>
-	</div>
+	</div> -->
 	
 	<div class="tab">
 		<button class="room" id="roomBtn">
