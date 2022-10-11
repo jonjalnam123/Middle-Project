@@ -30,11 +30,10 @@ public class LoginController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("############################");
+		System.out.println("##################");
 		
 		//전달파라미터로 로그인 정보 얻기
 		Semi_User sUser = sUserService.getLoginUser(req);
-		System.out.println(sUser);
 		
 		//로그인 인증
 		boolean login = sUserService.login(sUser);
@@ -45,6 +44,7 @@ public class LoginController extends HttpServlet {
 			
 			//로그인 사용자 정보 얻어오기
 			sUser = sUserService.info(sUser);
+			System.out.println("~~" + sUser);
 			
 			//세션정보 저장
 			HttpSession session = req.getSession();
@@ -52,8 +52,8 @@ public class LoginController extends HttpServlet {
 			session.setAttribute("login", login);
 			session.setAttribute("username", sUser.getUser_name());
 			session.setAttribute("userpw", sUser.getUser_pw());
-			session.setAttribute("user_email", sUser.getUser_email());
-			session.setAttribute("user_no", sUser.getUser_no());
+			session.setAttribute("useremail", sUser.getUser_email());
+			session.setAttribute("userno", sUser.getUser_no());
 			
 		}
 		
@@ -62,7 +62,6 @@ public class LoginController extends HttpServlet {
 	}
 
 }
-
 
 
 
