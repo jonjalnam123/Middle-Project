@@ -33,8 +33,9 @@ public interface Semi_UserService {
 	public Semi_User info(Semi_User sUser);
 
 	
-	//----------------------------------------------------------
+	//---------------------------비밀번호 찾기-------------------------------
 
+	
 	/**
 	 * 비밀번호 찾기를 위해 이메일, 폰번호 얻어오기
 	 * 
@@ -53,10 +54,35 @@ public interface Semi_UserService {
 	public int exists(Semi_User sUser);
 	
 	
-	public Semi_User findPw(Semi_User sUser);
+	/**
+	 * 임시비번 생성 메소드
+	 * 
+	 * @param len
+	 * @return
+	 */
+	public String getRamdomPassword(int len);
 	
 	
-	//----------------------------------------------------------
+	/**
+	 * 임시비번 생성해서 sUser에 저장
+	 * 
+	 * @param sUser
+	 * @param random
+	 * @return
+	 */
+	public Semi_User createTempPw(Semi_User sUser);
+	
+	
+	/**
+	 * 임시비번이 db에 잘 들어갔는지
+	 * 
+	 * @param sUser
+	 */
+	public boolean isOkUpdateTempPw(Semi_User sUser);
+	
+	
+	
+	//-------------------------회원가입---------------------------------
 	
 	/**
 	 * 회원가입 정보 추출
