@@ -45,7 +45,7 @@ public class Semi_UserServiceImpl implements Semi_UserService {
 	}
 	
 	
-	//--------------------------------------------------------------------------------------------
+	//--------------------------------------비밀번호 찾기------------------------------------------------------
 
 	
 	@Override
@@ -53,30 +53,69 @@ public class Semi_UserServiceImpl implements Semi_UserService {
 		
 		Semi_User sUser = new Semi_User();
 		
-		sUser.setUser_email(req.getParameter("findPwEmail"));
-		sUser.setUser_phone(req.getParameter("findPwPhone"));
+		sUser.setUser_email(req.getParameter("useremail"));
+		sUser.setUser_phone(req.getParameter("userphone"));
 		
 		return sUser;
 	}
 	
 	
-	
 	@Override
 	public int exists(Semi_User sUser) {
 		if(sUserDao.selectCntByEmailPhone(JDBCTemplate.getConnection(), sUser) > 0) {
-			return 1;
+			return 1; //조회 성공
 		} else {
-		return 0;
+		return 0; //실패
 		}
 	}
 	
 	
+	
 	@Override
-	public Semi_User findPw(Semi_User sUser) {
-		return sUserDao.findPwByUseremailPhone(JDBCTemplate.getConnection(), sUser);
-	}
+	public String getRamdomPassword(int len) {
+		char[] charSet = new char[] { '0', '1', '2', '3', '4', '5', '6', '7',
+				'8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 
+				'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 
+				'U', 'V', 'W', 'X', 'Y', 'Z' };
 
-	//--------------------------------------------------------------------------------------------
+		  int idx = 0;
+		  StringBuffer sb = new StringBuffer();
+		  
+		  for (int i = 0; i < len; i++) {
+			
+			  idx = (int) (charSet.length * Math.random()); // 36 * 생성된 난수를  Int로 추출 (소숫점제거)
+			  sb.append(charSet[idx]);
+		  }
+
+		  return sb.toString();
+	}
+	
+	
+	@Override
+	public Semi_User createTempPw(Semi_User sUser) {
+
+		if(exists(sUser) == 1) {
+			
+			//dto에 임시비번 10자리 생성해서 저장
+			sUser.setUser_pw(getRamdomPassword(10));
+		}
+		return sUser;
+	}
+	
+	
+	@Override
+	public boolean isOkUpdateTempPw(Semi_User sUser) {
+		
+		if(sUserDao.updateTempPw(JDBCTemplate.getConnection(), sUser) > 0) {
+			return true; //업뎃 성공
+		} else {
+		return false; //실패
+		}
+		
+	}
+	
+	
+	//---------------------------------------회원가입-----------------------------------------------------
 
 	@Override
 	public Semi_User getJoinMember(HttpServletRequest req) {

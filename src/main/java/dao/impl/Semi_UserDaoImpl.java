@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import common.JDBCTemplate;
 import dao.face.Semi_UserDao;
@@ -121,27 +119,23 @@ public class Semi_UserDaoImpl implements Semi_UserDao {
 	
 	
 	@Override
-	public Semi_User findPwByUseremailPhone(Connection conn, Semi_User sUser) {
-		String sql = "";
-		sql += "SELECT user_pw FROM semi_user";
-		sql += " WHERE user_email = ?";
-		sql += " AND user_phone = ?";
+	public int updateTempPw(Connection conn, Semi_User sUser) {
 		
-		//조회 결과 저장 객체
-		Semi_User result = null;
+		String sql = "";
+		sql += "UPDATE semi_user SET user_pw = ?";
+		sql += " WHERE user_email = ? AND user_phone = ?";
+		
+		int res = 0;
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, sUser.getUser_email());
-			ps.setString(1, sUser.getUser_phone());
+			
+			ps.setString(1, sUser.getUser_pw());
+			ps.setString(2, sUser.getUser_email());
+			ps.setString(3, sUser.getUser_phone());
 			
 			rs = ps.executeQuery();
 			
-			while(rs.next()) {
-				result = new Semi_User();
-				
-				result.setUser_pw(rs.getString("user_pw"));
-			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -150,8 +144,8 @@ public class Semi_UserDaoImpl implements Semi_UserDao {
 			JDBCTemplate.close(ps);
 		}
 		
-		
-		return result;
+		System.out.println("update쿼리 : " + sUser);
+		return res;
 	}
 	
 	

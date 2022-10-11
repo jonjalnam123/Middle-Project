@@ -7,7 +7,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dto.Semi_User;
 import service.face.Semi_UserService;
@@ -25,33 +24,23 @@ public class FindPwController extends HttpServlet {
 		req.getRequestDispatcher("/WEB-INF/views/findPw.jsp").forward(req, resp);
 	}
 	
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("#######################");
 		
-		System.out.println("##################");
-		
-		//전달파라미터로 이메일/휴대폰번호 얻기
+		//전달파라미터로 비번찾기(이메일/폰번호) 정보 얻기
 		Semi_User sUser = sUserService.getEmailPhone(req);
-		System.out.println(sUser);
+		System.out.println("전달 파라미터 : " + sUser);
 		
-		//로그인 인증
-		boolean exists = sUserService.exists(sUser);
-		System.out.println(exists);
+		int num = sUserService.exists(sUser);
+		System.out.println("전달파라미터 db조회 결과 : " + num);
 		
-		if(exists) {
-			
-			sUser = sUserService.findPw(sUser);
-			
-			//세션정보 저장
-			HttpSession session = req.getSession();
-			
-			session.setAttribute("exists", exists);
-			session.setAttribute("useremail", sUser.getUser_email());
-			session.setAttribute("userpw", sUser.getUser_pw());
-		}
+		System.out.println("랜덤비번 dto에 저장 : " + sUserService.createTempPw(sUser));
 		
-		
-		
+		boolean res = sUserService.isOkUpdateTempPw(sUser);
+		System.out.println("db업데이트 결과 : " + res);
+		System.out.println("최종 : " + sUser);
 		
 		
 		resp.sendRedirect("/findPw/result");

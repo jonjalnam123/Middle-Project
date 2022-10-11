@@ -15,7 +15,7 @@
 	padding: 0; text-align: left; width: 400px;
 }
 
-#joinform > input{
+#joinform > .textput{
 	border: 1px solid #d9d9d9; width: 400px; height: 50px;
     margin: 5px; padding-left: 10px; border-radius: 5px;
     box-sizing: border-box; font-size: 15px;
@@ -33,6 +33,14 @@
     color: #fff; font-weight: bold; font-size: 18px;
 }
 
+textarea{
+	border: 1px solid #d9d9d9; width: 400px; height: 150px;
+    margin: 5px; padding-left: 10px; border-radius: 5px;
+    box-sizing: border-box; font-size: 15px;
+}
+.check{ position: relative; left: -26px; }
+.check1{ position: relative; left: -153px; font-size: 17px; }
+
 #result{ font-size: 13px; }
 
 </style>
@@ -42,20 +50,34 @@
 	<form action="/join" method="post" id="joinform" name="joinform" onsubmit="return sendLogin()">
 	<h1>회원가입</h1><br><br>
 		<p>이름</p>
-		<input type="text" id="username" name="username" placeholder="예)홍길동" autofocus><br><br>
+		<input type="text" id="username" name="username" placeholder="예)홍길동" autofocus class="textput"><br><br>
 		
 		<p>이메일</p>
-		<p><input type="text" id="useremail" name="useremail" placeholder="이메일을 입력하세요">
+		<p><input type="text" id="useremail" name="useremail" placeholder="이메일을 입력하세요" class="textput">
 		<p id="result">&nbsp;</p><br>
 		
 		<p>휴대폰 번호</p> 
-		<input type="text" id="userphone" name="userphone" placeholder="휴대폰번호를 입력하세요"><br><br>
+		<input type="text" id="userphone" name="userphone" placeholder="휴대폰번호를 입력하세요" class="textput"><br><br>
 		
 		<p>비밀번호</p> <p style="font-weight: normal; font-size: 11px;"> * 4자 이상 20자 이하</p>
-		<input type="text" id="userpw" name="userpw" placeholder="비밀번호를 입력하세요"><br><br>
+		<input type="text" id="userpw" name="userpw" placeholder="비밀번호를 입력하세요" class="textput"><br><br>
 		
 		<p>비밀번호 확인</p>
-		<input type="text" id="userpwChk" name="userpwChk" placeholder="비밀번호를 입력하세요"><br><br>
+		<input type="text" id="userpwChk" name="userpwChk" placeholder="비밀번호를 입력하세요" class="textput"><br><br>
+		
+		<input type="checkbox" id="chk" name="chk" class="check">
+    	<label for="chk"><span class="check1">이용약관동의</span></label><br>
+    	<textarea readonly>(회원가입)
+① "이용자"는 "플랫폼"이 정한 절차에 따라 이 약관에 동의한다는 의사표시를 함으로서 회원가입을 신청합니다.
+② "회사"는 제①항과 같이 회원으로 가입할 것을 신청한 "이용자" 중 다음 각 호에 해당하지 않는 한 회원으로 등록합니다.
+
+1. 회원자격 상실 후 24시간이 경과하지 않은 경우
+2. 등록 내용에 타인의 정보를 사용한 경우
+3. 만 14세 미만의 아동이 신청하는 경우
+
+③ 회원가입계약의 성립 시기는 "회사"의 승낙이 회원에게 도달한 시점으로 합니다.
+④ 회원은 회원가입 시 등록한 사항에 변경이 있는 경우, 상당한 기간 이내에 "플랫폼"에 대하여 회원정보 수정하거나 E-mail 등의 방법으로 그 변경사항을 알려야 합니다.
+⑤ "회사"는 관련법령에 따라 필요한 경우 별도의 성인인증 절차를 실시할 수 있습니다.</textarea><br>
 	
 		<button id="btnJoin">가입하기</button>
 	</form>
@@ -91,10 +113,11 @@ function chkEmail() {
         success: function(res) { //컨트롤러에서 넘어온 res값을 받는다 
             if (res == 0) { //res가 1이 아니면(0일 경우) -> 사용 가능한 아이디 
                 $("#result").text("✔ 사용할 수 있는 이메일입니다").css("color", "#37a9f5");
-                console.log(email);
+                $("#btnJoin").attr("disabled", false);
 
             } else { // res가 1일 경우 -> 이미 존재하는 아이디
                 $("#result").text("❌ 이미 존재하는 이메일입니다").css("color", "#e42f0a");
+                $("#btnJoin").attr("disabled", true);
             }
        	}
         });
@@ -109,6 +132,7 @@ const sendLogin = () => {
 	const inputNum = document.querySelector("#userphone");
 	const inputPw = document.querySelector("#userpw");
 	const inputPwChk = document.querySelector("#userpwChk");
+	const chkBox = document.querySelector("#chk");
 	
 	
 	//이름이 비어있을 경우
@@ -175,6 +199,13 @@ const sendLogin = () => {
         inputPwChk.focus();
         return false;
     }
+	
+  	//이용약관에 체크 안되었을 시
+	if(chkBox.checked == false){
+		console.log("이용약관에 체크하세요");
+		alert("이용약관에 체크하세요");
+		return false;
+	}
 	
 	return true;
 }
