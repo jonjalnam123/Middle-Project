@@ -30,12 +30,12 @@ font-size: 30px;
 $(document).ready(function() {
 	var from = "";
 	var to = "";
-	$(document).on("click", "#bookingBtn", function() {
-<%-- 	<% for (int i = 0; i < roominfo.size(); i++) { %>
+<%-- 	$(document).on("click", "#bookingBtn", function() {
+	<% for (int i = 0; i < roominfo.size(); i++) { %>
 		var hotel_no = <%=roominfo.get(i).getHotel_no() %> 	
  		var room_no = <%=roominfo.get(i).getRoom_no() %>  
-	<% } %> --%>
-	});
+	<% } %>
+	}); --%>
 	var checkin = flatpickr("#checkin", {
 		locale: "ko",
 		minDate: "today",
@@ -45,6 +45,7 @@ $(document).ready(function() {
 			checkout.set("minDate", dateObj);
 			checkin.setDate(dateObj);
 			from = $("#checkin").val();
+			$("#checkin").val(from);
 		}
 	});
 	var checkout = flatpickr("#checkout", {
@@ -55,7 +56,8 @@ $(document).ready(function() {
 			to = $("#checkout").val();
 			console.log(to);
 			console.log(from); 
-				
+			$("#checkout").val(to);
+		/* 		
 		$.ajax({
 			type: "GET",
 			url: "/hotel/booking",
@@ -64,7 +66,7 @@ $(document).ready(function() {
 			success: function(data) {
 				console.log("전달성공");
 			}
-		}); 
+		});  */
 			}
 		})
 	
@@ -73,12 +75,13 @@ $(document).ready(function() {
 
 </script>
 	<!-- 날짜선택 -->
-	<div class="checkDate">  
+	<div class="checkDate">
 		<div>  	
+		<form action="/hotel/booking" method="get"> 
 			<p>체크인</p>  	
 			<input type="text" name="checkin" id="checkin" placeholder="체크인 날짜 선택" value=""/>  
 			<p>체크인</p>  	
-			<input type="text" name="checkout" id="checkout" placeholder="체크아웃 날짜 선택" value=""/>  
+			<input type="text" name="checkout" id="checkout" placeholder="체크아웃 날짜 선택" value=""/> 
  		</div>
 	</div>
 	
@@ -103,9 +106,10 @@ $(document).ready(function() {
 				<td colspan="2"><%=roominfo.get(i).getRoom_price() %></td>
 			</tr>
 			<tr>
-				<td colspan="3"><a href="/hotel/booking?hotel_no=<%=roominfo.get(i).getHotel_no()%>&room_no=<%=roominfo.get(i).getRoom_no()%>&room_price=<%=roominfo.get(i).getRoom_price()%>"><button id="bookingBtn">예약하기</button></a></td>
+				<td colspan="3"><a href="/hotel/booking?hotel_no=<%=roominfo.get(i).getHotel_no()%>&room_no=<%=roominfo.get(i).getRoom_no()%>&room_price=<%=roominfo.get(i).getRoom_price()%>&check_in=checkin&check_out=checkout"><button id="bookingBtn">예약하기</button></a></td>
 			</tr>
 	</table>
+		</form>   
 
 			<hr>
 			<% } %>
