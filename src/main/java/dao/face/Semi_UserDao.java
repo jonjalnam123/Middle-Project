@@ -33,6 +33,17 @@ public interface Semi_UserDao {
 	public int selectCntByEmailPhone(Connection conn, Semi_User sUser);
 	
 	
+	/**
+	 * 이메일/폰번호로 비번 찾기
+	 * 
+	 * @param conn
+	 * @param sUser
+	 * @return
+	 */
+	public Semi_User findPwByUseremailPhone(Connection conn, Semi_User sUser);
+	
+	
+	
 	//-----------------------------------------------------------------------------
 
 	
@@ -44,6 +55,16 @@ public interface Semi_UserDao {
 	 * @return int - 1: 인서트 성공, 0: 인서트 실패
 	 */
 	public int insert(Connection conn, Semi_User sUser);
+	
+	
+	/**
+	 * 이메일 중복 확인을 위한 cnt 조회
+	 * 
+	 * @param conn
+	 * @param sUer
+	 * @return
+	 */
+	public int selectCntByUserEmail(Connection conn, Semi_User sUser);
 	
 	
 	//-----------------------------------------------------------------------------

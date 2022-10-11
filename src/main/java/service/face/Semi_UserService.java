@@ -25,7 +25,7 @@ public interface Semi_UserService {
 	
 	
 	/**
-	 * 
+	 * 로그인 한 유저 정보
 	 * 
 	 * @param sUser
 	 * @return
@@ -35,7 +35,6 @@ public interface Semi_UserService {
 	
 	//----------------------------------------------------------
 
-	
 	/**
 	 * 비밀번호 찾기를 위해 이메일, 폰번호 얻어오기
 	 * 
@@ -51,7 +50,7 @@ public interface Semi_UserService {
 	 * @param sUser
 	 * @return
 	 */
-	public boolean exists(Semi_User sUser);
+	public int exists(Semi_User sUser);
 	
 	
 	public Semi_User findPw(Semi_User sUser);
@@ -66,6 +65,15 @@ public interface Semi_UserService {
 	 * @return
 	 */
 	public Semi_User getJoinMember(HttpServletRequest req);
+	
+	
+	/**
+	 * 이메일 중복확인
+	 * 
+	 * @param sUser
+	 * @return
+	 */
+	public int existsEmail(Semi_User sUser);
 	
 	
 	/**
