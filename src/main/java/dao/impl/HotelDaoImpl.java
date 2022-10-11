@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import common.JDBCTemplate;
 import dao.face.HotelDao;
@@ -140,6 +142,43 @@ public class HotelDaoImpl implements HotelDao {
 		}
 		
 		return seqNum;
+	}
+	
+	@Override
+	public List<Hotel> selectAllHotelList(Connection conn) {
+		
+		String sql = "";
+		sql += "SELECT * FROM hotel";
+		
+		List<Hotel> list = new ArrayList<>();	
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				
+				Hotel hotel = new Hotel();
+				
+				hotel.setHotel_no(rs.getInt("hotel_no"));
+				hotel.setHotel_name(rs.getString("hotel_name"));
+				hotel.setHotel_addr(rs.getString("hotel_addr"));
+				hotel.setHotel_tel(rs.getString("hotel_tel"));
+				hotel.setHotel_info(rs.getString("hotel_info"));
+				hotel.setHotel_photo(rs.getString("hotel_photo"));
+				hotel.setMark_hit(rs.getInt("mark_hit"));
+				hotel.setHotel_intime(rs.getString("hotel_intime"));
+				hotel.setHotel_outtime(rs.getString("hotel_outtime"));
+				
+				list.add(hotel);
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 
 }

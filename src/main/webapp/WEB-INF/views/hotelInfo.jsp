@@ -29,11 +29,10 @@
 			    kakao.maps.load(function() {
 			        var map = new kakao.maps.Map(mapContainer, options);
 			        
-			        // 해당호텔 주소 얻기
+			        // DB에서 호텔주소 얻기
 					var htadr = '<%=hotelinfo.getHotel_addr()%>';
-					/* console.log(htadr); */
 					
-			     	// 주소-좌표 변환 객체를 생성
+			     	// 주소-좌표 변환
 			        var geocoder = new kakao.maps.services.Geocoder();
 			     	
 					// 호텔 주소가 담긴 htadr을 세팅해줌
@@ -45,7 +44,7 @@
 			            	// 해당 주소로 좌표 변환 후 세팅
 			                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-			                // 결과값으로 받은 위치를 마커로 표시합니다
+			                // 결과값으로 받은 위치를 마커로 표시
 			                var marker = new kakao.maps.Marker({
 			                    map: map,
 			                    position: coords
