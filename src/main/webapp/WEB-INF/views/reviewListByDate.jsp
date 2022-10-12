@@ -89,7 +89,7 @@ table.type01 td {
               <div class="reviewInfo">
                 <div><%=((Review)list.get(i).get("r")).getReview_score() %>점</div>
                 <div>
-                  <span><%= ((Semi_User) list.get(i).get("u")).getUser_email() %></span><span><%= sf.format( ((Review)list.get(i).get("r")).getReview_date()   ) %></span><span><%=((Review)list.get(i).get("r")).getRoom_type() %></span>
+                  <span><%= ((Semi_User) list.get(i).get("u")).getUser_email() %></span><span><%= ((Review)list.get(i).get("r")).getReview_date() %></span><span><%=((Review)list.get(i).get("r")).getRoom_type() %></span>
                 
                 </div>
               </div>

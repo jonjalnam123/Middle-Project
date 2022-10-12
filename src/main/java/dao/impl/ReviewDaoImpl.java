@@ -164,9 +164,6 @@ public class ReviewDaoImpl implements ReviewDao {
 				
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} finally {
 			//DB객체 닫기
 			JDBCTemplate.close(rs);
@@ -229,11 +226,6 @@ public class ReviewDaoImpl implements ReviewDao {
 			String date = rs.getString("review_date");
 			r.setReview_date(date);
 			
-			//결과값 한 행씩 처리
-//			ri.setReviewimage_no( rs.getInt("reviewimage_no") );
-//			ri.setReview_no( rs.getInt("review_no") );
-//			ri.setOriginname( rs.getString("originname") );
-//			ri.setStoredname( rs.getString("storedname") );
 			
 			imageList = reviewImageDao.selectImageByReviewNO(conn,rs.getInt("review_no") );
 			
