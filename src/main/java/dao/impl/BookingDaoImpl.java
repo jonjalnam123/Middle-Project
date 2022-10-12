@@ -268,6 +268,30 @@ public class BookingDaoImpl implements BookingDao {
 	}
 	
 	
+	@Override
+	public int deleteBookingByBookingno(Connection conn, int bookingno) {
+		
+		String sql = "";
+		sql += "DELETE booking";
+		sql += " WHERE booking_no = ?";
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, bookingno);
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+	
 	
 	
 }

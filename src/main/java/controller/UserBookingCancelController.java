@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import service.face.BookingService;
 import service.impl.BookingServiceImpl;
 
-@WebServlet("/booking/list")
-public class UserBookingListController extends HttpServlet {
+@WebServlet("/booking/cancel")
+public class UserBookingCancelController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private BookingService bService = new BookingServiceImpl();
@@ -22,12 +22,12 @@ public class UserBookingListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		List<Map<String, Object>> list = bService.userBookinglist(req);
-		System.out.println(list);
+		List<Map<String, Object>> dList = bService.getBookingInfo(req);
+		System.out.println("취소 리스트 : " + dList);
 		
-		req.setAttribute("list", list);
+		req.setAttribute("dList", dList);
 		
-		req.getRequestDispatcher("/WEB-INF/views/bookingList.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/bookingCancel.jsp").forward(req, resp);
 	}
 
 }

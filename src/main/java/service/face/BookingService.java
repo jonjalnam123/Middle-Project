@@ -50,5 +50,12 @@ public interface BookingService {
 	public List<Map<String, Object>> getBookingInfo(HttpServletRequest req);
 	
 	
+	/**
+	 * 예약취소
+	 * 
+	 * @param booking
+	 */
+	public boolean deleteBooking(HttpServletRequest req);
+	
 	
 }

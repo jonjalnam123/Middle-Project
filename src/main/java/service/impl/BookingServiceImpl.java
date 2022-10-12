@@ -63,5 +63,20 @@ public class BookingServiceImpl implements BookingService {
 	}
 	
 	
+	@Override
+	public boolean deleteBooking(HttpServletRequest req) {
+		Connection conn = JDBCTemplate.getConnection();
+		int bookingno = Integer.parseInt(req.getParameter("booking_no"));
+		
+		if(bookingDao.deleteBookingByBookingno(conn, bookingno) > 0) {
+			JDBCTemplate.commit(conn);
+			return true;
+		} else {
+			JDBCTemplate.rollback(conn);
+			return false;
+		}
+		
+	}
+	
 
 }

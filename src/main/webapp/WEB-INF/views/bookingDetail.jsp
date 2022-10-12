@@ -43,8 +43,8 @@ hr{color: #000;}
 		</ul>
 	</li><hr>
 </ul>
+<button onclick="location.href='/booking/cancel?booking_no=<%=dList.get(i).get("booking_no")%>'">예약 취소</button>
 <% } %>
-<button onclick="location.href='/booking/cancel'">예약 취소</button>
 
 <%@ include file="/layout/footer.jsp" %>
 

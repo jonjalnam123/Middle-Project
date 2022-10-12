@@ -38,5 +38,15 @@ public interface BookingDao {
 	 */
 	public List<Map<String, Object>> selectDetailByBookingno(Connection conn, int bookingno);
 	
+	
+	/**
+	 * 예약취소
+	 * 
+	 * @param conn
+	 * @param bookingno
+	 * @return
+	 */
+	public int deleteBookingByBookingno(Connection conn, int bookingno);
+	
 
 }
