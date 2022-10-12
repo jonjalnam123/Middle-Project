@@ -7,6 +7,8 @@
 <% List<Map<String, Object>> list = (List) request.getAttribute("list"); %>
 <%@ include file="/layout/header.jsp"%>
 
+<CENTER>
+
 <h2>내가 결제한 호텔 목록</h2>
 
 <% int mo = list.size()/4; %>
@@ -29,6 +31,6 @@
         </tr>
     </table>
 <% } %>
-
+</CENTER>
 
 <%@ include file="/layout/footer.jsp"%>
