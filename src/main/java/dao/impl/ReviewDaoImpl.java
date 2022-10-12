@@ -104,7 +104,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		List<ReviewImage> imageList;
 		
 		ReviewImageDao reviewImageDao = new ReviewImageDaoImpl();
-
+	
 		
 		try {
 			ps = conn.prepareStatement(sql); //SQL수행 객체
@@ -119,7 +119,7 @@ public class ReviewDaoImpl implements ReviewDao {
 			//결과값 저장 객체
 			Review r = new Review(); 
 			Semi_User u = new Semi_User();
-				
+					
 			//결과값 한 행씩 처리
 			r.setPay_no(rs.getInt("pay_no"));
 			r.setReview_no(rs.getInt("review_no"));
@@ -133,9 +133,6 @@ public class ReviewDaoImpl implements ReviewDao {
 			
 			String date = rs.getString("review_date");
 			r.setReview_date(date);
-			
-			System.out.println(rs.getString("review_date"));
-			System.out.println(date);
 
 			
 			imageList = reviewImageDao.selectImageByReviewNO(conn,rs.getInt("review_no") );
@@ -204,7 +201,6 @@ public class ReviewDaoImpl implements ReviewDao {
 
 			//결과값 저장 객체
 			Review r = new Review(); 
-			ReviewImage ri = new ReviewImage();
 			Semi_User u = new Semi_User();
 				
 			//결과값 한 행씩 처리
