@@ -63,7 +63,7 @@ public class PaymentDaoImpl implements PaymentDao {
 			p.setPay_ok(rs.getInt("pay_ok"));
 			
 			String dateStr = rs.getString("pay_date");
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy.mm.dd");
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd");
 	        Date date = formatter.parse(dateStr);	
 			p.setPay_date(date);
 
@@ -73,10 +73,7 @@ public class PaymentDaoImpl implements PaymentDao {
 			b.setHotel_no(rs.getInt("hotel_no"));
 			b.setHotel_in(rs.getString("hotel_in"));
 			b.setHotel_out(rs.getString("hotel_out"));
-			
-			System.out.println("hotel_no" + rs.getInt("hotel_no"));
-			System.out.println(b);
-	
+				
 			//넣을 map 생성
 			map = new HashMap<>();
 			
