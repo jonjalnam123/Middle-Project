@@ -14,8 +14,6 @@ import dto.ReviewImage;
 import service.face.ReviewService;
 import service.impl.ReviewServiceImpl;
 
-//with 민영
-//민영씨가 hotelDetail 페이지에서 넘겨주는 값 : hotel_no
 @WebServlet("/review/list")
 public class ReviewListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -41,6 +39,7 @@ public class ReviewListController extends HttpServlet {
 			url = "/WEB-INF/views/reviewListByDate.jsp";
 			
 			List<Map<String, Object>> list = reviewService.reviewListByDate(request,hotel_no);
+			System.out.println(list.size());
 
 			request.setAttribute("list",list);
 			
@@ -52,6 +51,9 @@ public class ReviewListController extends HttpServlet {
 			List<Map<String, Object>> list = reviewService.reviewListByScore(request,hotel_no);
 			//불러온 값들 JSP에 떠넘기기
 			request.setAttribute("list",list);
+			
+			System.out.println(list.size());
+
 		}
 		
 		//if문에 따라 달라진 url을 호출함

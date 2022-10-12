@@ -27,7 +27,6 @@ public class PayedListController extends HttpServlet {
 		List<Map<String, Object>> list = paymentService.selectAllPayedHotel(request);
 		
 		request.setAttribute("list", list);
-		System.out.println(list.get(0).get("hotel_name"));
 		
 		request.getRequestDispatcher("/WEB-INF/views/payedList.jsp").forward(request, response);
 		

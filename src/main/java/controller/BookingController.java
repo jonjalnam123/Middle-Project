@@ -25,7 +25,7 @@ public class BookingController extends HttpServlet {
 		System.out.println("/hotel/booking [GET] 호출 성공");
 		
 		HttpSession session = req.getSession();
-		int user_no = (Integer) session.getAttribute("userno");
+		int user_no = (Integer) session.getAttribute("user_no");
 		int hotel_no = Integer.parseInt(req.getParameter("hotel_no"));
 		int room_no = Integer.parseInt(req.getParameter("room_no"));
 		int room_price = Integer.parseInt(req.getParameter("room_price"));

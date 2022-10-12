@@ -192,10 +192,15 @@ public class ReviewDaoImpl implements ReviewDao {
 	public List<Map<String, Object>> selectReviewsByScoreByHotelNo(Connection conn, int hotel_no) {
 		//SQL작성
 		String sql = "";
-		sql += "select * from review r";
+		
+		sql += "select  s.user_name, s.user_phone, s.user_pw, s.user_pic, t.pay_no, t.review_no, t.hotel_no, t.booking_no, t.user_email, t.review_content, t.review_score, t.user_no, t.room_type, t.review_date, t.reviewimage_no, t.originname, t.storedname  from";
+		sql += " (select r.pay_no, r.review_no, r.hotel_no, r.booking_no, r.user_email, r.review_content, r.review_score, r.user_no, r.room_type, r.review_date, i.reviewimage_no, i.originname, i.storedname from review r";
+		sql += " join reviewimage i";
+		sql += " on r.review_no = i.review_no) t";
 		sql += " join semi_user s";
-		sql += " on r.user_no = s.user_no";
-		sql += " where hotel_no = ? ";
+		sql += " on t.user_no = s.user_no";
+		sql += " where hotel_no = ?";
+		sql += " order by t.review_score desc";
 		
 		//결과 저장할 List
 		List<Map<String, Object>> resultlist = new ArrayList<>();
