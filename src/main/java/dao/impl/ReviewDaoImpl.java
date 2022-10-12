@@ -179,9 +179,6 @@ public class ReviewDaoImpl implements ReviewDao {
 	public List<Map<String, Object>> selectReviewsByScoreByHotelNo(Connection conn, int hotel_no) {
 		//SQL작성
 		String sql = "";
-		
-		//SQL작성
-		String sql = "";
 		sql += "select * from review r";
 		sql += " join semi_user s";
 		sql += " on r.user_no = s.user_no";
