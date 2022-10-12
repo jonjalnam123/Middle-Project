@@ -24,9 +24,11 @@ public class ReviewWriteController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setAttribute("hotel_no",request.getParameter("hotel_no"));
-
+		System.out.println("hotel_no : " + request.getParameter("hotel_no"));
+		
 		//n번 호텔의 리뷰를 작성하겠다는 요청이 넘어옴
 		int hotel_no = Integer.parseInt(request.getParameter("hotel_no"));
+		
 		//jsp에서 호텔 사진 필요하므로 호텔 사진 불러들이는 service 실행
 		Hotel hotel = reviewService.selectHotelByHotelNo(request,hotel_no);
 		String hotelPhotoLocation = hotel.getHotel_photo();
