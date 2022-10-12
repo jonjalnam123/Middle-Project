@@ -53,6 +53,7 @@ public class ReviewServiceImpl implements ReviewService {
 		int reviewno = reviewDao.selectNextReviewno(conn);
 		
 		int res = 0;
+		int reviewInt = 0;
 		
 		//multipart/form-data 인코딩 확인
 		boolean isMultipart = ServletFileUpload.isMultipartContent(req);
@@ -96,8 +97,10 @@ public class ReviewServiceImpl implements ReviewService {
 		//게시글 정보 DTO객체
 		Review review = new Review();
 		
-		//게시글 첨부파일 정보 DTO객체
-		ReviewImage reviewImage = new ReviewImage();
+		//게시글 번호 삽입
+		review.setReview_no(reviewno);
+		
+		
 		
 		
 		//파일아이템의 반복자
@@ -151,21 +154,31 @@ public class ReviewServiceImpl implements ReviewService {
 					review.setUser_email(value);
 				}
 								
-			} // if( item.isFormField() ) end
-			
-			//게시글 번호 삽입
-			review.setReview_no(reviewno);
+			} 
 
-			
-			if( reviewDao.insert(conn, review) > 0 ) {
-				JDBCTemplate.commit(conn);
-			} else {
-				JDBCTemplate.rollback(conn);
-			}
-			
+		
+		
 			//--- 3) 파일에 대한 처리 ---
 			if( !item.isFormField() ) {
-			
+				
+				for (int i = 0; i < 1; i++) {
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					System.out.println("Sleep "+i);
+				}
+				
+				
+				if (reviewInt == 0) {
+				if( reviewDao.insert(conn, review) > 0 ) {
+					JDBCTemplate.commit(conn);
+				} else {
+					JDBCTemplate.rollback(conn);
+					} }
+				//게시글 첨부파일 정보 DTO객체
+				ReviewImage reviewImage = new ReviewImage();
 				
 				//저장 파일명 처리
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssS");
@@ -188,7 +201,6 @@ public class ReviewServiceImpl implements ReviewService {
 				//업로드된 파일의 정보를 DTO객체에 저장하기
 				reviewImage.setOriginname(item.getName());
 				reviewImage.setStoredname(rename);
-				reviewImage.setReview_no(reviewno);
 
 				//리뷰이미지
 				reviewImage.setReview_no(reviewno);
@@ -202,6 +214,7 @@ public class ReviewServiceImpl implements ReviewService {
 			}
 		}
 
+			
 	
 	}
 
