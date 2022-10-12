@@ -73,6 +73,8 @@ public class PaymentDaoImpl implements PaymentDao {
 			b.setHotel_no(rs.getInt("hotel_no"));
 			b.setHotel_in(rs.getString("hotel_in"));
 			b.setHotel_out(rs.getString("hotel_out"));
+			
+			System.out.println("hotel_no" + rs.getInt("hotel_no"));
 	
 			//넣을 map 생성
 			map = new HashMap<>();
