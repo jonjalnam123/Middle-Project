@@ -106,7 +106,7 @@ public class PaymentDaoImpl implements PaymentDao {
 	public int insertPayment(Connection conn, int booking_no, int user_no, int room_price, String pay_kind) {
 		
 		String sql = "";
-		sql += "INSERT INTO payment VALUES(payment_seq.nextval, ?, ?, ?, ?, payment_seq.nextval, sysdate)";
+		sql += "INSERT INTO payment VALUES(payment_seq.nextval, ?, ?, ?, ?, payment_seq.nextval, ?)";
 		
 		int result = 0;
 		
@@ -116,6 +116,9 @@ public class PaymentDaoImpl implements PaymentDao {
 			ps.setInt(2, user_no);
 			ps.setInt(3, room_price);
 			ps.setString(4, pay_kind);
+			SimpleDateFormat now = new SimpleDateFormat("yyyy.MM.dd");
+			String nowDate = now.format(new Date());
+			ps.setString(5, nowDate);
 			
 			result = ps.executeUpdate();
 			
@@ -150,12 +153,18 @@ public class PaymentDaoImpl implements PaymentDao {
 				payment.setPay_total(rs.getInt("pay_total"));
 				payment.setPay_kind(rs.getString("pay_kind"));
 				payment.setPay_ok(rs.getInt("pay_ok"));
-				payment.setPay_date(rs.getDate("pay_date"));
 				
+				String payDate = rs.getString("pay_date");
+				SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+				Date pay_date = format.parse(payDate);
+				
+				payment.setPay_date(pay_date);
 				
 			}
 			
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		
