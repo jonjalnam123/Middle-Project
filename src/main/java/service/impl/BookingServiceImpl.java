@@ -1,6 +1,10 @@
 package service.impl;
 
 import java.sql.Connection;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import common.JDBCTemplate;
 import dao.face.BookingDao;
@@ -37,5 +41,27 @@ public class BookingServiceImpl implements BookingService {
 		
 		return bookingDao.SelectAllByBookingNo(conn, booking_no);
 	}
+	
+	
+	//----------------------------------------------------------------------------------------------------------------------
+
+	@Override
+	public List<Map<String, Object>> userBookinglist(HttpServletRequest req) {
+		Connection conn = JDBCTemplate.getConnection();
+		int userno = (int) req.getSession().getAttribute("user_no");
+		
+		return bookingDao.selectBookinglistByUserno(conn, userno);
+	}
+	
+	
+	@Override
+	public List<Map<String, Object>> getBookingInfo(HttpServletRequest req) {
+		Connection conn = JDBCTemplate.getConnection();
+		int bookingno = Integer.parseInt(req.getParameter("booking_no"));
+		
+		return bookingDao.selectDetailByBookingno(conn, bookingno);
+	}
+	
+	
 
 }
