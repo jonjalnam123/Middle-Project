@@ -39,7 +39,11 @@ public class ReviewListController extends HttpServlet {
 			url = "/WEB-INF/views/reviewListByDate.jsp";
 			
 			List<Map<String, Object>> list = reviewService.reviewListByDate(request,hotel_no);
-			System.out.println(list.size());
+			System.out.println("list.size()"+list.size());
+			System.out.println(list.get(0).get("r"));
+			System.out.println(list.get(1).get("r"));
+			System.out.println(list.get(2).get("r"));
+
 
 			request.setAttribute("list",list);
 			

@@ -226,9 +226,7 @@ public class ReviewDaoImpl implements ReviewDao {
 			r.setUser_no(rs.getInt("user_no"));
 			r.setRoom_type(rs.getString("room_type"));
 			
-			String dateStr = rs.getString("review_date");
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy.mm.dd hh:mm");
-	        Date date = formatter.parse(dateStr);
+			String date = rs.getString("review_date");
 			r.setReview_date(date);
 			
 			//결과값 한 행씩 처리
@@ -262,10 +260,7 @@ public class ReviewDaoImpl implements ReviewDao {
 				
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
+		}  finally {
 			//DB객체 닫기
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(ps);
