@@ -173,6 +173,7 @@ public class ReviewServiceImpl implements ReviewService {
 				
 				if (reviewInt == 0) {
 				if( reviewDao.insert(conn, review) > 0 ) {
+					reviewInt++;
 					JDBCTemplate.commit(conn);
 				} else {
 					JDBCTemplate.rollback(conn);
