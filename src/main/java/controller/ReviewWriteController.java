@@ -57,7 +57,7 @@ public class ReviewWriteController extends HttpServlet {
 		//리뷰 등록하는 서비스 실행
 		reviewService.writeReview(request);
 		//리뷰 등록 완료. 원래 페이지로 돌아가는 리다이렉트
-		// ★★★★★★★★★★★★ response.sendRedirect("/");    아리님한테 url 받기
+		response.sendRedirect("/main");
 	}
 
 }
