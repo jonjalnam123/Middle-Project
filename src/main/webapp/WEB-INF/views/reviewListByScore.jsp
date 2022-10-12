@@ -82,7 +82,7 @@ table.type01 td {
         <ul class="reviewList">
           <li>
             <div class="profile">
-               <img src="/upload/<%= ((Semi_User) list.get(i).get("u")).getUser_pic() %>" alt="alt="프로필 이미지 X" width="50" height="50">
+               <img src="/upload/<%= ((Semi_User) list.get(i).get("u")).getUser_pic() %>" alt="alt="프로필 이미지 X" width="200" height="150">
               <div class="reviewInfo">
                 <div><%=((Review)list.get(i).get("r")).getReview_score() %>점</div>
                 <div>
@@ -94,7 +94,7 @@ table.type01 td {
             <div class="reviewContent">
               <div class="imgArea">
               <% for(int j=0; j < ((List<ReviewImage>) list.get(i).get("ri")).size()  ; j++) { %>
-                <img src="/upload/<%=((List<ReviewImage>) list.get(i).get("ri")).get(j).getStoredname() %>" alt="이미지 아님" width="50" height="50">
+                <img src="/upload/<%= ((List<ReviewImage>) list.get(i).get("ri")).get(j).getStoredname() %>" alt="이미지 아님" width="200" height="150">
               <% } %>
               </div>
               <p>
