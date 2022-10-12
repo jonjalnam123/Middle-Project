@@ -23,9 +23,7 @@ public class ReviewWriteController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setAttribute("hotel_no : ",request.getParameter("hotel_no"));
-
-		System.out.println("hotel_no"+request.getParameter("hotel_no"));
+		request.setAttribute("hotel_no",request.getParameter("hotel_no"));
 		
 		//n번 호텔의 리뷰를 작성하겠다는 요청이 넘어옴
 		int hotel_no = Integer.parseInt(request.getParameter("hotel_no"));

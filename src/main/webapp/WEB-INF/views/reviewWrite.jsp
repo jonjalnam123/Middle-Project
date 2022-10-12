@@ -27,7 +27,7 @@ rel="stylesheet"/>
 
 <form action="/review/write" method="POST" enctype="multipart/form-data">
     <main class="container">
-      <h1 class="title">리뷰쓰기입니다</h1>
+      <h1 class="title"><%=hotel_no%> 번 호텔 리뷰쓰기입니다 </h1>
       <div class="infoArea">
        <img src="/upload/<%=hotelPhotoLocation %>" alt="이미지 아님" width="50" height="50"><!-- 호텔 사진 -->
         <div class="text">
