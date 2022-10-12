@@ -52,7 +52,7 @@ table.type01 td {
 <script type="text/javascript">
 	$(document).ready(function() {
 	 	$("#select").change(function() {		
-			var hotel_no = 1
+			var hotel_no = <%=request.getParameter("hotel_no") %>
 			var selectedOption = this.value;
 			$.ajax({
 				type: "GET" ,

@@ -26,6 +26,7 @@ public class ReviewListController extends HttpServlet {
 
 		//n번 호텔의 리뷰를 보겠다-> n번이 쿼리스트링으로 넘어옴
 		int hotel_no = Integer.parseInt(request.getParameter("hotel_no"));
+		System.out.println("hotel_no"+request.getParameter("hotel_no"));
 		request.setAttribute("hotel_no",hotel_no);
 		
 		
@@ -39,7 +40,6 @@ public class ReviewListController extends HttpServlet {
 			url = "/WEB-INF/views/reviewListByDate.jsp";
 			
 			List<Map<String, Object>> list = reviewService.reviewListByDate(request,hotel_no);
-			System.out.println("list.size()"+list.size());
 
 
 			request.setAttribute("list",list);

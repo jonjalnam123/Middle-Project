@@ -89,7 +89,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	
 	@Override
 	public List<Map<String, Object>> selectReviewsByDateByHotelNo(Connection conn, int hotel_no) {
-
+		
 		//SQL작성
 		String sql = "";
 		sql += "select * from review r";
@@ -187,6 +187,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		Map<String, Object> map;
 		List<ReviewImage> imageList;
 		
+		System.out.println("hotel_no"+hotel_no);
 		ReviewImageDao reviewImageDao = new ReviewImageDaoImpl();
 		
 		try {

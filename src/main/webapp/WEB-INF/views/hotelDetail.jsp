@@ -208,7 +208,7 @@ h2 {
 			
  		//-----------------------------------------------------------------
  	   $("#revbtn").click(function() {      
- 	      var hotel_no = 1
+ 	      var hotel_no = <%=hotelDetail.getHotel_no() %>
  	      var selectedOption = "byDate"
  	      $.ajax({
  	         type: "GET",
@@ -224,7 +224,7 @@ h2 {
  		//------------------------------------
  	      
  	      	$("#select").change(function() {		
-			var hotel_no = 1
+			var hotel_no = <%=hotelDetail.getHotel_no() %>
 			var selectedOption = this.value;
 			var type = "";
 			
