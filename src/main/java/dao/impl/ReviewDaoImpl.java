@@ -23,7 +23,6 @@ public class ReviewDaoImpl implements ReviewDao {
 	
 	private PreparedStatement ps; //SQL수행 객체
 	private ResultSet rs; //SQL조회 결과 객체
-	private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssS");
 	
 	@Override
 	public int selectNextReviewno(Connection conn) {
@@ -93,14 +92,11 @@ public class ReviewDaoImpl implements ReviewDao {
 
 		//SQL작성
 		String sql = "";
-		sql += "select  s.user_name, s.user_phone, s.user_pw, s.user_pic, t.pay_no, t.review_no, t.hotel_no, t.booking_no, t.user_email, t.review_content, t.review_score, t.user_no, t.room_type, t.review_date, t.reviewimage_no, t.originname, t.storedname  from";
-		sql += " (select r.pay_no, r.review_no, r.hotel_no, r.booking_no, r.user_email, r.review_content, r.review_score, r.user_no, r.room_type, r.review_date, i.reviewimage_no, i.originname, i.storedname from review r";
-		sql += " join reviewimage i";
-		sql += " on r.review_no = i.review_no) t";
+		sql += "select * from review r";
 		sql += " join semi_user s";
-		sql += " on t.user_no = s.user_no";
-		sql += " where hotel_no = ?";
-		sql += " order by t.review_date desc";
+		sql += " on r.user_no = s.user_no";
+		sql += " where hotel_no= ? ";
+		sql += " order by r.review_date desc";
 		
 		//결과 저장할 List
 		List<Map<String, Object>> resultlist = new ArrayList<>();
@@ -108,7 +104,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		List<ReviewImage> imageList;
 		
 		ReviewImageDao reviewImageDao = new ReviewImageDaoImpl();
-
+	
 		
 		try {
 			ps = conn.prepareStatement(sql); //SQL수행 객체
@@ -122,13 +118,11 @@ public class ReviewDaoImpl implements ReviewDao {
 
 			//결과값 저장 객체
 			Review r = new Review(); 
-			ReviewImage ri = new ReviewImage();
 			Semi_User u = new Semi_User();
-				
+					
 			//결과값 한 행씩 처리
 			r.setPay_no(rs.getInt("pay_no"));
 			r.setReview_no(rs.getInt("review_no"));
-			//System.out.println(rs.getInt("review_no"));
 			r.setHotel_no(rs.getInt("hotel_no"));
 			r.setBooking_no(rs.getInt("booking_no"));
 			r.setUser_email(rs.getString("user_email"));
@@ -137,16 +131,9 @@ public class ReviewDaoImpl implements ReviewDao {
 			r.setUser_no(rs.getInt("user_no"));
 			r.setRoom_type(rs.getString("room_type"));
 			
-			String dateStr = rs.getString("review_date");
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy.mm.dd hh:mm");
-	        Date date = formatter.parse(dateStr);
+			String date = rs.getString("review_date");
 			r.setReview_date(date);
-			
-			//결과값 한 행씩 처리
-//			ri.setReviewimage_no( rs.getInt("reviewimage_no") );
-//			ri.setReview_no( rs.getInt("review_no") );
-//			ri.setOriginname( rs.getString("originname") );
-//			ri.setStoredname( rs.getString("storedname") );
+
 			
 			imageList = reviewImageDao.selectImageByReviewNO(conn,rs.getInt("review_no") );
 
@@ -173,9 +160,6 @@ public class ReviewDaoImpl implements ReviewDao {
 		}
 				
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			//DB객체 닫기
@@ -195,7 +179,8 @@ public class ReviewDaoImpl implements ReviewDao {
 		sql += "select * from review r";
 		sql += " join semi_user s";
 		sql += " on r.user_no = s.user_no";
-		sql += " where hotel_no = ? ";
+		sql += " where hotel_no= ? ";
+		sql += " order by r.review_score desc";
 		
 		//결과 저장할 List
 		List<Map<String, Object>> resultlist = new ArrayList<>();
@@ -216,7 +201,6 @@ public class ReviewDaoImpl implements ReviewDao {
 
 			//결과값 저장 객체
 			Review r = new Review(); 
-			ReviewImage ri = new ReviewImage();
 			Semi_User u = new Semi_User();
 				
 			//결과값 한 행씩 처리
@@ -231,16 +215,9 @@ public class ReviewDaoImpl implements ReviewDao {
 			r.setUser_no(rs.getInt("user_no"));
 			r.setRoom_type(rs.getString("room_type"));
 			
-			String dateStr = rs.getString("review_date");
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy.mm.dd hh:mm");
-	        Date date = formatter.parse(dateStr);
+			String date = rs.getString("review_date");
 			r.setReview_date(date);
 			
-			//결과값 한 행씩 처리
-//			ri.setReviewimage_no( rs.getInt("reviewimage_no") );
-//			ri.setReview_no( rs.getInt("review_no") );
-//			ri.setOriginname( rs.getString("originname") );
-//			ri.setStoredname( rs.getString("storedname") );
 			
 			imageList = reviewImageDao.selectImageByReviewNO(conn,rs.getInt("review_no") );
 			
@@ -267,10 +244,7 @@ public class ReviewDaoImpl implements ReviewDao {
 				
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
+		}  finally {
 			//DB객체 닫기
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(ps);
