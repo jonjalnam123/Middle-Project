@@ -6,7 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import common.JDBCTemplate;
 import dao.face.BookingDao;
@@ -167,4 +171,127 @@ public class BookingDaoImpl implements BookingDao {
 
 		return reserve;
 	}
+	
+	
+	//----------------------------------------------------------------------------------------------------------------------
+
+	@Override
+	public List<Map<String, Object>> selectBookinglistByUserno(Connection conn, int userno) {
+		
+		String sql = "";
+		sql += "SELECT h.hotel_photo, h.hotel_name, h.hotel_intime, r.room_type, b.hotel_in, b.booking_no";
+		sql += " FROM booking b";
+		sql += " join room r on r.room_no = b.room_no";
+		sql += " join hotel h on h.hotel_no = b.hotel_no";
+		sql += " where user_no = ? AND b.hotel_in > sysdate";
+		
+		List<Map<String, Object>> list = new ArrayList<>();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, userno);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Map<String, Object> map = new HashMap<>();
+				
+				map.put("hotel_photo", rs.getString("hotel_photo"));
+				map.put("hotel_name", rs.getString("hotel_name"));
+				map.put("hotel_intime", rs.getString("hotel_intime"));
+				map.put("room_type", rs.getString("room_type"));
+				map.put("hotel_in", rs.getDate("hotel_in"));
+				map.put("booking_no", rs.getInt("booking_no"));
+
+				list.add(map);
+
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return list;
+	}
+	
+	
+	@Override
+	public List<Map<String, Object>> selectDetailByBookingno(Connection conn, int bookingno) {
+		String sql = "";
+		sql += "SELECT h.hotel_photo, h.hotel_name, h.hotel_intime, h.hotel_outtime, r.room_type, b.hotel_in, "
+				+ "b.hotel_out, b.booking_no, p.pay_total, p.pay_kind";
+		sql += " FROM payment p";
+		sql += " join booking b on p.booking_no = b.booking_no";
+		sql += " join room r on r.room_no = b.room_no";
+		sql += " join hotel h on h.hotel_no = b.hotel_no";
+		sql += " where b.booking_no = ?";
+		
+		List<Map<String, Object>> list = new ArrayList<>();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, bookingno);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Map<String, Object> map = new HashMap<>();
+				
+				map.put("hotel_photo", rs.getString("hotel_photo"));
+				map.put("hotel_name", rs.getString("hotel_name"));
+				map.put("hotel_intime", rs.getString("hotel_intime"));
+				map.put("hotel_outtime", rs.getString("hotel_outtime"));
+				map.put("room_type", rs.getString("room_type"));
+				map.put("hotel_in", rs.getDate("hotel_in"));
+				map.put("hotel_out", rs.getDate("hotel_out"));
+				map.put("booking_no", rs.getInt("booking_no"));
+				map.put("pay_total", rs.getInt("pay_total"));
+				map.put("pay_kind", rs.getString("pay_kind"));
+
+				list.add(map);
+
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return list;
+	}
+	
+	
+	@Override
+	public int deleteBookingByBookingno(Connection conn, int bookingno) {
+		
+		String sql = "";
+		sql += "DELETE booking";
+		sql += " WHERE booking_no = ?";
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, bookingno);
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+	
+	
+	
 }

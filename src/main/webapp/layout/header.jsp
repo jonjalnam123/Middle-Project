@@ -166,8 +166,8 @@ height: 100%;
 					<a href="#"><button class="button" id="dropdown-btn">내정보</button></a>
 				<div class="dropdown-submenu">
             		<a href="#">내정보수정</a>
-            		<a href="#">예약내역</a>
-            		<a href="#">찜한숙소</a>
+            		<a href="/booking/list">예약내역</a>
+            		<a href="/mark/list">찜한숙소</a>
             		<a href="/logout">로그아웃</a>
             	</div>
     			</div>

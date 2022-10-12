@@ -1,5 +1,10 @@
 package service.face;
 
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import dto.Booking;
 import dto.Reserve;
 
@@ -26,8 +31,31 @@ public interface BookingService {
 	 */
 	public Reserve selectAll(int booking_no);
 
+	//----------------------------------------------------------------------------------------------------------------------
 
+	/**
+	 * 유저의 예약 리스트 전체 가져오기
+	 * 
+	 * @return
+	 */
+	public List<Map<String, Object>> userBookinglist(HttpServletRequest req);
 	
+	
+	/**
+	 * 예약 상세내역 가져오기
+	 * 
+	 * @param req
+	 * @return
+	 */
+	public List<Map<String, Object>> getBookingInfo(HttpServletRequest req);
+	
+	
+	/**
+	 * 예약취소
+	 * 
+	 * @param booking
+	 */
+	public boolean deleteBooking(HttpServletRequest req);
 	
 	
 }

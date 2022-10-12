@@ -32,6 +32,10 @@ public class ReviewImageDaoImpl implements ReviewImageDao {
 			ps.setString(2, reviewImage.getOriginname());
 			ps.setString(3, reviewImage.getStoredname());
 			
+			System.out.println( reviewImage.getReview_no());
+			System.out.println( reviewImage.getOriginname());
+			System.out.println( reviewImage.getStoredname());
+			
 			res = ps.executeUpdate();
 			
 		} catch (SQLException e) {

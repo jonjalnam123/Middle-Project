@@ -54,7 +54,18 @@ rel="stylesheet"/>
             >★</label>
         </div>
       </div>
-      <!-- 사진 -->
+        <input name="pay_no" value = "<%=pay_no%>"style="display:none;">
+<input name="booking_no" value = "<%=booking_no%>" style="display:none;">
+<input name="hotel_no" value = "<%=hotel_no%>" style="display:none;">
+<input name="user_email" value = "<%=user_email%>" style="display:none;">
+<input name="room_type" value = "<%=room_type%>" style="display:none;">
+<input name="user_no" value = "<%= user_no%>" style="display:none;">
+      <!-- 리뷰 -->
+      <div class="reviewArea" >
+        <h2 class="subTitle">리뷰를 남겨주세요</h2>
+        <textarea cols="10" rows="10" name="review_content" placeholder="다른 이용자에게 호텔을 추천해보세요!" ></textarea>
+      </div>
+            <!-- 사진 -->
       <div class="imgArea">
         <label for="upfile1">
           사진첨부 <input type="file" name="upfile" id="upfile1" />
@@ -66,19 +77,8 @@ rel="stylesheet"/>
           사진첨부 <input type="file" name="upfile" id="upfile3" />
         </label>
       </div>
-      <!-- 리뷰 -->
-      <div class="reviewArea" >
-        <h2 class="subTitle">리뷰를 남겨주세요</h2>
-        <textarea cols="10" rows="10" name="review_content" placeholder="다른 이용자에게 호텔을 추천해보세요!" ></textarea>
-      </div>
-      <button type="submit" class="submitBtn">리뷰 등록하기</button>
+      <button type="submit" class="submitBtn"> 리뷰 등록하기</button>
       </main>
-  <input name="pay_no" value = "<%=pay_no%>"style="display:none;">
-<input name="booking_no" value = "<%=booking_no%>" style="display:none;">
-<input name="hotel_no" value = "<%=hotel_no%>" style="display:none;">
-<input name="user_email" value = "<%=user_email%>" style="display:none;">
-<input name="room_type" value = "<%=room_type%>" style="display:none;">
-<input name="user_no" value = "<%= user_no%>" style="display:none;">
       </form> 
 </body>
 </html>
