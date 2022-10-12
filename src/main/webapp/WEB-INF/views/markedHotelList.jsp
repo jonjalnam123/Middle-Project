@@ -19,7 +19,7 @@
         </tr>
         <tr>
             <td><%= list.get(i).getHotel_name() %></td>
-            <td><%= list.get(i).getMark_hit() %> </td>
+            <td>총 찜 횟수 : <%= list.get(i).getMark_hit() %> </td>
         </tr>
     </table>
 <% } %>  
