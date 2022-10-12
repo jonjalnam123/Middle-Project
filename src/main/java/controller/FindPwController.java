@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dto.Semi_User;
 import service.face.Semi_UserService;
@@ -42,8 +43,14 @@ public class FindPwController extends HttpServlet {
 		System.out.println("db업데이트 결과 : " + res);
 		System.out.println("최종 : " + sUser);
 		
-		if(res == true) {
+		if(res) {
+			sUser = sUserService.info(sUser);
+			System.out.println("tempPw 발급 후 정보 : " + sUser);
 			
+			HttpSession session = req.getSession();
+			
+			session.setAttribute("res", res);
+			session.setAttribute("userpw", sUser.getUser_pw());
 		}
 		
 //		resp.getWriter().print((res == false) ? false : true);
