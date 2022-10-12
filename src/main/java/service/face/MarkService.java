@@ -54,5 +54,15 @@ public interface MarkService {
 	 * @return
 	 */
 	public List<Hotel> markedHotelList(HttpServletRequest request);
+	
+	
+	/**
+	 * 최다 찜 순서로 호텔 불러오기 : 메인에 나타남
+	 * 
+	 * @param 
+	 * @param 
+	 * @return
+	 */
+	public List<Hotel> maxMarkedHotelList(HttpServletRequest request);
 
 }

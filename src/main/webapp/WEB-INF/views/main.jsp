@@ -13,8 +13,23 @@
 	src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
+<script type="text/javascript">
+	$(document).ready(function() {
 
-
+	  	      $.ajax({
+	  	         type: "GET",
+	  	     	url: "/maxMarked", 
+	  			datatype: "html",
+	  	         success: function(data) {
+	  	            console.log("성공");
+	  	            $("#result").html(data);
+	  	         }
+	  	      })
+		
+	})
+	</script>
+	
+	
 <script type="text/javascript">
 	$(document).ready(function() {
 
@@ -128,7 +143,7 @@
 
 </style>
 
-<div class="middle">
+
 <div class="main_wrap">
 <div id="sliderbox">
 
@@ -148,108 +163,8 @@
 </div>
 </div>
 
-<!-- Demo styles -->
-<style>
-.middle2{
-	margin: 0 auto;
-	height: 800px;
-}
-
-body {
-	margin: 0;
-	padding: 0;
-}
-
-.swiper {
-	width: 50%;
-	height: 30%;
-	position: absolute;
-	top: 80%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	margin-top: 15%;
-	
-}
-
-.swiper-slide {
-	text-align: center;
-	font-size: 18px;
-	background: #fff;
-	/* Center slide text vertically */
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	-webkit-justify-content: center;
-	justify-content: center;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	-webkit-align-items: center;
-	align-items: center;
-	overflow: hidden;
-}
-
-.swiper-slide img {
-	display: block;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	overflow: hidden;
-}
-
-.swiper > mySwiper {
-	font-size: 10px;
-}
-</style>
-
-		<!-- Swiper -->
-	<div class="middle2">
-	<div class="swiper mySwiper"><h3>리뷰 많은 순</h3>
-	<i class="fa-solid fa-magnifying-glass"></i>
-		<div class="swiper-wrapper">
-			<div class="swiper-slide">
-				<img
-					src="https://image.goodchoice.kr/resize_1000X500x0/affiliate/2019/07/16/5d2d628cede99.jpg">
-			</div>
-			<div class="swiper-slide">
-				<img
-					src="https://image.goodchoice.kr/resize_1000X500x0/affiliate/2017/09/13/59b8f2e3242cb.jpg">
-			</div>
-			<div class="swiper-slide">
-				<img
-					src="https://image.goodchoice.kr/resize_1000X500x0/affiliate/2022/04/20/625f9e785a3cd.jpg">
-			</div>
-			<div class="swiper-slide">
-				<img
-					src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fwww.hotelscombined.co.kr%2Frimg%2Fhimg%2Ff8%2F55%2F45%2Frevato-12950-13687875-568470.jpg%3Fwidth%3D720%26height%3D576%26crop%3Dtrue&type=sc960_832">
-			</div>
-			<div class="swiper-slide">
-				<img
-					src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20140907_259%2Fiayns_14100918572365tFBH_JPEG%2FP3280251.JPG&type=a340">
-			</div>
-			<div class="swiper-slide">
-				<img
-					src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA3MDdfMTg0%2FMDAxNjU3MTgxOTI3NzEw.-Lg-w9wefWisb5ZRDffUUkGuD3byR4Nnk2-iaKi0Makg.wQNbFhGH_OMkor71W42oLXIKHyuvDoc1o4GL9X2f6yEg.JPEG.seosanpost%2F34260_34751_5142.jpg&type=a340">
-			</div>
-			<div class="swiper-slide">
-				<img
-					src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20100820_222%2Fccy307_1282274594171m4KTm_JPEG%2FDSC_0018.JPG&type=a340">
-			</div>
-			<div class="swiper-slide">
-				<img
-					src="https://search.pstatic.net/common/?src=http%3A%2F%2Fcafefiles.naver.net%2F20111013_159%2Fhappypostmc_13185154080297qLPc_jpg%2F%25C7%25CF%25BE%25E6%25C6%25AE_%25C1%25D6%25B8%25D4%25B4%25D9%25C1%25FC_011_happypostmc.jpg&type=a340">
-			</div>
-			<div class="swiper-slide">
-				<img
-					src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA3MDVfMTQ3%2FMDAxNjI1NDg5MjE1NzEy.2yovtiQdxCcRAnN2sEehW2qYfWiSFgK9FVqQs_-_gpgg.DliWzZs0G2KXQQpv8N-quQBr47vLhEM9DbvcfyX9DK8g.JPEG.tesslove2000%2F112.jpg&type=a340">
-			</div>
-		</div>
-		<div class="swiper-button-next"></div>
-		<div class="swiper-button-prev"></div>
-		<div class="swiper-pagination"></div>
-	</div>
+<div id="result" class="result">
+</div>
 
 	<!-- Swiper JS -->
 	<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
@@ -257,9 +172,9 @@ body {
 	<!-- Initialize Swiper -->
 	<script>
 		var swiper = new Swiper(".mySwiper", {
-			slidesPerView : 3,
-			spaceBetween : 30,
-			slidesPerGroup : 3,
+			slidesPerView : 4,
+			spaceBetween : 20,
+			slidesPerGroup : 4,
 			loop : true,
 			loopFillGroupWithBlank : true,
 			pagination : {
@@ -272,8 +187,5 @@ body {
 			},
 		});
 	</script>
-</div>
-</div>
-
-
+	
 <%@ include file="/layout/footer.jsp"%>
