@@ -237,7 +237,7 @@ public class MarkDaoImpl implements MarkDao {
 		sql += "select * from(";
 		sql += " select * from hotel";
 		sql += "  ORDER BY mark_hit desc)";
-		sql += "  where rownum <= 6";
+		sql += "  where rownum <= 20";
 		
 		
 		List<Hotel> list  = new ArrayList<>();
