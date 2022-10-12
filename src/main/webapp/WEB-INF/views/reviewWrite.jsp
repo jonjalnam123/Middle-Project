@@ -54,17 +54,26 @@ rel="stylesheet"/>
             >★</label>
         </div>
       </div>
-        <input name="pay_no" value = "<%=pay_no%>"style="display:none;">
-<input name="booking_no" value = "<%=booking_no%>" style="display:none;">
-<input name="hotel_no" value = "<%=hotel_no%>" style="display:none;">
-<input name="user_email" value = "<%=user_email%>" style="display:none;">
-<input name="room_type" value = "<%=room_type%>" style="display:none;">
-<input name="user_no" value = "<%= user_no%>" style="display:none;">
       <!-- 리뷰 -->
       <div class="reviewArea" >
         <h2 class="subTitle">리뷰를 남겨주세요</h2>
         <textarea cols="10" rows="10" name="review_content" placeholder="다른 이용자에게 호텔을 추천해보세요!" ></textarea>
       </div>
+ <input name="pay_no" value = "<%=pay_no%>"style="display:none;">
+<input name="booking_no" value = "<%=booking_no%>" style="display:none;">
+<input name="hotel_no" value = "<%=hotel_no%>" style="display:none;">
+<input name="user_email" value = "<%=user_email%>" style="display:none;">
+<input name="room_type" value = "<%=room_type%>" style="display:none;">
+<input name="user_no" value = "<%= user_no%>" style="display:none;">
+
+<%try {
+			for (int i = 0; i < 2; i++) {
+				Thread.sleep(1000);
+				System.out.println("Sleep "+i);
+			}
+		}catch(Exception e) {
+			System.out.println(e);
+		}%>
             <!-- 사진 -->
       <div class="imgArea">
         <label for="upfile1">
