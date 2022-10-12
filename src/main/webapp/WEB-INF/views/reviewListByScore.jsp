@@ -7,9 +7,6 @@
     pageEncoding="UTF-8"%>
 <%	List<Map<String, Object>> list =(List) request.getAttribute("list"); %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%
-	SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm:ss");
-%>
 
 
 <%	request.setCharacterEncoding("UTF-8"); %>
