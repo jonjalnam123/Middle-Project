@@ -134,7 +134,7 @@ public class Semi_UserDaoImpl implements Semi_UserDao {
 			ps.setString(2, sUser.getUser_email());
 			ps.setString(3, sUser.getUser_phone());
 			
-			rs = ps.executeQuery();
+			res = ps.executeUpdate();
 			
 			
 		} catch (SQLException e) {
@@ -144,7 +144,6 @@ public class Semi_UserDaoImpl implements Semi_UserDao {
 			JDBCTemplate.close(ps);
 		}
 		
-		System.out.println("update쿼리 : " + sUser);
 		return res;
 	}
 	

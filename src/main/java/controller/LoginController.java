@@ -54,8 +54,8 @@ public class LoginController extends HttpServlet {
 			session.setAttribute("login", login);
 			session.setAttribute("username", sUser.getUser_name());
 			session.setAttribute("userpw", sUser.getUser_pw());
-			session.setAttribute("useremail", sUser.getUser_email());
-			session.setAttribute("userno", sUser.getUser_no());
+			session.setAttribute("user_email", sUser.getUser_email());
+			session.setAttribute("user_no", sUser.getUser_no());
 			
 		}
 		

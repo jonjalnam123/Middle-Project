@@ -30,21 +30,21 @@
 }
 </style>
 
-<div class="not-found">
-<%	if( session.getAttribute("exists") == null ) { %>
-<strong>등록된 정보가 없습니다.</strong><br><br><br><br>
-<button id="btnBack">다시 찾기</button>
-<%	} %>
-</div>
+<!-- <div class="not-found"> -->
+<%-- <%	if( session.getAttribute("exists") == null ) { %> --%>
+<!-- <strong>등록된 정보가 없습니다.</strong><br><br><br><br> -->
+<!-- <button id="btnBack">다시 찾기</button> -->
+<%-- <%	} %> --%>
+<!-- </div> -->
 
 <div class="found">
-<%	if( session.getAttribute("exists") != null && (boolean) session.getAttribute("exists") ) { %>
-<p><%=session.getAttribute("useremail") %>님의 비밀번호는</p>
+<%-- <%	if( session.getAttribute("exists") != null && (boolean) session.getAttribute("exists") ) { %> --%>
+<%-- <p><%=session.getAttribute("useremail") %>님의 비밀번호는</p> --%>
 <strong>"<%=session.getAttribute("userpw") %>" 입니다</strong><br><br><br><br>
 <form action="/findPw/result" method="post">
 <button id="btnGologin">로그인 하러가기</button>
 </form>
-<%	} %>
+<%-- <%	} %> --%>
 </div>
 
 <script type="text/javascript">

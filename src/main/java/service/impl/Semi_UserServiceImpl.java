@@ -2,6 +2,7 @@ package service.impl;
 
 import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -83,7 +84,7 @@ public class Semi_UserServiceImpl implements Semi_UserService {
 		  
 		  for (int i = 0; i < len; i++) {
 			
-			  idx = (int) (charSet.length * Math.random()); // 36 * 생성된 난수를  Int로 추출 (소숫점제거)
+			  idx = (int) (charSet.length * Math.random());
 			  sb.append(charSet[idx]);
 		  }
 
@@ -105,11 +106,14 @@ public class Semi_UserServiceImpl implements Semi_UserService {
 	
 	@Override
 	public boolean isOkUpdateTempPw(Semi_User sUser) {
+		Connection conn = JDBCTemplate.getConnection();
 		
-		if(sUserDao.updateTempPw(JDBCTemplate.getConnection(), sUser) > 0) {
+		if(sUserDao.updateTempPw(conn, sUser) > 0) {
+			JDBCTemplate.commit(conn);
 			return true; //업뎃 성공
 		} else {
-		return false; //실패
+			JDBCTemplate.rollback(conn);
+			return false; //실패
 		}
 		
 	}

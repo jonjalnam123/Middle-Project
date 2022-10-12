@@ -79,29 +79,29 @@ function numReplace(){
 }
 
 
-// function pwResult() {
-//     var email = $('#useremail').val(); 
-//     var phone = $('#userphone').val(); 
+function pwResult() {
+    var email = $('#useremail').val(); 
+    var phone = $('#userphone').val(); 
     
-//     $.ajax({
-//         url: '/findPw/result', //Controller에서 요청 받을 주소
-//         type: 'POST', //POST 방식으로 전달
-//         data: {
-//              "useremail": email, "userphone": phone
-//          },
+    $.ajax({
+        url: '/findPw/result', //Controller에서 요청 받을 주소
+        type: 'POST', //POST 방식으로 전달
+        data: {
+             "useremail": email, "userphone": phone
+         },
 
-//         success: function(res) { //컨트롤러에서 넘어온 res값을 받는다 
-//             if (res == 0) { //존재하지 않는 회원
-//                 $("#result").text("등록된 정보가 없습니다").css("color", "#e42f0a");
-//                 console.log(email);
+        success: function(res) { //컨트롤러에서 넘어온 res값을 받는다 
+            if (res == false) { //존재하지 않는 회원
+                $("#result").text("등록된 정보가 없습니다").css("color", "#e42f0a");
+                console.log(email);
                 
-//             } else { // 존재하는 회원
+            } else { // 존재하는 회원
 //                 $("#result").text("비밀번호는").css("color", "#37a9f5");
-// //             	$(location).attr('href', '/findPw');
-//             }
-//        	}
-//         });
-// }
+            	$(location).attr('href', '/findPw');
+            }
+       	}
+        });
+}
 
 
 function find_pw(){

@@ -42,6 +42,11 @@ public class FindPwController extends HttpServlet {
 		System.out.println("db업데이트 결과 : " + res);
 		System.out.println("최종 : " + sUser);
 		
+		if(res == true) {
+			
+		}
+		
+//		resp.getWriter().print((res == false) ? false : true);
 		
 		resp.sendRedirect("/findPw/result");
 		
