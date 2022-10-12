@@ -226,7 +226,7 @@ public class BoardServiceImpl implements BoardService {
 		//작성자 ID 처리
 		
 		HttpSession session = req.getSession();
-		board.setUser_no((Integer) session.getAttribute("userno"));
+		board.setUser_no((Integer) session.getAttribute("user_no"));
 
 		if( boardDao.insert(conn, board) > 0 ) {
 			JDBCTemplate.commit(conn);

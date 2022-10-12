@@ -95,7 +95,7 @@ public class HotelDaoImpl implements HotelDao {
 		sql += "(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		int result = 0;
-
+		System.out.println(nextSeq);
 		try {
 			ps = conn.prepareStatement(sql);
 
