@@ -44,8 +44,49 @@ public class PaymentDaoImpl implements PaymentDao {
 
 			ps.setInt(1, user_no);
 
+<<<<<<< HEAD
+			//결과값 저장 객체
+			Payment p = new Payment(); 
+			Booking b = new Booking();
+			
+			p.setUser_no(rs.getInt("user_no"));
+			p.setBooking_no(rs.getInt("booking_no"));
+			p.setPay_no(rs.getInt("pay_no"));
+			p.setPay_total(rs.getInt("pay_total"));
+			p.setPay_kind(rs.getString("pay_kind"));
+			p.setPay_ok(rs.getInt("pay_ok"));
+			
+			String dateStr = rs.getString("pay_date");
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd");
+	        Date date = formatter.parse(dateStr);	
+			p.setPay_date(date);
+=======
 			rs = ps.executeQuery(); // SQL수행 및 결과 집합 저장
+>>>>>>> branch 'develop' of https://github.com/heejuu321/semi.git
 
+<<<<<<< HEAD
+			b.setBooking_no(rs.getInt("booking_no"));
+			b.setRoom_no(rs.getInt("room_no"));
+			b.setUser_no(rs.getInt("user_no"));
+			b.setHotel_no(rs.getInt("hotel_no"));
+			b.setHotel_in(rs.getString("hotel_in"));
+			b.setHotel_out(rs.getString("hotel_out"));
+				
+			//넣을 map 생성
+			map = new HashMap<>();
+			
+			map.put("p", p);
+			map.put("b", b);
+			map.put("hotel_name", rs.getString("hotel_name"));
+			map.put("room_type", rs.getString("room_type"));
+			map.put("hotel_photo", rs.getString("hotel_photo"));
+			
+			//list에 map 넣기
+			resultlist.add(map);
+						
+		}
+				
+=======
 			// 조회 결과 처리
 			while (rs.next()) {
 
@@ -89,6 +130,7 @@ public class PaymentDaoImpl implements PaymentDao {
 
 			}
 
+>>>>>>> branch 'develop' of https://github.com/heejuu321/semi.git
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
