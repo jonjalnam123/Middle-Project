@@ -119,8 +119,8 @@ public class BookingDaoImpl implements BookingDao {
 	@Override
 	public Reserve SelectAllByBookingNo(Connection conn, int booking_no) {
 
-		String sql = "select h.hotel_name, h.hotel_intime, h.hotel_outtime, r.room_type,";
-		sql += " r.room_price, b.hotel_in, b.hotel_out, u.user_name, u.user_phone";
+		String sql = "select h.hotel_name, h.hotel_intime, h.hotel_no, h.hotel_outtime, r.room_type,";
+		sql += " r.room_price, r.room_no, b.booking_no, u.user_no, b.hotel_in, b.hotel_out, u.user_name, u.user_phone";
 		sql += " FROM hotel h";
 		sql += " JOIN room r ON (h.hotel_no = r.hotel_no)";
 		sql += " JOIN booking b ON (r.room_no = b.room_no)";
@@ -141,6 +141,10 @@ public class BookingDaoImpl implements BookingDao {
 				reserve.setHotel_name(rs.getString("hotel_name"));
 				reserve.setHotel_intime(rs.getString("hotel_intime"));
 				reserve.setHotel_outtime(rs.getString("hotel_outtime"));
+				reserve.setHotel_no(rs.getInt("hotel_no"));
+				reserve.setBooking_no(rs.getInt("booking_no"));
+				reserve.setRoom_no(rs.getInt("room_no"));
+				reserve.setUser_no(rs.getInt("user_no"));
 				reserve.setRoom_type(rs.getString("room_type"));
 				reserve.setRoom_price(rs.getString("room_price"));
 				

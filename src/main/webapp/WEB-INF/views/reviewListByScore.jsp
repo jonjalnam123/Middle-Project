@@ -7,9 +7,6 @@
     pageEncoding="UTF-8"%>
 <%	List<Map<String, Object>> list =(List) request.getAttribute("list"); %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%
-	SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm:ss");
-%>
 
 
 <%	request.setCharacterEncoding("UTF-8"); %>
@@ -52,11 +49,11 @@ table.type01 td {
 <script type="text/javascript">
 	$(document).ready(function() {
 	 	$("#select").change(function() {		
-			var hotel_no = 1
+	 		var hotel_no = <%=request.getParameter("hotel_no") %>
 			var selectedOption = this.value;
 			$.ajax({
 				type: "GET" ,
-				url: "/review/list?hotel_no=1&selectedOption="+selectedOption,
+				url: "/review/list?hotel_no="+hotel_no+"&selectedOption="+selectedOption,
 				datatype: "html",
 				success: function(data) {
 					console.log("성공");
@@ -85,11 +82,11 @@ table.type01 td {
         <ul class="reviewList">
           <li>
             <div class="profile">
-               <img src="/upload/<%= ((Semi_User) list.get(i).get("u")).getUser_pic() %>" alt="이미지 아님" width="50" height="50">
+               <img src="/upload/<%= ((Semi_User) list.get(i).get("u")).getUser_pic() %>" alt="alt="프로필 사진 미등록 회원"" width="50" height="50">
               <div class="reviewInfo">
                 <div><%=((Review)list.get(i).get("r")).getReview_score() %>점</div>
                 <div>
-                  <span><%= ((Semi_User) list.get(i).get("u")).getUser_email() %></span><span><%= sf.format( ((Review)list.get(i).get("r")).getReview_date()   ) %></span><span><%=((Review)list.get(i).get("r")).getRoom_type() %></span>
+                  <span><%= ((Semi_User) list.get(i).get("u")).getUser_email() %></span><span><%= ((Review)list.get(i).get("r")).getReview_date() %></span><span><%=((Review)list.get(i).get("r")).getRoom_type() %></span>
                 
                 </div>
               </div>

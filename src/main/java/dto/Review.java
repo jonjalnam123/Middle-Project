@@ -11,7 +11,7 @@ public class Review {
 	private String user_email;
 	private String review_content;
 	private int review_score;
-	private Date review_date;
+	private String review_date;
 	private int user_no;
 	private String room_type;
 	
@@ -23,7 +23,7 @@ public class Review {
 
 
 	public Review(int pay_no, int review_no, int hotel_no, int booking_no, String user_email, String review_content,
-			int review_score, Date review_date, int user_no, String room_type) {
+			int review_score, String review_date, int user_no, String room_type) {
 		super();
 		this.pay_no = pay_no;
 		this.review_no = review_no;
@@ -135,13 +135,13 @@ public class Review {
 
 
 
-	public Date getReview_date() {
+	public String getReview_date() {
 		return review_date;
 	}
 
 
 
-	public void setReview_date(Date review_date) {
+	public void setReview_date(String review_date) {
 		this.review_date = review_date;
 	}
 

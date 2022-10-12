@@ -73,6 +73,9 @@ public class PaymentDaoImpl implements PaymentDao {
 			b.setHotel_no(rs.getInt("hotel_no"));
 			b.setHotel_in(rs.getString("hotel_in"));
 			b.setHotel_out(rs.getString("hotel_out"));
+			
+			System.out.println("hotel_no" + rs.getInt("hotel_no"));
+			System.out.println(b);
 	
 			//넣을 map 생성
 			map = new HashMap<>();
@@ -102,6 +105,74 @@ public class PaymentDaoImpl implements PaymentDao {
 	return resultlist;
 	}
 	
+	@Override
+	public int insertPayment(Connection conn, int booking_no, int user_no, int room_price, String pay_kind) {
+		
+		String sql = "";
+		sql += "INSERT INTO payment VALUES(payment_seq.nextval, ?, ?, ?, ?, payment_seq.nextval, ?)";
+		
+		int result = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, booking_no);
+			ps.setInt(2, user_no);
+			ps.setInt(3, room_price);
+			ps.setString(4, pay_kind);
+			SimpleDateFormat now = new SimpleDateFormat("yyyy.MM.dd");
+			String nowDate = now.format(new Date());
+			ps.setString(5, nowDate);
+			
+			result = ps.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	
+	@Override
+	public Payment SelectPayment(Connection conn, int booking_no, int user_no) {
+		
+		String sql = "";
+		sql += "select * from payment";
+		
+		Payment payment = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while ( rs.next() ) {
+				
+				payment = new Payment();
+				
+				payment.setPay_no(rs.getInt("pay_no"));
+				payment.setBooking_no(rs.getInt("booking_no"));
+				payment.setUser_no(rs.getInt("user_no"));
+				payment.setPay_total(rs.getInt("pay_total"));
+				payment.setPay_kind(rs.getString("pay_kind"));
+				payment.setPay_ok(rs.getInt("pay_ok"));
+				
+				String payDate = rs.getString("pay_date");
+				SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+				Date pay_date = format.parse(payDate);
+				
+				payment.setPay_date(pay_date);
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		return payment;
+	}
 	
 
 }

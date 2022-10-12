@@ -3,8 +3,8 @@
     pageEncoding="UTF-8"%>
     
 <% Hotel hotelDetail = (Hotel) request.getAttribute("hotelDetail"); %>
-<% Integer user_no = (Integer) session.getAttribute("userno"); %>
-<% String user_email = (String) session.getAttribute("useremail"); %>
+<% Integer user_no = (Integer) session.getAttribute("user_no"); %>
+<% String user_email = (String) session.getAttribute("user_email"); %>
 <% Integer like_check = (Integer) request.getAttribute("like_check"); %>
 <%@ include file="/layout/header.jsp"%>
 
@@ -208,7 +208,7 @@ h2 {
 			
  		//-----------------------------------------------------------------
  	   $("#revbtn").click(function() {      
- 	      var hotel_no = 1
+ 	      var hotel_no = <%=hotelDetail.getHotel_no() %>
  	      var selectedOption = "byDate"
  	      $.ajax({
  	         type: "GET",
@@ -224,7 +224,7 @@ h2 {
  		//------------------------------------
  	      
  	      	$("#select").change(function() {		
-			var hotel_no = 1
+			var hotel_no = <%=hotelDetail.getHotel_no() %>
 			var selectedOption = this.value;
 			var type = "";
 			

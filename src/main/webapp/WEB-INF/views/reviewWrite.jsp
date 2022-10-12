@@ -3,11 +3,11 @@
 <%String pay_no = (String) request.getAttribute("pay_no"); %>
 <%String booking_no =(String)  request.getAttribute("booking_no"); %>
 <%String room_type = (String)  request.getAttribute("room_type"); %>
-<%String hotelPhotoLocation = (String)  request.getAttribute("hotelPhotoLocation"); %>
+<%String hotelPhotoLocation = (String)  request.getAttribute("hotelPhotoLocation"); %> 
 <%String hotel_name = (String)  request.getAttribute("hotel_name"); %>
-<%String hotel_no = (String) request.getAttribute(" hotel_no"); %>
+<%String hotel_no = (String) request.getAttribute("hotel_no"); %>
 <% String user_email = (String) session.getAttribute("user_email"); %>
-<% String user_no = (String) session.getAttribute("user_no"); %>
+<% String user_no = (String) request.getAttribute("user_no"); %>
 
 <!DOCTYPE html>
 <html>
@@ -23,15 +23,11 @@ rel="stylesheet"/>
 </head>
 <body>
 
-<%-- <%-- 비로그인 상태
-<% if(session.getAttribute("login") == null) { %>
-<strong>로그인이 필요합니다</strong>
-<% } %>
-로그인 상태
-<% if( session.getAttribute("login") != null && (boolean) session.getAttribute("login")) { %> --%> 
+
+
 <form action="/review/write" method="POST" enctype="multipart/form-data">
     <main class="container">
-      <h1 class="title">리뷰쓰기</h1>
+      <h1 class="title"><%=hotel_no%> 번 호텔 리뷰쓰기입니다 </h1>
       <div class="infoArea">
        <img src="/upload/<%=hotelPhotoLocation %>" alt="이미지 아님" width="50" height="50"><!-- 호텔 사진 -->
         <div class="text">
@@ -77,19 +73,12 @@ rel="stylesheet"/>
       </div>
       <button type="submit" class="submitBtn">리뷰 등록하기</button>
       </main>
-<%-- <input name="pay_no" value = "<%=pay_no%>"style="display:none;">
+  <input name="pay_no" value = "<%=pay_no%>"style="display:none;">
 <input name="booking_no" value = "<%=booking_no%>" style="display:none;">
 <input name="hotel_no" value = "<%=hotel_no%>" style="display:none;">
 <input name="user_email" value = "<%=user_email%>" style="display:none;">
 <input name="room_type" value = "<%=room_type%>" style="display:none;">
-<input name="user_no" value = "<%= user_no%>" style="display:none;"> --%>
-<input name="pay_no" value = "1"style="display:none;">
-<input name="booking_no" value = "1" style="display:none;">
-<input name="hotel_no" value = "1" style="display:none;">
-<input name="user_email" value = "gpfl5202" style="display:none;">
-<input name="room_type" value = "스위트룸" style="display:none;">
-<input name="user_no" value = "1" style="display:none;">
-      </form>
-<%-- <% } %> --%>
+<input name="user_no" value = "<%= user_no%>" style="display:none;">
+      </form> 
 </body>
 </html>

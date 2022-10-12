@@ -11,15 +11,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>찜한 숙소</h1>
+<h1>내가 찜한 숙소</h1>
 <%for(int i=0; i<list.size(); i++) { %>
     <table border="1">
         <tr>
-            <th colspan="2"><%= list.get(i).getHotel_photo() %></th>
+             <th colspan="2"><img src="/upload/<%= list.get(i).getHotel_photo() %>" class="htimg" alt="이미지 아님"></th>
         </tr>
         <tr>
             <td><%= list.get(i).getHotel_name() %></td>
-            <td><%= list.get(i).getMark_hit() %> </td>
+            <td>총 찜 횟수 : <%= list.get(i).getMark_hit() %> </td>
         </tr>
     </table>
 <% } %>  

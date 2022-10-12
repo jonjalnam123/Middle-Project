@@ -5,6 +5,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import dto.Booking;
+import dto.Payment;
+
 public interface PaymentService {
 	
 	/**
@@ -15,4 +18,8 @@ public interface PaymentService {
 	 */
 	public List< Map<String, Object>> selectAllPayedHotel(HttpServletRequest request);
 
+	public Payment insert(int booking_no, int user_no, int room_price, String pay_kind);
+
+	
 }
+
