@@ -5,15 +5,8 @@
 <%@page import="dto.Booking"%>
 <%@page import="dto.Payment"%>
 <% List<Map<String, Object>> list = (List) request.getAttribute("list"); %>
+<%@ include file="/layout/header.jsp"%>
 
-<!-- 아리님이 넘겨주는 파라미터 : hotel_no, pay_no, booking_no, room_type, user_no -->
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>이용내역</title>
-</head>
-<body>
 <h2>내가 결제한 호텔 목록</h2>
 
 <% int mo = list.size()/4; %>
@@ -38,6 +31,4 @@
 <% } %>
 
 
-
-</body>
-</html>
+<%@ include file="/layout/footer.jsp"%>
