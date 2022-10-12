@@ -219,6 +219,8 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public List<Map<String, Object>> reviewListByDate(HttpServletRequest request, int hotel_no) {
 		
+		System.out.println("리뷰 최신순으로 불러오는 서비스 실행");
+		
 		Connection conn = JDBCTemplate.getConnection();
 
 		List<Map<String, Object>> list = reviewDao.selectReviewsByDateByHotelNo(conn, hotel_no);

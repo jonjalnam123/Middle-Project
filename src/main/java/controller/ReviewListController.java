@@ -40,9 +40,6 @@ public class ReviewListController extends HttpServlet {
 			
 			List<Map<String, Object>> list = reviewService.reviewListByDate(request,hotel_no);
 			System.out.println("list.size()"+list.size());
-			System.out.println(list.get(0).get("r"));
-			System.out.println(list.get(1).get("r"));
-			System.out.println(list.get(2).get("r"));
 
 
 			request.setAttribute("list",list);
@@ -56,8 +53,6 @@ public class ReviewListController extends HttpServlet {
 			//불러온 값들 JSP에 떠넘기기
 			request.setAttribute("list",list);
 			
-			System.out.println(list.size());
-
 		}
 		
 		//if문에 따라 달라진 url을 호출함
