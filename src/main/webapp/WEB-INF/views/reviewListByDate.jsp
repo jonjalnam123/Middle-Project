@@ -56,7 +56,7 @@ table.type01 td {
 			var selectedOption = this.value;
 			$.ajax({
 				type: "GET" ,
-				url: "/review/list?hotel_no=1&selectedOption="+selectedOption,
+				url: "/review/list?hotel_no="+hotel_no+"&selectedOption="+selectedOption,
 				datatype: "html",
 				success: function(data) {
 					console.log("성공");

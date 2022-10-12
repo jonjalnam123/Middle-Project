@@ -14,6 +14,7 @@
 <title>이용내역</title>
 </head>
 <body>
+<h2>내가 결제한 호텔 목록</h2>
 <%	for(int i=0; i< list.size(); i++) { %>
     <table border="1">
         <tr>
