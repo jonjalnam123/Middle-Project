@@ -41,9 +41,8 @@ public class PaymentDaoImpl implements PaymentDao {
 
 		try {
 			ps = conn.prepareStatement(sql); // SQL수행 객체
-
 			ps.setInt(1, user_no);
-
+			rs = ps.executeQuery();
 			
 			// 조회 결과 처리
 			while (rs.next()) {
