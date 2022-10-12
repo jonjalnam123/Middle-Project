@@ -153,6 +153,16 @@ public class ReviewServiceImpl implements ReviewService {
 								
 			} // if( item.isFormField() ) end
 			
+			//게시글 번호 삽입
+			review.setReview_no(reviewno);
+
+			
+			if( reviewDao.insert(conn, review) > 0 ) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
+			
 			//--- 3) 파일에 대한 처리 ---
 			if( !item.isFormField() ) {
 			
@@ -178,6 +188,7 @@ public class ReviewServiceImpl implements ReviewService {
 				//업로드된 파일의 정보를 DTO객체에 저장하기
 				reviewImage.setOriginname(item.getName());
 				reviewImage.setStoredname(rename);
+				reviewImage.setReview_no(reviewno);
 
 				//리뷰이미지
 				reviewImage.setReview_no(reviewno);
@@ -190,20 +201,7 @@ public class ReviewServiceImpl implements ReviewService {
 				}
 			}
 		}
-			//게시글 번호 삽입
-			review.setReview_no(reviewno);
-			
-			//작성자 ID 처리
-//			review.setUser_email( (String) req.getSession().getAttribute("userEmail") );
-			
-			System.out.println(reviewno);
-			
-			if( reviewDao.insert(conn, review) > 0 ) {
-				JDBCTemplate.commit(conn);
-			} else {
-				JDBCTemplate.rollback(conn);
-			}
-			
+
 	
 	}
 
