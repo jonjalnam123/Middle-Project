@@ -85,7 +85,7 @@ table.type01 td {
         <ul class="reviewList">
           <li>
             <div class="profile">
-               <img src="/upload/<%= ((Semi_User) list.get(i).get("u")).getUser_pic() %>" alt="이미지 아님" width="50" height="50">
+               <img src="/upload/<%= ((Semi_User) list.get(i).get("u")).getUser_pic() %>" alt="프로필 사진 미등록 회원" width="50" height="50">
               <div class="reviewInfo">
                 <div><%=((Review)list.get(i).get("r")).getReview_score() %>점</div>
                 <div>
