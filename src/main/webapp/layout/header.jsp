@@ -173,8 +173,8 @@ height: 100%;
     			</div>
 		<% } %>
 		<% if( null == session.getAttribute("login") || !(Boolean)session.getAttribute("login") ) { %>
-			<a href="#"><button class="button">문의게시판</button></a> 
-			<a href="#"><button class="button">숙소예약</button></a> 
+			<a href="/list"><button class="button">문의게시판</button></a> 
+			<a href="/hotel/list"><button class="button">숙소예약</button></a> 
 			<a href="/login"><button class="button">로그인</button></a>
 		<% } %>
 		</div>

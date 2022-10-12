@@ -44,10 +44,13 @@ public class MarkController extends HttpServlet {
 		if (check == 0) {
 			// 찜하기 테이블에 삽입하기 후 조회
 			Mark markupdate = markService.update(hotel_no, user_no);
+			System.out.println("찜하기 DB 삽입완료");
 			
 		} else {
 			// 찜하기 삭제
 			markService.deleteMark(hotel_no, user_no);
+			System.out.println("찜하기 DB 삭제완료");
+			
 		}
 		
 		// 토탈정보 객체(Join 저장dto)		
