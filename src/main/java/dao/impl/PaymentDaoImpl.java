@@ -102,6 +102,65 @@ public class PaymentDaoImpl implements PaymentDao {
 	return resultlist;
 	}
 	
+	@Override
+	public int insertPayment(Connection conn, int booking_no, int user_no, int room_price, String pay_kind) {
+		
+		String sql = "";
+		sql += "INSERT INTO payment VALUES(payment_seq.nextval, ?, ?, ?, ?, payment_seq.nextval, sysdate)";
+		
+		int result = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, booking_no);
+			ps.setInt(2, user_no);
+			ps.setInt(3, room_price);
+			ps.setString(4, pay_kind);
+			
+			result = ps.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	
+	@Override
+	public Payment SelectPayment(Connection conn, int booking_no, int user_no) {
+		
+		String sql = "";
+		sql += "select * from payment";
+		
+		Payment payment = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while ( rs.next() ) {
+				
+				payment = new Payment();
+				
+				payment.setPay_no(rs.getInt("pay_no"));
+				payment.setBooking_no(rs.getInt("booking_no"));
+				payment.setUser_no(rs.getInt("user_no"));
+				payment.setPay_total(rs.getInt("pay_total"));
+				payment.setPay_kind(rs.getString("pay_kind"));
+				payment.setPay_ok(rs.getInt("pay_ok"));
+				payment.setPay_date(rs.getDate("pay_date"));
+				
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return payment;
+	}
 	
 
 }

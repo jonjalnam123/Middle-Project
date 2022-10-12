@@ -122,6 +122,7 @@ function selectAll(selectAll)  {
 
 
 
+<form action="/payment" method="post">
 <div id="bookinginfo">
 		<h2>예약 정보</h2>
 			<hr>
@@ -133,11 +134,10 @@ function selectAll(selectAll)  {
 		<h3><b>총액 : <%=reserve.getRoom_price() %></b></h3>
 			<hr>
 		<h4><b>결제 수단</b></h4>
-		<select class="form-control">
- 			 <option selected>계좌이체</option>
- 			 <option value="1">신용/체크카드</option>
-  			<option value="2">무통장입금</option>
-  			<option value="3">신용/체크카드</option>
+		<select class="form-control" name="paykind">
+ 			<option value="계좌이체" selected>계좌이체</option>
+ 			<option value="신용/체크카드">신용/체크카드</option>
+  			<option value="무통장입금">무통장입금</option>
 		</select><br> 
 		
 			<input type='checkbox' name='info' id="a" value='selectall'onclick='selectAll(this)' /> <b>전체동의</b><br /> 
@@ -159,11 +159,17 @@ function selectAll(selectAll)  {
 			<h3><%=reserve.getHotel_out() %>, <%=reserve.getHotel_outtime() %></h3>
 			<h5>총 결제금액(VAT포함)</h5>
 			<h3><%=reserve.getRoom_price() %>원</h3>
-			
 			</div>
 		</div>	
 			<div class="btn">
-			<a href="/payedList"><button id="payBtn">결제하기</button></a>
+			<input type="hidden" name="booking_no" value="<%=reserve.getBooking_no() %>">
+			<input type="hidden" name="user_no" value="<%=reserve.getUser_no() %>">
+			<input type="hidden" name="room_no" value="<%=reserve.getRoom_no() %>">
+			<input type="hidden" name="hotel_no" value="<%=reserve.getHotel_no() %>">
+			<input type="hidden" name="room_price" value="<%=reserve.getRoom_price() %>">
+			<button id="payBtn">결제하기</button>
 		</div>
+</form>
+
 
 <%@ include file="/layout/footer.jsp" %>
