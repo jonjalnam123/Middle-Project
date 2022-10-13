@@ -295,7 +295,7 @@ public class Semi_UserServiceImpl implements Semi_UserService {
 				}
 				
 				//업로드된 파일의 정보를 DTO객체에 저장하기
-				semi_User.setUser_pic(item.getName());
+				semi_User.setUser_pic(rename);
 				
 			} // if( !item.isFormField() ) end
 		}// while( iter.hasNext() ) end					//객체에 프로필 이미지 user_pic 저장 완료
