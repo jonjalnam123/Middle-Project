@@ -8,10 +8,8 @@
 <% List<Map<String, Object>> list = (List) request.getAttribute("list"); %>
 
 <% SimpleDateFormat formatter = new SimpleDateFormat("yyyy.mm.dd"); %>
-
-<!DOCTYPE html>
-<html>
-<head>
+<% String user_no = (String) request.getAttribute("user_no"); %>
+<%@ include file="/layout/header.jsp" %>
 <meta charset="UTF-8">
 <title>이용내역</title>
 <style>
@@ -35,8 +33,6 @@ table {
 
 }
 </style>
-</head>
-<body>
 
 <h2>♥내가 결제한 호텔 목록♥</h2>
 
