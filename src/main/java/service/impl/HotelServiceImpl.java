@@ -44,6 +44,7 @@ public class HotelServiceImpl implements HotelService {
 		Connection conn = JDBCTemplate.getConnection();
 
 		int nextSeq = hotelDao.hotelNextSeq(conn);
+		System.out.println(nextSeq);
 		int result = hotelDao.hotelInsert(conn, hotelparam, nextSeq);
 
 		if (result > 0) {

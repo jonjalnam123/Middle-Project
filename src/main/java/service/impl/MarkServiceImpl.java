@@ -70,4 +70,10 @@ public class MarkServiceImpl implements MarkService {
 		return markDao.markedHotelList(conn, user_email);
 		
 	}
+
+	@Override
+	public List<Hotel> maxMarkedHotelList(HttpServletRequest request) {
+		Connection conn = JDBCTemplate.getConnection();
+		return markDao.selectHotelOrderbyMarkhit(conn);
+	}
 }

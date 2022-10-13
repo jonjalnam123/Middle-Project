@@ -229,5 +229,53 @@ public class MarkDaoImpl implements MarkDao {
 		//최종 결과 반환
 	return list;
 	}
+
+	@Override
+	public List<Hotel> selectHotelOrderbyMarkhit(Connection conn) {
+
+		String sql = "";
+		sql += "select * from(";
+		sql += " select * from hotel";
+		sql += "  ORDER BY mark_hit desc)";
+		sql += "  where rownum <= 20";
+		
+		
+		List<Hotel> list  = new ArrayList<>();
+		try {
+			ps = conn.prepareStatement(sql); //SQL수행 객체
+			
+			rs = ps.executeQuery(); //SQL수행 및 결과 집합 저장
+								
+			//조회 결과 처리
+			while(rs.next()) {
+			Hotel h = new Hotel();//결과값 저장 객체
+						
+			//결과값 한 행씩 처리
+			h.setHotel_no(rs.getInt("hotel_no"));
+			h.setHotel_name(rs.getString("hotel_name"));
+			h.setHotel_addr(rs.getString("hotel_addr"));
+			h.setHotel_tel(rs.getString("hotel_tel"));
+			h.setHotel_info(rs.getString("hotel_info"));
+			h.setHotel_photo(rs.getString("hotel_photo"));
+			h.setMark_hit(rs.getInt("mark_hit"));
+			h.setHotel_intime(rs.getString("hotel_intime"));
+			h.setHotel_outtime(rs.getString("hotel_outtime"));
+
+			//리스트에 결과값 저장
+			list.add(h);
+						
+		}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			//DB객체 닫기
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+
+		//최종 결과 반환
+	return list;
+	}
 	
 }

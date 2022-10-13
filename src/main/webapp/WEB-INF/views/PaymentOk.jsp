@@ -16,7 +16,7 @@
 
 <div class="joinOk">
 	<h2>결제에 성공했습니다.</h2>
-	<a href="/payedList"><button class="button" style="background: #f7323f;">예약/결제내역 페이지 이동</button></a>
+	<a href="/payedList"><button class="button" style="background: #f7323f;">결제내역 확인하러 가기</button></a>
 </div>
 
 

@@ -64,5 +64,14 @@ public interface MarkDao {
 	
 	public List<Hotel> markedHotelList(Connection conn, String user_email);
 	
+	/**
+	 * 최다 찜 순서대로 호텔 불러오기
+	 * 
+	 * @param conn
+	 * @param 
+	 * @param 
+	 * @return
+	 */
+	public List<Hotel> selectHotelOrderbyMarkhit(Connection conn);
 
 }

@@ -63,6 +63,7 @@ public class HotelinsertController extends HttpServlet {
 
 		// 파라미터 저장
 		Hotel insertResult = hotelService.join(hotelparam);
+		System.out.println(insertResult);
 
 		req.getRequestDispatcher("/WEB-INF/views/hotelInsertOk.jsp").forward(req, resp);
 

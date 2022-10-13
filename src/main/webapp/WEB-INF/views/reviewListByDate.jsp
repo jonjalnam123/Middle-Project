@@ -85,12 +85,12 @@ table.type01 td {
         <ul class="reviewList">
           <li>
             <div class="profile">
-               <img src="/upload/<%= ((Semi_User) list.get(i).get("u")).getUser_pic() %>" alt="프로필 사진 X" width="200" height="150">
+            	프로필 이미지 등록을 안해서 엑박이 뜹니다. 프로필 이미지 등록 기능은 사정이 있어 수강포기하신붙이 맡았었습니다.
+               <img src="/upload/<%= ((Semi_User) list.get(i).get("u")).getUser_pic() %>" alt="X" width="200" height="150">
               <div class="reviewInfo">
                 <div><%=((Review)list.get(i).get("r")).getReview_score() %>점</div>
                 <div>
                   <span><%= ((Semi_User) list.get(i).get("u")).getUser_email() %></span><span><%= ((Review)list.get(i).get("r")).getReview_date() %></span><span><%=((Review)list.get(i).get("r")).getRoom_type() %></span>
-                
                 </div>
               </div>
             </div>
