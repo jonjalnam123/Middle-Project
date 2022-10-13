@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 import common.JDBCTemplate;
 import dao.face.PaymentDao;
@@ -156,6 +158,7 @@ public class PaymentDaoImpl implements PaymentDao {
 
 				String payDate = rs.getString("pay_date");
 				SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+				format.setTimeZone(TimeZone.getTimeZone("GMT"));
 				Date pay_date = format.parse(payDate);
 
 				payment.setPay_date(pay_date);
