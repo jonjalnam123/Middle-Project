@@ -83,7 +83,6 @@ table {
         	<td colspan="4" height="30" > 결제 일자 : <%= formatter.format(((Payment) list.get(i).get("p")).getPay_date()) %></td>
         </tr>
     </table>
-
 <% } %>
 
 <%@ include file="/layout/footer.jsp" %>

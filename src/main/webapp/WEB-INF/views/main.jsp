@@ -159,33 +159,11 @@
 		<li><img
 			src="https://image.goodchoice.kr/resize_1000X500x0/affiliate/2022/03/09/622809eb68406.jpg"></li>
 	</ul>
-
 </div>
 </div>
 
 <div id="result" class="result">
 </div>
 
-	<!-- Swiper JS -->
-	<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-
-	<!-- Initialize Swiper -->
-	<script>
-		var swiper = new Swiper(".mySwiper", {
-			slidesPerView : 4,
-			spaceBetween : 20,
-			slidesPerGroup : 4,
-			loop : true,
-			loopFillGroupWithBlank : true,
-			pagination : {
-				el : ".swiper-pagination",
-				clickable : true,
-			},
-			navigation : {
-				nextEl : ".swiper-button-next",
-				prevEl : ".swiper-button-prev",
-			},
-		});
-	</script>
 	
 <%@ include file="/layout/footer.jsp"%>
