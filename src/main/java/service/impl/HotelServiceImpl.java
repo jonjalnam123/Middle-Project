@@ -7,6 +7,7 @@ import common.JDBCTemplate;
 import dao.face.HotelDao;
 import dao.impl.HotelDaoImpl;
 import dto.Hotel;
+import dto.SortedHotel;
 import service.face.HotelService;
 
 public class HotelServiceImpl implements HotelService {
@@ -78,6 +79,31 @@ public class HotelServiceImpl implements HotelService {
 		Connection conn = JDBCTemplate.getConnection();
 		
 		return hotelDao.selectReviewCntByHotelNo(conn, hotel_no);
+	}
+	
+	@Override
+	public List<SortedHotel> review() {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		return hotelDao.selectHotelListByReviewCnt(conn);
+	}
+	
+	@Override
+	public List<SortedHotel> sortScore() {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		
+		return hotelDao.selectHotelListByScore(conn);
+	}
+	
+	@Override
+	public List<SortedHotel> sortLatest() {
+		
+		Connection conn = JDBCTemplate.getConnection();
+				
+		return hotelDao.selectHotelListByLatest(conn);
 	}
 
 }

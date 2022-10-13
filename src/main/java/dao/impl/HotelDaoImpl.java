@@ -10,6 +10,7 @@ import java.util.List;
 import common.JDBCTemplate;
 import dao.face.HotelDao;
 import dto.Hotel;
+import dto.SortedHotel;
 
 public class HotelDaoImpl implements HotelDao {
 
@@ -239,6 +240,130 @@ public class HotelDaoImpl implements HotelDao {
 		}
 		
 		return cnt;
+	}
+	
+	@Override
+	public List<SortedHotel> selectHotelListByReviewCnt(Connection conn) {
+		
+		String sql = "";
+		sql += "select h.hotel_no, nvl(r.cnt, 0) cnt, nvl(r.avg, 0) avg, h.hotel_photo, h.hotel_tel, h.hotel_name";
+		sql += " FROM hotel h LEFT OUTER JOIN (";
+		sql += " SELECT count(review_no) cnt, AVG(review_score) avg,hotel_no FROM review";
+		sql += " GROUP BY hotel_no) r";
+		sql += " ON h.hotel_no = r.hotel_no";
+		sql += " GROUP BY h.hotel_photo, h.hotel_name, h.hotel_tel, cnt, h.hotel_no, avg";
+		sql += " ORDER BY cnt DESC";
+		
+		List<SortedHotel> list = new ArrayList<>();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while ( rs.next() ) {
+				SortedHotel hotel = new SortedHotel();
+				
+				hotel.setHotel_no(rs.getInt("hotel_no"));
+				hotel.setHotel_name(rs.getString("hotel_name"));
+				hotel.setHotel_photo(rs.getString("hotel_photo"));
+				hotel.setHotel_tel(rs.getString("hotel_tel"));
+				hotel.setHotel_reviewCnt(rs.getInt("cnt"));
+				hotel.setHotel_score(rs.getDouble("avg"));
+				
+				list.add(hotel);
+			}
+			
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+	
+		return list;
+	}
+	
+	@Override
+	public List<SortedHotel> selectHotelListByScore(Connection conn) {
+		
+		String sql = "";
+		sql += "select h.hotel_no, nvl(r.cnt, 0) cnt, nvl(r.avg, 0) avg, h.hotel_photo, h.hotel_tel, h.hotel_name";
+		sql += " FROM hotel h LEFT OUTER JOIN (";
+		sql += " SELECT count(review_no) cnt, AVG(review_score) avg,hotel_no FROM review";
+		sql += " GROUP BY hotel_no) r";
+		sql += " ON h.hotel_no = r.hotel_no";
+		sql += " GROUP BY h.hotel_photo, h.hotel_name, h.hotel_tel, cnt, h.hotel_no, avg";
+		sql += " ORDER BY avg DESC";
+		
+		List<SortedHotel> list = new ArrayList<>();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				SortedHotel hotel = new SortedHotel();
+
+				hotel.setHotel_no(rs.getInt("hotel_no"));
+				hotel.setHotel_name(rs.getString("hotel_name"));
+				hotel.setHotel_photo(rs.getString("hotel_photo"));
+				hotel.setHotel_tel(rs.getString("hotel_tel"));
+				hotel.setHotel_reviewCnt(rs.getInt("cnt"));
+				hotel.setHotel_score(rs.getDouble("avg"));
+				
+				list.add(hotel);
+				
+			}
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return list;
+	}
+	
+	@Override
+	public List<SortedHotel> selectHotelListByLatest(Connection conn) {
+		String sql = "";
+		sql += "select h.hotel_no, nvl(r.cnt, 0) cnt, nvl(r.avg, 0) avg, h.hotel_photo, h.hotel_tel, h.hotel_name";
+		sql += " FROM hotel h LEFT OUTER JOIN (";
+		sql += " SELECT count(review_no) cnt, AVG(review_score) avg,hotel_no FROM review";
+		sql += " GROUP BY hotel_no) r";
+		sql += " ON h.hotel_no = r.hotel_no";
+		sql += " GROUP BY h.hotel_photo, h.hotel_name, h.hotel_tel, cnt, h.hotel_no, avg";
+		sql += " ORDER BY h.hotel_no DESC";
+		
+		List<SortedHotel> list = new ArrayList<>();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				SortedHotel hotel = new SortedHotel();
+
+				hotel.setHotel_no(rs.getInt("hotel_no"));
+				hotel.setHotel_name(rs.getString("hotel_name"));
+				hotel.setHotel_photo(rs.getString("hotel_photo"));
+				hotel.setHotel_tel(rs.getString("hotel_tel"));
+				hotel.setHotel_reviewCnt(rs.getInt("cnt"));
+				hotel.setHotel_score(rs.getDouble("avg"));
+				
+				list.add(hotel);
+				
+			}
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return list;
 	}
 
 }

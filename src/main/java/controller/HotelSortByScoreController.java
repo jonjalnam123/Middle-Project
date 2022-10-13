@@ -14,32 +14,22 @@ import dto.SortedHotel;
 import service.face.HotelService;
 import service.impl.HotelServiceImpl;
 
-@WebServlet("/hotel/list")
-public class HotelListController extends HttpServlet {
+@WebServlet("/hotel/score")
+public class HotelSortByScoreController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private HotelService hotelService = new HotelServiceImpl();
-	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		List<SortedHotel> latestView = hotelService.sortLatest();
-		
-		req.setAttribute("hotelList", latestView);
-
-		req.getRequestDispatcher("/WEB-INF/views/hotelList.jsp").forward(req, resp);
-	}
-	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("/hotel/score [POST] 호출 성공");
 		
-		System.out.println("/hotel/list [POST] 호출성공");
+	System.out.println("/hotel/score [POST] 요청 성공");
 		
-		List<SortedHotel> latestView = hotelService.sortLatest();
+		List<SortedHotel> scoreView = hotelService.sortScore();
+		for(SortedHotel m : scoreView) { System.out.println(m); }
 		
-		req.setAttribute("latestView", latestView);
-		req.getRequestDispatcher("/WEB-INF/views/hotelSortByLatest.jsp").forward(req, resp);
-		
+		req.setAttribute("scoreView", scoreView);
+		req.getRequestDispatcher("/WEB-INF/views/hotelSortByScore.jsp").forward(req, resp);
 		
 	}
 	

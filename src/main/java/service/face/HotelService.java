@@ -3,6 +3,7 @@ package service.face;
 import java.util.List;
 
 import dto.Hotel;
+import dto.SortedHotel;
 
 public interface HotelService {
 	
@@ -56,6 +57,29 @@ public interface HotelService {
 	 * @return
 	 */
 	public int reviewCne(int hotel_no);
+
+	/**
+	 * 리뷰 많은 순으로 정렬하여 리스트 보여주기
+	 * 	 
+	 * @return
+	 */
+	List<SortedHotel> review();
+
+	/**
+	 * 평점 높은 순으로 정렬하여 리스트 보여주기
+	 * 
+	 * @return
+	 */
+	public List<SortedHotel> sortScore();
+
+	/**
+	 * 최신순으로 정렬하여 리스트 보여주기
+	 * 
+	 * @return
+	 */
+	public List<SortedHotel> sortLatest();
+
+
 	
 	
 	
