@@ -55,7 +55,6 @@ public class ReviewWriteController extends HttpServlet {
 		//리뷰 등록하는 서비스 실행
 		reviewService.writeReview(request);
 		String hotel_no = request.getParameter("hotel_no");
-		System.out.println("리다이렉트 위한 hotel_no"+hotel_no);
 		//리뷰 등록 완료. 원래 페이지로 돌아가는 리다이렉트
 		response.sendRedirect("/hotel/list");
 	}
