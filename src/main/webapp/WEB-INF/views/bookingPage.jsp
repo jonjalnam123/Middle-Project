@@ -117,6 +117,16 @@ function selectAll(selectAll)  {
 	    checkbox.checked = selectAll.checked;
 	  })
 	}
+	
+function payCheck() {
+  	
+	var payCheck = document.getElementById("a");
+
+	if( payCheck.checked == false ) {  
+		 alert("결제약관 필수사항을 모두 체크해주세요."); 
+		 return false; 
+	}
+} 	
 </script>
 
 
@@ -167,7 +177,7 @@ function selectAll(selectAll)  {
 			<input type="hidden" name="room_no" value="<%=reserve.getRoom_no() %>">
 			<input type="hidden" name="hotel_no" value="<%=reserve.getHotel_no() %>">
 			<input type="hidden" name="room_price" value="<%=reserve.getRoom_price() %>">
-			<button id="payBtn">결제하기</button>
+			<button id="payBtn" onclick="return payCheck();">결제하기</button>
 		</div>
 </form>
 
