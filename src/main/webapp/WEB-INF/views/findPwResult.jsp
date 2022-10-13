@@ -16,13 +16,13 @@
 #btnBack {
 	width: 400px; height: 50px; margin: 10px; border-radius: 5px; border: 0; cursor: pointer;
     background: linear-gradient(to left, #f857a6, #ff5858);
-    color: #fff; font-weight: bold; font-size: 18px;
+    color: #fff; font-size: 18px;
 }
 
 #btnGologin {
 	width: 400px; height: 50px; margin: 10px; border-radius: 5px; border: 0; cursor: pointer;
     background: linear-gradient(to left, #f857a6, #ff5858);
-    color: #fff; font-weight: bold; font-size: 18px;
+    color: #fff; font-size: 18px;
 }
 </style>
 

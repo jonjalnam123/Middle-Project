@@ -209,6 +209,43 @@ public class Semi_UserDaoImpl implements Semi_UserDao {
 		
 		return res;
 	}
+
+	
+	
+	//--------------------------------수정-----------------------------------------
+
+	@Override
+	public int updateInfo(Connection conn, Semi_User sUser) {
+
+		String sql = "";
+		sql += "UPDATE semi_user SET";
+		sql += " user_name = ?,";
+		sql += " user_pw= ?,";
+		sql += " user_pic = ?";
+		sql += " WHERE user_no = ?";
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, sUser.getUser_name());
+			ps.setString(2, sUser.getUser_pw());
+			ps.setString(3, sUser.getUser_pic());
+			ps.setInt(4, sUser.getUser_no());
+			
+			
+			res = ps.executeUpdate();
+			System.out.println(res);
+						
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
 	
 	
 }

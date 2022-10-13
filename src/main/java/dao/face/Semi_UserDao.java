@@ -73,7 +73,8 @@ public interface Semi_UserDao {
 	public int insert(Connection conn, Semi_User sUser);
 	
 	
-	//-----------------------------------------------------------------------------
+	//---------------------회원 정보 수정---------------------------------------------
 	
-
+	public int  updateInfo(Connection conn, Semi_User sUser);
+	
 }
