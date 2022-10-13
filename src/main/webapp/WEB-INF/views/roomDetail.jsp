@@ -102,15 +102,6 @@ width: 180px;
 $(document).ready(function() {
 	var from = "";
 	var to = "";
-	<% for (int i = 0; i < roominfo.size(); i++) { %>
-<%--  	$(document).on("click", "#bookingBtn", function() {
-	
-		var hotel_no = <%=roominfo.get(i).getHotel_no() %> 	
- 		var room_no = <%=roominfo.get(i).getRoom_no() %>  
- 		var room_price = '<%=roominfo.get(i).getRoom_price() %>' 
-  		$("#room_price").val(room_price); 
-	});  --%>
-	<% } %> 
 	var checkin = flatpickr("#checkin", {
 		locale: "ko",
 		minDate: "today",
@@ -123,6 +114,7 @@ $(document).ready(function() {
 			$("#checkin").val(from);
 		}
 	});
+	
 	var checkout = flatpickr("#checkout", {
 		locale: "ko",
 		minDate: "today",
@@ -132,20 +124,8 @@ $(document).ready(function() {
 			console.log(to);
 			console.log(from); 
 			$("#checkout").val(to);
-
-			}
-		})
-		
-	/* $('#bookingBtn').click(function(){
-		var checkin = $("#checkin").val();
-		var checkout = $("#checkout").val();
-
-		if( (checkin == "") || (checkout == "") ) {  
-			 alert("체크인/체크아웃 날짜를 모두 선택해주세요"); 
-			 $('#checkin').focus();
-			return false; 
 		}
-	});	 */
+	})
 			
 });
 
