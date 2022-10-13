@@ -68,7 +68,6 @@ table.type01 td {
 
 </head>
 <body> 
- <h1> 추천순 리뷰 </h1>
      <div class="reviewArea">
         <div class="reviewHeader">
           <h2 class="subTitle">리뷰 총 ( <%=list.size() %> ) 개</h2>
