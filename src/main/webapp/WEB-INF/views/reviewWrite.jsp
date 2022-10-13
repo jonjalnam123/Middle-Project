@@ -64,7 +64,7 @@ rel="stylesheet"/>
 <input name="user_no" value = "<%= user_no%>" style="display:none;">
 
 <%try {
-			for (int i = 0; i < 2; i++) {
+			for (int i = 0; i < 1; i++) {
 				Thread.sleep(1000);
 				System.out.println("Sleep "+i);
 			}
