@@ -31,13 +31,13 @@
 #btnFindPw{
 	width: 180px; height: 50px; margin: 10px; border-radius: 5px; border: 0; cursor: pointer;
     background: linear-gradient(to left, #f857a6, #ff5858);
-    color: #fff; font-weight: bold; font-size: 18px;
+    color: #fff; font-weight: bold; font-size: 18px; position: relative; left: -108px;
 }
 
 #btnCancel{
 	width: 180px; height: 50px; margin: 10px; border-radius: 5px; border: 0; cursor: pointer;
     background: linear-gradient(to left, #f857a6, #ff5858);
-    color: #fff; font-weight: bold; font-size: 18px;
+    color: #fff; font-weight: bold; font-size: 18px; position: relative; left: 108px; top: -70px;
 }
 
 
@@ -52,19 +52,17 @@
 		
 		<p>휴대폰 번호</p>
 		<input type="text" id="userphone" name="userphone" placeholder="휴대폰번호를 입력하세요"><br><br>
-		<p id="result">&nbsp;</p><br>
 		
-<!-- 		<button id="btnFindPw" type="button" onclick="pwResult()">확인</button> <button id="btnCancel">취소</button> -->
-		<button id="btnFindPw">확인</button> <button id="btnCancel">취소</button>
+		<button id="btnFindPw">확인</button> 
 	</form>
+		<button id="btnCancel">취소</button>
 </div>
 
 
 <script type="text/javascript">
 //취소 버튼
 $("#btnCancel").click(function() {
-// 		history.go(-1) //뒤로가기
-	$(location).attr('href', '/login') //메인으로 가기
+	$(location).attr('href', '/login') //로그인으로 가기
 })
 
 
@@ -79,42 +77,17 @@ function numReplace(){
 }
 
 
-function pwResult() {
-    var email = $('#useremail').val(); 
-    var phone = $('#userphone').val(); 
-    
-    $.ajax({
-        url: '/findPw/result', //Controller에서 요청 받을 주소
-        type: 'POST', //POST 방식으로 전달
-        data: {
-             "useremail": email, "userphone": phone
-         },
-
-        success: function(res) { //컨트롤러에서 넘어온 res값을 받는다 
-            if (res == false) { //존재하지 않는 회원
-                $("#result").text("등록된 정보가 없습니다").css("color", "#e42f0a");
-                console.log(email);
-                
-            } else { // 존재하는 회원
-//                 $("#result").text("비밀번호는").css("color", "#37a9f5");
-            	$(location).attr('href', '/findPw');
-            }
-       	}
-        });
-}
-
-
 function find_pw(){
 	const frm = document.findPwform;
 	
 	if(frm.useremail.value == ''){
-		alert("이메일 입력!")
+		alert("이메일을 입력하세요")
 		useremail.focus();
 		return false;
 	}
 	
 	if(frm.userphone.value == ''){
-		alert("휴대폰번호 입력!")
+		alert("휴대폰번호를 입력하세요")
 		userphone.focus();
 		return false;
 	}
