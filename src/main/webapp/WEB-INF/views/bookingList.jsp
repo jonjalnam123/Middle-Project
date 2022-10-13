@@ -7,32 +7,46 @@
 <% List<Map<String, Object>> list = (List) request.getAttribute("list"); %>
 
 <style type="text/css">
-/* #list-wrap { list-style: none; text-align: center; float: left;} */
+#hWrap{ width: 70%; margin: 0 auto; font-family: 'Noto Sans KR', sans-serif; }
 
-li {list-style: none; float: left;}
-ul {list-style: none;}
+ul { list-style: none; text-align: center;}
 
-/* .border{ border: 1px solid #000; width: 501px; padding: 0 0 0 0; } */
+.hlist { width: 45%; height: 500px; display: inline-block; margin: 7px;}
 
-/* img { width: 500px; height: 350px; } */
+.hlist > ul { padding: 0; margin: 0; }
 
+.imgBox{ width: 100%;
+    height: 100px;
+    height: 380px;
+    background-repeat: no-repeat, no-repeat;
+    background-position: right, left;
+    background-size: cover;
+    }
+
+.titBox{ padding: 18px 0 7px 0; font-weight: bold; font-size: 20px; letter-spacing: -2px;}
+
+.ck sapn {     font-weight: bold; color: #ff5454; margin-right: 8px; }
 
 </style>
 
 <h2 style="text-align: center;">예약 내역</h2><br>
 
-<ul id="list-wrap">
+<div id="hWrap">
+<ul>
 <% for(int i = 0; i < list.size(); i++) { %>
-	<li>
-		<ul class="border">
-			<li><a  href="/booking/detail?booking_no=<%=list.get(i).get("booking_no") %>">
-			<img src="/upload/<%=list.get(i).get("hotel_photo") %>" alt="이미지 아님"></a></li>
-			<li><%=list.get(i).get("hotel_name") %></li>
-			<li><%=list.get(i).get("hotel_in") %> <%=list.get(i).get("hotel_intime") %></li>
+	<li class="hlist">
+		<ul>
+			<a href="/booking/detail?booking_no=<%=list.get(i).get("booking_no") %>">
+<%-- 			<li><a  href="/booking/detail?booking_no=<%=list.get(i).get("booking_no") %>"> --%>
+			<li><img src="/upload/<%=list.get(i).get("hotel_photo") %>" alt="이미지 아님"></li>
+<%-- 			<div class="imgBox" style="background-image: url('/upload/<%=list.get(i).get("hotel_photo") %>';"></div> --%>
+			<li class="titBox"><%=list.get(i).get("hotel_name") %></li>
+			<li class="ck"><span><%=list.get(i).get("hotel_in") %> <%=list.get(i).get("hotel_intime") %></span></li>
+			</a>
 		</ul>
 	</li>
 <% } %>
 </ul>
-
+</div>
 
 <%@ include file="/layout/footer.jsp" %>

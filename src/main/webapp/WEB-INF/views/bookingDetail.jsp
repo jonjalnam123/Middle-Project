@@ -6,9 +6,14 @@
 <% List<Map<String, Object>> dList = (List) request.getAttribute("dList"); %>
 
 <style type="text/css">
-ul{ list-style: none; }
+ul{ list-style: none; display: inline-block; padding-left: 2px;}
 
 hr{color: #000;}
+
+#btnCancel{width: 400px; height: 50px; margin: 10px; border-radius: 5px; border: 0; cursor: pointer;
+    background: linear-gradient(to left, #f857a6, #ff5858);
+    color: #fff; font-weight: bold; font-size: 18px;
+}
 
 </style>
 
@@ -43,7 +48,7 @@ hr{color: #000;}
 		</ul>
 	</li><hr>
 </ul>
-<button onclick="location.href='/booking/cancel?booking_no=<%=dList.get(i).get("booking_no")%>'">예약 취소</button>
+<button id="btnCancel"onclick="location.href='/booking/cancel?booking_no=<%=dList.get(i).get("booking_no")%>'">예약 취소</button>
 <% } %>
 
 <%@ include file="/layout/footer.jsp" %>
