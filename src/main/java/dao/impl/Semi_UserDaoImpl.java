@@ -211,6 +211,8 @@ public class Semi_UserDaoImpl implements Semi_UserDao {
 	}
 	
 	
+	//------------------------------회원 정보 수정------------------
+	
 	@Override
 	public int updateInfo(Connection conn, Semi_User sUser) {
 
