@@ -8,10 +8,8 @@
 <%String hotel_no = (String) request.getAttribute("hotel_no"); %>
 <% String user_email = (String) session.getAttribute("user_email"); %>
 <% String user_no = (String) request.getAttribute("user_no"); %>
+<%@ include file="/layout/header.jsp" %>
 
-<!DOCTYPE html>
-<html>
-<head>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,8 +18,7 @@
 rel="stylesheet"/>
 <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" type="text/css">
 <link href="/assets/css/star.css" rel="stylesheet"/>
-</head>
-<body>
+
 
 
 
