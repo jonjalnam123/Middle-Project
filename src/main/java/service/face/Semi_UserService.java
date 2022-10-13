@@ -111,7 +111,14 @@ public interface Semi_UserService {
 
 
 	
-	
+
+
+	/**
+	 * 회원 정보 수정
+	 * 
+	 * @param req
+	 */
+	public void modify(HttpServletRequest req);
 
 }
 
