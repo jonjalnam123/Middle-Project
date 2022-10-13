@@ -192,7 +192,7 @@ public class HotelDaoImpl implements HotelDao {
 	public double selectReviewScoreByHotelNo(Connection conn, int hotel_no) {
 		
 		String sql = "";
-		sql = "select AVG(NVL(review_score, 0)) from review where hotel_no=?";
+		sql = "select ROUND(AVG(NVL(review_score, 0)), 2) from review where hotel_no=?";
 		
 		double score = 0;
 		
