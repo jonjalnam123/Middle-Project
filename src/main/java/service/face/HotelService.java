@@ -38,6 +38,24 @@ public interface HotelService {
 	 * @return
 	 */
 	public List<Hotel> list();
+
+	
+	/**
+	 * 해당 호텔 평균점수 구하기
+	 * 
+	 * @param hotel_no
+	 * @return
+	 */
+	public double selectReview(int hotel_no);
+
+	
+	/**
+	 * 해당 호텔 리뷰개수 구하기
+	 * 
+	 * @param hotel_no
+	 * @return
+	 */
+	public int reviewCne(int hotel_no);
 	
 	
 	

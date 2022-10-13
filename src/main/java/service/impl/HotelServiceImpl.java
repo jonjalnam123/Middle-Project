@@ -64,6 +64,21 @@ public class HotelServiceImpl implements HotelService {
 		return hotelDao.selectAllHotelList(conn);
 	}
 	
+	@Override
+	public double selectReview(int hotel_no) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		return hotelDao.selectReviewScoreByHotelNo(conn, hotel_no);
+	}
+	
+	@Override
+	public int reviewCne(int hotel_no) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		return hotelDao.selectReviewCntByHotelNo(conn, hotel_no);
+	}
 
 }
 
