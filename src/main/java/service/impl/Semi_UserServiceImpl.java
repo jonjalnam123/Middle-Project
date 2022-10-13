@@ -183,7 +183,7 @@ public class Semi_UserServiceImpl implements Semi_UserService {
 			System.out.println("writeReview()");
 
 			// 회원 정보 수정을 요청한 사람의 user_no 추출
-			int user_no = Integer.parseInt((String) req.getSession().getAttribute("user_no"));
+			int user_no = (int) req.getSession().getAttribute("user_no");
 
 			
 			//multipart/form-data 인코딩 확인
@@ -263,6 +263,8 @@ public class Semi_UserServiceImpl implements Semi_UserService {
 					if( "user_pw".equals(key) ) {
 						semi_User.setUser_pw(value);
 					}
+					
+					System.out.println(semi_User);
 									
 				} //--------------수정된 이름, 수정된 pw 값 받아 객체에 저장 완료
 
@@ -290,7 +292,7 @@ public class Semi_UserServiceImpl implements Semi_UserService {
 					}
 					
 					//업로드된 파일의 정보를 DTO객체에 저장하기
-					semi_User.setUser_pic(item.getName());
+					semi_User.setUser_pic(rename);
 					
 				} // if( !item.isFormField() ) end
 			}// while( iter.hasNext() ) end					//객체에 프로필 이미지 user_pic 저장 완료
@@ -302,7 +304,7 @@ public class Semi_UserServiceImpl implements Semi_UserService {
 			int res = 0;
 			
 			//전달 파라미터 넘겨주기
-			sUserDao.updateInfo(conn, semi_User);
+			res = sUserDao.updateInfo(conn, semi_User);
 			
 			if( res > 0 ) {
 				System.out.println("회원정보 수정 성공!");
