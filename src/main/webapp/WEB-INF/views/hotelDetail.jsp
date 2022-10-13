@@ -4,6 +4,8 @@
     
 <% Hotel hotelDetail = (Hotel) request.getAttribute("hotelDetail"); %>
 <% Integer user_no = (Integer) session.getAttribute("user_no"); %>
+<% Double score = (Double) request.getAttribute("reviewScore"); %>
+<% Integer reviewCnt = (Integer) request.getAttribute("reviewCnt"); %>
 <% String user_email = (String) session.getAttribute("user_email"); %>
 <% Integer like_check = (Integer) request.getAttribute("like_check"); %>
 <%@ include file="/layout/header.jsp"%>
@@ -258,6 +260,7 @@ h2 {
 	
 	<div class="htinfo">
 		<h2><%=hotelDetail.getHotel_name() %></h2>
+		<h4>별점 <%=score %> &nbsp;&nbsp; 후기(<%=reviewCnt %>)</h4>
 		<hr>
 		<h3>주소 : <%=hotelDetail.getHotel_addr() %></h3>
 		<h3>대표번호 : <%=hotelDetail.getHotel_tel() %></h3>

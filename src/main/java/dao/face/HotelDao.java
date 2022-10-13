@@ -16,4 +16,8 @@ public interface HotelDao {
 	public int hotelNextSeq(Connection conn);
 
 	public List<Hotel> selectAllHotelList(Connection conn);
+
+	public double selectReviewScoreByHotelNo(Connection conn, int hotel_no);
+
+	public int selectReviewCntByHotelNo(Connection conn, int hotel_no);
 }

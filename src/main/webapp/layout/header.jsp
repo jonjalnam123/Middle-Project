@@ -3,6 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c2f47283a16fca78743abba9b8a1f5ba&autoload=false"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c2f47283a16fca78743abba9b8a1f5ba&libraries=services"></script>
 <meta charset="UTF-8">
@@ -37,7 +42,10 @@
 
 /* HEADER_STYLE */
 html, body {
-height: 100%;
+	height: 100%;
+	font-family: 'Jua', sans-serif;
+	letter-spacing: 1.5px;
+
 }
 
 .header {	
@@ -167,6 +175,7 @@ height: 100%;
 				<div class="dropdown-submenu">
             		<a href="#">내정보수정</a>
             		<a href="/booking/list">예약내역</a>
+            		<a href="/payedList">결제(이용)내역</a>
             		<a href="/mark/list">찜한숙소</a>
             		<a href="/logout">로그아웃</a>
             	</div>

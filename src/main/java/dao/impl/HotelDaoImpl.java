@@ -139,6 +139,9 @@ public class HotelDaoImpl implements HotelDao {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
 		}
 		
 		return seqNum;
@@ -176,9 +179,66 @@ public class HotelDaoImpl implements HotelDao {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
 		}
 		
 		return list;
+	}
+	
+	@Override
+	public double selectReviewScoreByHotelNo(Connection conn, int hotel_no) {
+		
+		String sql = "";
+		sql = "select AVG(NVL(review_score, 0)) from review where hotel_no=?";
+		
+		double score = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, hotel_no);
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				score = rs.getDouble(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return score;
+	}
+	
+	@Override
+	public int selectReviewCntByHotelNo(Connection conn, int hotel_no) {
+		
+		String sql = "";
+		sql += "select count(*) cnt FROM review WHERE hotel_no=?";
+		
+		int cnt = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, hotel_no);
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				cnt = rs.getInt(1);			
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return cnt;
 	}
 
 }
