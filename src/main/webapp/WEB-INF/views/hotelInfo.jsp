@@ -4,6 +4,18 @@
 <%@page import="dto.Hotel"%>
 
 <% Hotel hotelinfo = (Hotel) request.getAttribute("hotelinfo"); %>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+
+<style type="text/css">
+
+.font {
+	font-family: 'Jua', sans-serif;
+}
+</style>
+
 <div id="map" style="width:1100px; height:400px;"></div> 
 
 <!-- 카카오지도 실행 script -->
@@ -59,9 +71,10 @@
 			   	 });	
 			});
 	</script>
-
+	<div class="font">
 	<h2>기본정보</h2>
 	<hr>
 	<div>
+	</div>
 	정보 : <%=hotelinfo.getHotel_info()%>
 	</div>
