@@ -246,7 +246,7 @@ public class HotelDaoImpl implements HotelDao {
 	public List<SortedHotel> selectHotelListByReviewCnt(Connection conn) {
 		
 		String sql = "";
-		sql += "select h.hotel_no, nvl(r.cnt, 0) cnt, nvl(r.avg, 0) avg, h.hotel_photo, h.hotel_tel, h.hotel_name";
+		sql += "select h.hotel_no, nvl(r.cnt, 0) cnt, ROUND(nvl(r.avg, 0), 2) avg, h.hotel_photo, h.hotel_tel, h.hotel_name";
 		sql += " FROM hotel h LEFT OUTER JOIN (";
 		sql += " SELECT count(review_no) cnt, AVG(review_score) avg,hotel_no FROM review";
 		sql += " GROUP BY hotel_no) r";
@@ -287,7 +287,7 @@ public class HotelDaoImpl implements HotelDao {
 	public List<SortedHotel> selectHotelListByScore(Connection conn) {
 		
 		String sql = "";
-		sql += "select h.hotel_no, nvl(r.cnt, 0) cnt, nvl(r.avg, 0) avg, h.hotel_photo, h.hotel_tel, h.hotel_name";
+		sql += "select h.hotel_no, nvl(r.cnt, 0) cnt, ROUND(nvl(r.avg, 0), 2) avg, h.hotel_photo, h.hotel_tel, h.hotel_name";
 		sql += " FROM hotel h LEFT OUTER JOIN (";
 		sql += " SELECT count(review_no) cnt, AVG(review_score) avg,hotel_no FROM review";
 		sql += " GROUP BY hotel_no) r";
@@ -328,7 +328,7 @@ public class HotelDaoImpl implements HotelDao {
 	@Override
 	public List<SortedHotel> selectHotelListByLatest(Connection conn) {
 		String sql = "";
-		sql += "select h.hotel_no, nvl(r.cnt, 0) cnt, nvl(r.avg, 0) avg, h.hotel_photo, h.hotel_tel, h.hotel_name";
+		sql += "select h.hotel_no, nvl(r.cnt, 0) cnt, ROUND(nvl(r.avg, 0), 2) avg, h.hotel_photo, h.hotel_tel, h.hotel_name";
 		sql += " FROM hotel h LEFT OUTER JOIN (";
 		sql += " SELECT count(review_no) cnt, AVG(review_score) avg,hotel_no FROM review";
 		sql += " GROUP BY hotel_no) r";

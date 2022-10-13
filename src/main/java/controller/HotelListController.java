@@ -28,7 +28,10 @@ public class HotelListController extends HttpServlet {
 		req.setAttribute("hotelList", latestView);
 
 		req.getRequestDispatcher("/WEB-INF/views/hotelList.jsp").forward(req, resp);
+		double pie = 3.14159265358979;
+		System.out.println(Math.round(pie*100)/100.0);
 	}
+	
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

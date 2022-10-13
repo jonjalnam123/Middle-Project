@@ -3,6 +3,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.text.*"%>
 
 <%@ include file="/layout/header.jsp"%>
 <% List<SortedHotel> hotelList = (List) request.getAttribute("hotelList"); %>
@@ -99,7 +100,8 @@ $(document).ready(function() {
 				<td rowspan="2"><%=hotelList.get(i).getHotel_tel() %></td>
 			</tr>
 			<tr>
-				<td>리뷰 (<%=hotelList.get(i).getHotel_reviewCnt() %>) &nbsp;&nbsp; 별점 <%=hotelList.get(i).getHotel_score() %></td>
+				<td>리뷰 (<%=hotelList.get(i).getHotel_reviewCnt() %>) &nbsp;&nbsp; 
+				    별점 <%=hotelList.get(i).getHotel_score() %></td> 
 			</tr>
 			<% } %>
 		</tbody>
