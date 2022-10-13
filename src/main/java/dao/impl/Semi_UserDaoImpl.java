@@ -209,10 +209,11 @@ public class Semi_UserDaoImpl implements Semi_UserDao {
 		
 		return res;
 	}
+
 	
 	
-	//------------------------------회원 정보 수정------------------
-	
+	//--------------------------------수정-----------------------------------------
+
 	@Override
 	public int updateInfo(Connection conn, Semi_User sUser) {
 
@@ -233,8 +234,10 @@ public class Semi_UserDaoImpl implements Semi_UserDao {
 			ps.setString(3, sUser.getUser_pic());
 			ps.setInt(4, sUser.getUser_no());
 			
-			res = ps.executeUpdate();
 			
+			res = ps.executeUpdate();
+			System.out.println(res);
+						
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
