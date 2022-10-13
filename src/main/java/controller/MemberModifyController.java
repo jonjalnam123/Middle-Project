@@ -33,6 +33,8 @@ public class MemberModifyController extends HttpServlet {
 		System.out.println("user_no"+user_no);
 		
 		semi_UserService.modify(request);
+		
+		response.sendRedirect("/main");
 	}
 
 }
