@@ -1,13 +1,13 @@
 package controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dto.Semi_User;
 import service.face.Semi_UserService;
 import service.impl.Semi_UserServiceImpl;
 
@@ -33,8 +33,6 @@ public class MemberModifyController extends HttpServlet {
 		System.out.println("user_no"+user_no);
 		
 		semi_UserService.modify(request);
-		
-		response.sendRedirect("/main");
 	}
 
 }
