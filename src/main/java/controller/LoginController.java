@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.face.Semi_UserDao;
-import dao.impl.Semi_UserDaoImpl;
 import dto.Semi_User;
 import service.face.Semi_UserService;
 import service.impl.Semi_UserServiceImpl;

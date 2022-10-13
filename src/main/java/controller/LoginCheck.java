@@ -12,8 +12,9 @@ import dto.Semi_User;
 import service.face.Semi_UserService;
 import service.impl.Semi_UserServiceImpl;
 
-@WebServlet("/emailChk")
-public class Join_EmailCheck extends HttpServlet {
+
+@WebServlet("/loginChk")
+public class LoginCheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	//서비스 객체
@@ -22,19 +23,26 @@ public class Join_EmailCheck extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		//파라미터 받아오기
 		String useremail = req.getParameter("useremail");
+		String userpw = req.getParameter("userpw");
 		
-		Semi_User sUser = new Semi_User(); 
+		//객체 생성
+		Semi_User sUser = new Semi_User();
 		
 		sUser.setUser_email(useremail);
+		sUser.setUser_pw(userpw);
 		
-		int res = sUserService.existsEmail(sUser);
+		boolean res = sUserService.login(sUser);
 		
-		resp.getWriter().print((res > 0) ? 1 : 0);
+		resp.getWriter().print((res == true) ? 0 : 1);
 		
 	}
 
 }
+
+
+
 
 
 

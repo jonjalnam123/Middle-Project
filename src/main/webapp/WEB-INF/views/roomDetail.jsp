@@ -86,6 +86,19 @@ width: 180px;
 
 </style>
 <script type="text/javascript">
+
+ function check() {
+  	
+	var checkin = document.getElementById("checkin");
+	var checkout = document.getElementById("checkout");
+
+	if( (checkin.value == "") || (checkout.value == "") ) {  
+		 alert("체크인/체크아웃 날짜를 모두 선택해주세요"); 
+		 checkin.focus();
+		 return false; 
+	}
+} 
+
 $(document).ready(function() {
 	var from = "";
 	var to = "";
@@ -119,20 +132,21 @@ $(document).ready(function() {
 			console.log(to);
 			console.log(from); 
 			$("#checkout").val(to);
-		 		
-		/* $.ajax({
-			type: "GET",
-			url: "/hotel/booking",
-			data: { "to": to, "from": from},
-			//dataType: "text",
-			success: function(data) {
-				console.log("전달성공");
-			}
-		});   */
+
 			}
 		})
-	
-	
+		
+	/* $('#bookingBtn').click(function(){
+		var checkin = $("#checkin").val();
+		var checkout = $("#checkout").val();
+
+		if( (checkin == "") || (checkout == "") ) {  
+			 alert("체크인/체크아웃 날짜를 모두 선택해주세요"); 
+			 $('#checkin').focus();
+			return false; 
+		}
+	});	 */
+			
 });
 
 </script>
@@ -141,10 +155,10 @@ $(document).ready(function() {
 	<div class="checkDate">
 		<div>  	
 			<b>체크인</b>	
-			<input type="text" name="checkin" id="checkin" placeholder="체크인 날짜 선택" value=""/>
+			<input type="text" name="checkin" id="checkin" placeholder="체크인 날짜 선택" value="" required />
 			  
 			<b>체크아웃</b>	
-			<input type="text" name="checkout" id="checkout" placeholder="체크아웃 날짜 선택" value=""/> 
+			<input type="text" name="checkout" id="checkout" placeholder="체크아웃 날짜 선택" value="" required /> 
 	
  		</div>
 	</div>
@@ -172,7 +186,7 @@ $(document).ready(function() {
 				<td><input type="hidden" name="hotel_no" id="hotel_no"value = "<%=roominfo.get(i).getHotel_no()%>"></td>
 			    <td><input type="hidden" id="room_price" name="room_price" value="<%=roominfo.get(i).getRoom_price() %>"></td>
 				<td colspan="2">
-			<button type="submit" id="bookingBtn" name="room_no" value="<%=roominfo.get(i).getRoom_no()%>">예약하기</button></td>
+			<button type="submit" id="bookingBtn" name="room_no" value="<%=roominfo.get(i).getRoom_no()%>" onclick="return check();">예약하기</button></td>
 				
 			</tr>
 	</table>
