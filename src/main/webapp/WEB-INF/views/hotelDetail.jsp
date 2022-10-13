@@ -198,11 +198,23 @@ width: 180px;
 
 }
 
-
-
 </style>
 
 <script type="text/javascript">
+
+ function check() {
+  	
+	var checkin = document.getElementById("checkin");
+	var checkout = document.getElementById("checkout");
+
+	if( (checkin.value == "") || (checkout.value == "") ) {  
+		 alert("체크인/체크아웃 날짜를 모두 선택해주세요"); 
+		 checkin.focus();
+		 return false; 
+	}
+} 
+
+
  	$(document).ready(function() {
  		
 	$("#roomBtn").click(function() {
@@ -315,7 +327,40 @@ width: 180px;
 			})   //ajax 끝 }
  	  	 }) 
  	
-	}) 		
+ 	  	 	var from = "";
+	var to = "";
+	var checkin = flatpickr("#checkin", {
+		locale: "ko",
+		minDate: "today",
+		dateFormat: "Ymd",
+
+		onChange: function(dateStr, dateObj) {
+			checkout.set("minDate", dateObj);
+			checkin.setDate(dateObj);
+			from = $("#checkin").val();
+			$("#checkin").val(from);
+		}
+	});
+	
+	var checkout = flatpickr("#checkout", {
+		locale: "ko",
+		minDate: "today",
+		dateFormat: "Ymd",
+		onChange: function() {
+			to = $("#checkout").val();
+			console.log(to);
+			console.log(from); 
+			$("#checkout").val(to);
+		}
+	})
+ 	  	 
+ 	  	 
+ 	  	 
+ 	  	 
+ 	  	 
+ 	  	 
+ 	  	 
+	}) 	// jQuery 끝	
 		
 </script>
 </head>
