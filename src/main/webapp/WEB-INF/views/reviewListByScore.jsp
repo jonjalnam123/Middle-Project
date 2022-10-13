@@ -68,12 +68,12 @@ table.type01 td {
 
 </head>
 <body> 
- <h1> 별점순 리뷰 </h1>
+ <h1> 추천순 리뷰 </h1>
      <div class="reviewArea">
         <div class="reviewHeader">
           <h2 class="subTitle">리뷰 총 ( <%=list.size() %> ) 개</h2>
           <select id="select">
-            <option value="byScore">추천순</option>
+          	<option value="byScore">추천순</option>
           	<option value="byDate">최신순</option>
           </select>
         </div>
@@ -82,20 +82,17 @@ table.type01 td {
         <ul class="reviewList">
           <li>
             <div class="profile">
-            프로필 이미지 등록을 안해서 엑박이 뜹니다. 프로필 이미지 등록 기능은 사정이 있어 수강포기하신붙이 맡았었습니다.
-               <img src="/upload/<%= ((Semi_User) list.get(i).get("u")).getUser_pic() %>" alt="alt="프로필 이미지 X" width="200" height="150">
-              <div class="reviewInfo">
-                <div><%=((Review)list.get(i).get("r")).getReview_score() %>점</div>
                 <div>
-                  <span><%= ((Semi_User) list.get(i).get("u")).getUser_email() %></span><span><%= ((Review)list.get(i).get("r")).getReview_date() %></span><span><%=((Review)list.get(i).get("r")).getRoom_type() %></span>
-                
+                  <span><%= ((Semi_User) list.get(i).get("u")).getUser_email() %> ||    </span><span><%= ((Review)list.get(i).get("r")).getReview_date() %>||    </span><span><%=((Review)list.get(i).get("r")).getRoom_type() %>||    </span>
+                   <span><% for(int p=0; p<(int)((Review)list.get(i).get("r")).getReview_score(); p++ ) {%>
+                   ★<% }%></span>
+                 <img src="/upload/<%= ((Semi_User) list.get(i).get("u")).getUser_pic() %>" alt="X" width="50" height="50">
                 </div>
-              </div>
             </div>
             <div class="reviewContent">
               <div class="imgArea">
               <% for(int j=0; j < ((List<ReviewImage>) list.get(i).get("ri")).size()  ; j++) { %>
-                <img src="/upload/<%= ((List<ReviewImage>) list.get(i).get("ri")).get(j).getStoredname() %>" alt="이미지 아님" width="200" height="150">
+                <img src="/upload/<%=((List<ReviewImage>) list.get(i).get("ri")).get(j).getStoredname() %>" alt="이미지 아님" width="200" height="150">
               <% } %>
               </div>
               <p>
