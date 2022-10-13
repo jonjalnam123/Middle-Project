@@ -53,8 +53,6 @@ public class FindPwController extends HttpServlet {
 			session.setAttribute("userpw", sUser.getUser_pw());
 		}
 		
-//		resp.getWriter().print((res == false) ? false : true);
-		
 		resp.sendRedirect("/findPw/result");
 		
 	}

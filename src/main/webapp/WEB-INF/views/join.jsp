@@ -113,11 +113,10 @@ function chkEmail() {
         success: function(res) { //컨트롤러에서 넘어온 res값을 받는다 
             if (res == 0) { //res가 1이 아니면(0일 경우) -> 사용 가능한 아이디 
                 $("#result").text("✔ 사용할 수 있는 이메일입니다").css("color", "#37a9f5");
-                $("#btnJoin").attr("disabled", false);
+                console.log(email);
 
             } else { // res가 1일 경우 -> 이미 존재하는 아이디
                 $("#result").text("❌ 이미 존재하는 이메일입니다").css("color", "#e42f0a");
-                $("#btnJoin").attr("disabled", true);
             }
        	}
         });
@@ -132,7 +131,6 @@ const sendLogin = () => {
 	const inputNum = document.querySelector("#userphone");
 	const inputPw = document.querySelector("#userpw");
 	const inputPwChk = document.querySelector("#userpwChk");
-	const chkBox = document.querySelector("#chk");
 	
 	
 	//이름이 비어있을 경우
@@ -169,7 +167,7 @@ const sendLogin = () => {
     const expHpText = /^\d{3}\d{3,4}\d{4}$/;
     // userphone값이 정규식에 부합한지 체크
     if(!expHpText.test(inputNum.value)) {
-        alert('숫자만 입력하세요');
+        alert('10자리 혹은 11자리의 번호만 입력 가능합니다');
         inputNum.focus()
         return false;
     }
@@ -193,7 +191,8 @@ const sendLogin = () => {
         inputPw.focus();
         return false;
     }
-	// userpw값과 userpw_ch값이 다르면 실행.
+    
+ 	// userpw값과 userpw_ch값이 다르면 실행.
     if(inputPw.value != inputPwChk.value) {
         alert('비밀번호가 다릅니다. 다시 입력해주세요.');
         inputPwChk.focus();
@@ -207,6 +206,7 @@ const sendLogin = () => {
 		return false;
 	}
 	
+	alert("✔ 회원가입이 완료되었습니다!");
 	return true;
 }
 

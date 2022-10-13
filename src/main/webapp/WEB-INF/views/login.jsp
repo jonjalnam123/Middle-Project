@@ -37,10 +37,10 @@
 
 <div id="login_wrap">
 	<form action="/login" method="post" name="loginform" onsubmit="return sendMain()">
-		<h1>로그인</h1><br>
+	<h1>로그인</h1><br><br>
 		<input type="text" name="useremail" id="useremail" class="input" placeholder="이메일" ><br>
-<!-- 		<span id="emailMsg"></span><br> -->
 		<input type="password" name="userpw" id="userpw" class="input" placeholder="비밀번호"><br>
+		<span id="errorMsg"></span><br><br>
 		<a href="/findPw" class="findjoin" style="position: relative; left: -158px;">비밀번호찾기</a><br>
 		<button id="btnLogin">로그인</button>
 	</form>
@@ -49,6 +49,38 @@
 
 
 <script type="text/javascript">
+$(function(){
+	$("#userpw").on('keyup', chkLogin);
+})
+
+
+function chkLogin() {
+    var email = $('#useremail').val();
+    var pw = $('#userpw').val();
+    
+    $.ajax({
+        url: '/loginChk', //Controller에서 요청 받을 주소
+        type: 'POST', //POST 방식으로 전달
+        data: {
+             "useremail": email, "userpw": pw
+         },
+
+        success: function(res) { //컨트롤러에서 넘어온 res값을 받는다 
+            if (res == 1) { //아이디 혹은 비번 불일치 
+                $("#errorMsg").text("❌ 아이디 혹은 비밀번호가 일치하지 않습니다").css("color", "#e42f0a");
+            	console.log("불일치")
+                $('#btnLogin').attr('disabled', true);
+
+            } else { //아이디/비번 일치
+                $("#errorMsg").text("");
+            	console.log("일치")
+            	$('#btnLogin').attr('disabled', false);
+            }
+       	}
+        });
+}
+
+
 const sendMain = () => {
 	
 	//변수선언
@@ -77,7 +109,7 @@ const sendMain = () => {
 		inputPw.focus();
 		return false;
 	}
-    
+	
 	return true;
 }
 </script>
