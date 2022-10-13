@@ -73,7 +73,5 @@ public interface Semi_UserDao {
 	public int insert(Connection conn, Semi_User sUser);
 	
 	
-	//-----------------------------------------------------------------------------
-	
 
 }
