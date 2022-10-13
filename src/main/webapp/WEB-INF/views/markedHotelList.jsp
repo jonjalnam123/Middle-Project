@@ -3,10 +3,7 @@
 <%@page import="java.util.List"%>
 <%@page import="dto.Hotel"%>
 <% List<Hotel> list = (List) request.getAttribute("markedHotelList"); %>
-
-<!DOCTYPE html>
-<html>
-<head>
+<%@ include file="/layout/header.jsp" %>
 <meta charset="UTF-8">
 <title>찜한 숙소 목록</title>
 <style>
@@ -30,8 +27,7 @@ table {
 
 }
 </style>
-</head>
-<body>
+
 <h2>♥내가 찜한 호텔 목록♥</h2>
 
 <% int mo = list.size()/3; %>
@@ -70,5 +66,4 @@ table {
 <% } %> 
 
 
-</body>
-</html>
+<%@ include file="/layout/footer.jsp" %>
