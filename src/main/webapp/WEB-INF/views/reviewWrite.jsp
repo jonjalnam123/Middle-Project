@@ -86,5 +86,4 @@ rel="stylesheet"/>
       <button type="submit" class="submitBtn"> 리뷰 등록하기</button>
       </main>
       </form> 
-</body>
-</html>
+<%@ include file="/layout/footer.jsp" %>

@@ -34,6 +34,7 @@ table {
 }
 </style>
 
+
 <h2>♥내가 결제한 호텔 목록♥</h2>
 
 <% int mo = list.size()/3; %>
@@ -85,5 +86,4 @@ table {
 
 <% } %>
 
-</body>
-</html>
+<%@ include file="/layout/footer.jsp" %>
