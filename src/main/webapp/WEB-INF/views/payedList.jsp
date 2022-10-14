@@ -12,77 +12,52 @@
 <%@ include file="/layout/header.jsp" %>
 <meta charset="UTF-8">
 <title>이용내역</title>
-<style>
-.roomimg {
-	width: 350px;
-	height: 250px;
-	border:none;
-	border-radius: 10px;
-}
+<style type="text/css">
+#hWrap{ width: 70%; margin: 0 auto; }
 
-tr, td {
-	text-align: center;
-	font-size: 20px;
-}
+ul { list-style: none; text-align: center;}
 
-table {
-	border: #ccc;
-	margin: 5%;
-	font-family: 'Jua', sans-serif;
-	margin-left: -1%;
+.hlist { width: 45%; height: 500px; display: inline-block; margin: 7px;}
 
-}
+.hlist > ul { padding: 0; margin: 0; }
+
+.imgBox{ width: 100%;
+    height: 100px;
+    height: 380px;
+    background-repeat: no-repeat, no-repeat;
+    background-position: right, left;
+    background-size: cover;
+    }
+
+.titBox{ padding: 18px 0 7px 0; font-size: 20px;}
+
+.ck sapn { font-weight: bold; color: #ff5454; margin-right: 8px; }
+
+
 </style>
 
 
-<h2>♥내가 결제한 호텔 목록♥</h2>
+<h2 style="text-align: center;">결제 내역</h2><br>
 
-<% int mo = list.size()/3; %>
-<% int na = list.size()%3; %>
-<% int newStart  = 0; %>
-
-
-<% for (int i=0; i<mo*3;i++) { %>
-    <table class="table" style="display:inline" border="0" width="250" height="300">
-        <tr>
-            <th width="250" height="100" border="0" colspan="4"><img src="/upload/<%= list.get(i).get("hotel_photo") %>" class="roomimg"  alt="이미지 아님" width="200" height="100"></th>
-        </tr>
-        <tr>
-            <td height="30"> <%= list.get(i).get("hotel_name") %></td>
-            <td height="30"> <%= list.get(i).get("room_type") %></td>
+<div id="hWrap">
+<ul>
+<% for(int i = 0; i < list.size(); i++) { %>
+	<li class="hlist">
+		<ul>
+			<a href="/hotel/detail?hotel_no=<%= ((Booking) list.get(i).get("b")).getHotel_no()  %>">
+           <div class="imgBox" style="background-image: url('/upload/<%= list.get(i).get("hotel_photo") %>');"></div>
+            <li class="titBox"><%= list.get(i).get("hotel_name") %></li>
+           <li class="ck"> <span><%= list.get(i).get("room_type") %></span></li>
             <%-- <td> 해당 호텔 no : <%= ((Booking) list.get(i).get("b")).getHotel_no()  %>></td> --%>
-        </tr>
-        <tr>
-        	<td colspan="4" height="30" > 결제 일자 : <%= formatter.format(((Payment) list.get(i).get("p")).getPay_date()) %></td>
-        </tr>
-        <tr>
-        <td> <a href="./review/write?hotel_no=<%= ((Booking) list.get(i).get("b")).getHotel_no()  %>&pay_no=<%= ((Payment) list.get(i).get("p")).getPay_no() %>&booking_no=<%= ((Booking) list.get(i).get("b")).getBooking_no()
- %>&room_type=<%= list.get(i).get("room_type") %>&user_no=<%= ((Booking) list.get(i).get("b")).getUser_no() %>"> 리뷰쓰기  </td>
-    </tr>
-    </table>
-    <% newStart++; %>
-    <% if(newStart != 0 && newStart %3 ==0) {%>
-    <br>
-    <% } %>
+        	<li class="titBox">결제 일자 : <%= formatter.format(((Payment) list.get(i).get("p")).getPay_date()) %></li>
+        				</a>
+        <li class="titBox"><a href="./review/write?hotel_no=<%= ((Booking) list.get(i).get("b")).getHotel_no()  %>&pay_no=<%= ((Payment) list.get(i).get("p")).getPay_no() %>&booking_no=<%= ((Booking) list.get(i).get("b")).getBooking_no()
+ %>&room_type=<%= list.get(i).get("room_type") %>&user_no=<%= ((Booking) list.get(i).get("b")).getUser_no() %>"> 리뷰쓰기</li>
+		</ul>
+	</li>
 <% } %>
+</ul>
+</div>
 
-
-<% for (int i=newStart; i<list.size();i++) { %>
-    <table class="table" style="display:inline" border="0" width="250" height="300">
-        <tr>
-            <th width="250" height="100" border="0" colspan="4"><img src="/upload/<%= list.get(i).get("hotel_photo") %>" class="roomimg" alt="이미지 아님" width="200" height="100"></th>
-        </tr>
-        <tr>
-            <td> <%= list.get(i).get("hotel_name") %></td>
-            <td> <%= list.get(i).get("room_type") %></td>
-            <%-- <td> 해당 호텔 no : <%= ((Booking) list.get(i).get("b")).getHotel_no()  %>></td> --%>
-            <td> <a href="./review/write?hotel_no=<%= ((Booking) list.get(i).get("b")).getHotel_no()  %>&pay_no=<%= ((Payment) list.get(i).get("p")).getPay_no() %>&booking_no=<%= ((Booking) list.get(i).get("b")).getBooking_no()
- %>&room_type=<%= list.get(i).get("room_type") %>&user_no=<%= ((Booking) list.get(i).get("b")).getUser_no() %>"> 리뷰쓰기  </td>
-        </tr>
-        <tr>
-        	<td colspan="4" height="30" > 결제 일자 : <%= formatter.format(((Payment) list.get(i).get("p")).getPay_date()) %></td>
-        </tr>
-    </table>
-<% } %>
 
 <%@ include file="/layout/footer.jsp" %>
