@@ -425,6 +425,94 @@ public class BoardDaoImpl implements BoardDao {
 		
 		return res;
 	}
+	
+	@Override
+	public List<Board> selectAllSearch(Connection conn, Paging paging, String keyword) {
+
+
+		String sql = "";
+		sql += "SELECT * FROM (";
+		sql += "	SELECT rownum rnum, B.* FROM (";
+		sql += "		SELECT";
+		sql += "			boardno, title, user_no";
+		sql += "			, hit, write_date";
+		sql += "		FROM board";
+		sql += "		ORDER BY boardno DESC";
+		sql += "	) B";
+		sql += " ) BOARD ";
+		sql += " WHERE title LIKE '%'||?||'%'";
+
+
+		//결과 저장할 List 
+		List<Board> boardSearchList = new ArrayList<>();
+
+		System.out.println("boardDaoImpl : "+paging);
+
+		try {
+			ps = conn.prepareStatement(sql);
+
+			ps.setString(1, keyword);
+
+
+			//SQL 수행 및 결과 저장
+			rs = ps.executeQuery();
+
+			while(rs.next()) {
+				System.out.println("1 result ");
+
+				Board b = new Board();
+
+				b.setBoardno(rs.getInt("boardno"));
+				b.setTitle(rs.getString("title"));
+				b.setUser_no(rs.getInt("user_no"));
+				b.setHit(rs.getInt("hit"));
+				b.setWriteDate(rs.getDate("write_date"));
+
+				boardSearchList.add(b);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+
+		return boardSearchList;
+	}
+
+	public int selectCntSearch(Connection conn, String keyword) {
+
+		String sql = "";
+		sql += "SELECT count(*) cnt FROM board";
+		sql += " WHERE title LIKE '%'||?||'%'";
+		int count = 0;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, keyword);
+
+			rs = ps.executeQuery();
+
+
+			while( rs.next() ) {
+				count = rs.getInt("cnt");
+				System.out.println(count);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+
+		return count;
+	}
+
+
+
+
+
+
 }
 
 

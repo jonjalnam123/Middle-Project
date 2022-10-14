@@ -122,4 +122,8 @@ public interface BoardDao {
 	 */
 	public int delete(Connection conn, Board board);
 
+	public int selectCntSearch(Connection connection, String keyword);
+
+	public List<Board> selectAllSearch(Connection connection, Paging paging, String keyword);
+
 }

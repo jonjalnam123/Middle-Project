@@ -429,4 +429,42 @@ public class BoardServiceImpl implements BoardService {
 			JDBCTemplate.rollback(conn);
 		}
 	}
+	
+	public Paging getSearchPaging(HttpServletRequest req, String keyword) {
+
+		//전달파라미터 curPage 추출하기
+		String param = req.getParameter("curPage");
+
+		int curPage = 0;
+		if( param != null && !"".equals(param) ) {
+			curPage = Integer.parseInt(param);
+		} else {
+			System.out.println("[WARN]  NoticeService getPaging() - curpage가 null이거나 비어있습니다.");
+		}
+
+		//총 게시글 수 조회하기
+		int totalCount = boardDao.selectCntSearch(JDBCTemplate.getConnection(), keyword);
+
+		//Paging 객체 생성
+		Paging paging = new Paging(totalCount, curPage);	//기본(페이지당 게시글 수 10개)
+
+
+		return paging;
+	}
+
+	@Override
+	public List<Board> getBoardSearchList(Paging paging, String keyword) {
+
+		// 검색 게시글 전체 조회 결과 처리(페이징)
+		return boardDao.selectAllSearch(JDBCTemplate.getConnection(), paging, keyword);
+	}
+
+
+
+	//게시글 전체 조회 결과 처리 (페이징)
+	@Override
+	public List<Board> getBoardList(Paging paging) {
+		return boardDao.selectAll(JDBCTemplate.getConnection(), paging);
+	}
+	
 }

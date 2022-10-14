@@ -94,5 +94,11 @@ public interface BoardService {
 	 */
 	public void delete(Board board);
 
+	public List<Board> getBoardSearchList(Paging paging, String keyword);
+
+	public List<Board> getBoardList(Paging paging);
+
+	public Paging getSearchPaging(HttpServletRequest req, String keyword);
+
 }
 	

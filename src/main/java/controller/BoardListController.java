@@ -45,6 +45,28 @@ public class BoardListController extends HttpServlet {
 		
 	}
 	
+	@Override 
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		
+		System.out.println("keyword : post요청 성공");
+		String keyword = req.getParameter("keyword");
+		//String searchWord = req.getParameter("searchWord");
+		System.out.println("키워드 : " + keyword);
+		
+		Paging paging = boardSerivce.getSearchPaging(req,keyword);
+		System.out.println(paging);
+	
+		List<Board> searchlist = boardSerivce.getBoardSearchList(paging, keyword);
+		System.out.println(searchlist.toString());
+		
+		req.setAttribute("keyWord", keyword);
+		
+		req.setAttribute("paging", paging);
+		req.setAttribute("searchlist", searchlist);
+		
+		req.getRequestDispatcher("/WEB-INF/views/searchList.jsp").forward(req, resp);
+	}
 }
 
 
