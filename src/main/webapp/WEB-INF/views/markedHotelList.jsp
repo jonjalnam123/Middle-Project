@@ -7,63 +7,47 @@
 <meta charset="UTF-8">
 <title>찜한 숙소 목록</title>
 <style>
-.roomimg {
-	width: 350px;
-	height: 250px;
-	border:none;
-	border-radius: 10px;
-}
+#hWrap{ width: 70%; margin: 0 auto; }
 
-tr, td {
-	text-align: center;
-	font-size: 20px;
-}
+ul { list-style: none; text-align: center;}
 
-table {
-	border: #ccc;
-	margin: 5%;
-	font-family: 'Jua', sans-serif;
-	margin-left: -1%;
+.hlist { width: 45%; height: 500px; display: inline-block; margin: 7px;}
 
-}
+.hlist > ul { padding: 0; margin: 0; }
+
+.imgBox{ width: 100%;
+    height: 100px;
+    height: 380px;
+    background-repeat: no-repeat, no-repeat;
+    background-position: right, left;
+    background-size: cover;
+    }
+
+.titBox{ padding: 18px 0 7px 0; font-size: 20px;}
+
+.ck sapn { font-weight: bold; color: #ff5454; margin-right: 8px; }
 </style>
-
-<h2>♥내가 찜한 호텔 목록♥</h2>
 
 <% int mo = list.size()/3; %>
 <% int na = list.size()%3; %>
 <% int newStart  = 0; %>
 
+<h2 style="text-align: center;">내가 찜한 숙소</h2><br>
 
-<% for (int i=0; i<mo*3;i++) { %>
-    <table border="1" style="display:inline">
-        <tr>
-             <th colspan="2"><a href="/hotel/detail?hotel_no=<%= list.get(i).getHotel_no() %>"><img src="/upload/<%= list.get(i).getHotel_photo() %>" class="roomimg" alt="이미지 아님"></a></th>
-        </tr>
-        <tr>
-            <td><%= list.get(i).getHotel_name() %></td>
-            <td>을 찜한 사람 <%= list.get(i).getMark_hit() %>명</td>
-        </tr>
-    </table>
-    <% newStart++; %>
-    <% if(newStart != 0 && newStart %3 ==0) {%>
-    <br>
-    <% } %>
-<% } %> 
-
-
-
-<% for (int i=newStart; i<mo*3;i++) { %>
-    <table border="1" style="display:inline">
-        <tr>
-             <th colspan="2"><a href="/hotel/detail?hotel_no=<%= list.get(i).getHotel_no() %>"><img src="/upload/<%= list.get(i).getHotel_photo() %>" class="roomimg" alt="이미지 아님"></a></th>
-        </tr>
-        <tr>
-            <td><%= list.get(i).getHotel_name() %></td>
-            <td>총 찜 횟수 : <%= list.get(i).getMark_hit() %> </td>
-        </tr>
-    </table>
-<% } %> 
-
+<div id="hWrap">
+<ul>
+<% for(int i = 0; i < list.size(); i++) { %>
+<li class="hlist">
+		<ul>
+            <a href="/hotel/detail?hotel_no=<%= list.get(i).getHotel_no() %>">
+            <div class="imgBox" style="background-image: url('/upload/<%= list.get(i).getHotel_photo() %>');"></div>
+			<li class="titBox">><%= list.get(i).getHotel_name() %></li>
+            <li class="ck"><span>찜한 사람 <%= list.get(i).getMark_hit() %>명</span></li>
+            </a>
+		</ul>
+	</li>
+<% } %>
+</ul>
+</div>
 
 <%@ include file="/layout/footer.jsp" %>
