@@ -21,11 +21,11 @@
     box-sizing: border-box; font-size: 15px;
 }
 
-#useremail{
-	border: 1px solid #d9d9d9; width: 400px; height: 50px;
-    margin: 5px; padding-left: 10px; border-radius: 5px; position: relative;
-    box-sizing: border-box; font-size: 15px; font-weight: normal; left: -5px;
-}
+/* #useremail{ */
+/* 	border: 1px solid #d9d9d9; width: 400px; height: 50px; */
+/*     margin: 5px; padding-left: 10px; border-radius: 5px; position: relative; */
+/*     box-sizing: border-box; font-size: 15px; font-weight: normal; left: -5px; */
+/* } */
 
 #btnJoin{
 	width: 400px; height: 50px; margin: 10px; border-radius: 5px; border: 0; cursor: pointer;
@@ -53,7 +53,7 @@ textarea{
 		<input type="text" id="username" name="username" placeholder="예)홍길동" autofocus class="textput"><br><br>
 		
 		<p>이메일</p>
-		<p><input type="text" id="useremail" name="useremail" placeholder="이메일을 입력하세요" class="textput">
+		<input type="text" id="useremail" name="useremail" placeholder="이메일을 입력하세요" class="textput">
 		<p id="result">&nbsp;</p><br>
 		
 		<p>휴대폰 번호</p> 
@@ -131,6 +131,7 @@ const sendLogin = () => {
 	const inputNum = document.querySelector("#userphone");
 	const inputPw = document.querySelector("#userpw");
 	const inputPwChk = document.querySelector("#userpwChk");
+	const chkBox = document.querySelector("#chk");
 	
 	
 	//이름이 비어있을 경우

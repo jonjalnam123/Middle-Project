@@ -25,7 +25,7 @@
 #useremail{
 	border: 1px solid #d9d9d9; width: 400px; height: 50px;
     margin: 5px; padding-left: 10px; border-radius: 5px; position: relative;
-    box-sizing: border-box; font-size: 15px; font-weight: normal; left: -11px;
+    box-sizing: border-box; font-size: 15px; font-weight: normal; left: -5px;
 }
 
 #btnFindPw{

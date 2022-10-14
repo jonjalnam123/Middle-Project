@@ -8,7 +8,7 @@
 <style type="text/css">
 ul{ list-style: none; display: inline-block; padding-left: 2px; margin-bottom: 100px;}
 
-#tit { position: relative; top: 21px; text-align: center; }
+#tit { position: relative; text-align: center; }
 
 #btnBack{
 	width: 180px; height: 50px; margin: 10px; border-radius: 5px; border: 0; cursor: pointer;
@@ -22,7 +22,7 @@ ul{ list-style: none; display: inline-block; padding-left: 2px; margin-bottom: 1
     color: #fff; font-size: 18px;
 }
 
-.cWrap{ position: relative; left: 567px; top: 84px; font-size: 17px; display: inline-block; }
+.cWrap{ position: relative; left: 567px; top:50px; font-size: 17px; display: inline-block; }
 
 </style>
 
