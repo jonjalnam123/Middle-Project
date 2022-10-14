@@ -87,7 +87,7 @@ table.type01 td {
                 <div>
                   <span><%= ((Semi_User) list.get(i).get("u")).getUser_email() %> ||    </span><span><%= ((Review)list.get(i).get("r")).getReview_date() %>||    </span><span><%=((Review)list.get(i).get("r")).getRoom_type() %>||    </span>
                    <span><% for(int p=0; p<(int)((Review)list.get(i).get("r")).getReview_score(); p++ ) {%>
-                   ★<% }%></span>
+                   ⭐<% }%></span>
                  <img src="/upload/<%= ((Semi_User) list.get(i).get("u")).getUser_pic() %>" alt="X" width="100" height="100">
                 </div>
             </div>
