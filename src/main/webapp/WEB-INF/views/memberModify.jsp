@@ -41,10 +41,10 @@ form > p {
 		<input type="text" id="username" name="user_name" value="<%=session.getAttribute("username") %>" autofocus class="put"><br><br>
 		
 		<p>새 비밀번호</p> <p style="font-weight: normal; font-size: 11px;"> * 4자 이상 20자 이하</p>
-		<input type="text" id="user_pw" name="user_pw" placeholder="비밀번호를 입력하세요" class="put"><br><br>
+		<input type="password" id="user_pw" name="user_pw" placeholder="비밀번호를 입력하세요" class="put"><br><br>
 		
 		<p>새 비밀번호 확인</p>
-		<input type="text" id="user_pwc" name="user_pwc" placeholder="비밀번호를 입력하세요" class="put"><br><br>
+		<input type="password" id="user_pwc" name="user_pwc" placeholder="비밀번호를 입력하세요" class="put"><br><br>
 	
 		<button id="btnJoin" type="submit">수정 완료</button>
 	</form>

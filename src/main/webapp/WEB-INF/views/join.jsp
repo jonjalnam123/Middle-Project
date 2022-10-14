@@ -60,10 +60,10 @@ textarea{
 		<input type="text" id="userphone" name="userphone" placeholder="휴대폰번호를 입력하세요" class="textput"><br><br>
 		
 		<p>비밀번호</p> <p style="font-weight: normal; font-size: 11px;"> * 4자 이상 20자 이하</p>
-		<input type="text" id="userpw" name="userpw" placeholder="비밀번호를 입력하세요" class="textput"><br><br>
+		<input type="password" id="userpw" name="userpw" placeholder="비밀번호를 입력하세요" class="textput"><br><br>
 		
 		<p>비밀번호 확인</p>
-		<input type="text" id="userpwChk" name="userpwChk" placeholder="비밀번호를 입력하세요" class="textput"><br><br>
+		<input type="password" id="userpwChk" name="userpwChk" placeholder="비밀번호를 입력하세요" class="textput"><br><br>
 		
 		<input type="checkbox" id="chk" name="chk" class="check">
     	<label for="chk"><span class="check1">이용약관동의</span></label><br>
