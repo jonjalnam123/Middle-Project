@@ -52,7 +52,7 @@ public class HotelDetailController extends HttpServlet {
 
 		// 클릭한 호텔 리뷰 개숫 구하기
 		int reviewCnt = hotelService.reviewCne(hotel_no);
-		System.out.println("리뷰 갯수 : " + reviewScore);
+		System.out.println("리뷰 갯수 : " + reviewCnt);
 
 		req.setAttribute("reviewCnt", reviewCnt);
 		req.setAttribute("reviewScore", reviewScore);

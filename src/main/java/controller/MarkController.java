@@ -26,7 +26,7 @@ public class MarkController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("mark2/insert 찜하기 [POST] 호출성공");
+		System.out.println("/mark 찜하기 [POST] 호출성공");
 
 		int hotel_no = Integer.parseInt(req.getParameter("hotel_no"));
 		int user_no = Integer.parseInt(req.getParameter("user_no"));
@@ -38,7 +38,7 @@ public class MarkController extends HttpServlet {
 
 		// 중복클릭 체크
 		int check = markService.check(hotel_no, user_no);
-		System.out.println("체크 :" +  check);
+		System.out.println("체크상태:" +  check);
 		req.setAttribute("like_check", check);
 		
 		if (check == 0) {

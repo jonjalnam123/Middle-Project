@@ -166,10 +166,20 @@ html, body {
 		</h1>
 		<div class="btn">
 		<%	if( null != session.getAttribute("login") && (Boolean)session.getAttribute("login") ) { %>
-			<a href="/list"><button class="button">문의게시판</button></a>
-			<a href="/hotel/list"><button class="button">숙소예약</button></a>
+		<% 		if( session.getAttribute("user_email").equals("admin@naver.com")) { %>		
 			<a href="/hotel/insert"><button class="button">호텔등록</button></a>
 			<a href="/room/info"><button class="button">객실등록</button></a>
+			<a href="/list"><button class="button">문의게시판</button></a>
+			<div class="dropdown">
+					<a href="#"><button class="button" id="dropdown-btn">내정보</button></a>
+				<div class="dropdown-submenu">
+            		<a href="/member/modify">내정보수정</a>
+            		<a href="/logout">로그아웃</a>
+            	</div>
+    		</div>
+		<% } else { %>
+			<a href="/list"><button class="button">문의게시판</button></a>
+			<a href="/hotel/list"><button class="button">숙소예약</button></a>
 			<div class="dropdown">
 					<a href="#"><button class="button" id="dropdown-btn">내정보</button></a>
 				<div class="dropdown-submenu">
@@ -179,7 +189,8 @@ html, body {
             		<a href="/mark/list">찜한숙소</a>
             		<a href="/logout">로그아웃</a>
             	</div>
-    			</div>
+    		</div>
+		<% } %>
 		<% } %>
 		<% if( null == session.getAttribute("login") || !(Boolean)session.getAttribute("login") ) { %>
 			<a href="/list"><button class="button">문의게시판</button></a> 

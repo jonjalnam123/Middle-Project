@@ -67,7 +67,7 @@ function chkLogin() {
 
         success: function(res) { //컨트롤러에서 넘어온 res값을 받는다 
             if (res == 1) { //아이디 혹은 비번 불일치 
-                $("#errorMsg").text("❌ 아이디 혹은 비밀번호가 일치하지 않습니다").css("color", "#e42f0a");
+                $("#errorMsg").text("❌ 이메일 혹은 비밀번호가 일치하지 않습니다").css("color", "#e42f0a");
             	console.log("불일치")
                 $('#btnLogin').attr('disabled', true);
 

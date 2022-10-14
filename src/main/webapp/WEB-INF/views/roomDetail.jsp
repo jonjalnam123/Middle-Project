@@ -26,7 +26,6 @@ table {
 
 }
 
-
 tr, td {
 	text-align: center;
 	vertical-align : middle;
@@ -151,21 +150,22 @@ $(document).ready(function() {
 			<td rowspan="3">
 			<img src="/upload/<%=roominfo.get(i).getRoom_img() %>" class="roomimg" alt="이미지 아님">
 			</td>
-			<td colspan="3"><%=roominfo.get(i).getRoom_type() %></td>
+			<td colspan="4"><%=roominfo.get(i).getRoom_type() %></td>
 		</tr>
 			<tr>
 				<td>수용인원</td>
 				<td><%=roominfo.get(i).getPeople() %></td>
+				<td>최대인원</td>
 				<td><%=roominfo.get(i).getMax_people() %></td>
 			</tr>
 			<tr>
-				<td>가격</td>
-				<td colspan="2"><%=roominfo.get(i).getRoom_price() %></td>
+				<td colspan="2">가격</td>
+				<td colspan="2"><%=roominfo.get(i).getRoom_price() %>원</td>
 			</tr>
 			<tr>
 				<td><input type="hidden" name="hotel_no" id="hotel_no"value = "<%=roominfo.get(i).getHotel_no()%>"></td>
 			    <td><input type="hidden" id="room_price" name="room_price" value="<%=roominfo.get(i).getRoom_price() %>"></td>
-				<td colspan="2">
+				<td colspan="3">
 			<button type="submit" id="bookingBtn" name="room_no" value="<%=roominfo.get(i).getRoom_no()%>" onclick="return check();">예약하기</button></td>
 				
 			</tr>
