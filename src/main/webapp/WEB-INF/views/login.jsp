@@ -38,7 +38,7 @@
 <div id="login_wrap">
 	<form action="/login" method="post" name="loginform" onsubmit="return sendMain()">
 	<h1>로그인</h1><br><br>
-		<input type="text" name="useremail" id="useremail" class="input" placeholder="이메일" ><br>
+		<input type="text" name="useremail" id="useremail" class="input" placeholder="이메일" autofocus><br>
 		<input type="password" name="userpw" id="userpw" class="input" placeholder="비밀번호"><br>
 		<span id="errorMsg"></span><br><br>
 		<a href="/findPw" class="findjoin" style="position: relative; left: -158px;">비밀번호찾기</a><br>

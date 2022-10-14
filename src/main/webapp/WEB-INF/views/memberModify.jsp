@@ -8,7 +8,7 @@
 
 .wrap { text-align: center;}
 
-input {
+.put {
 	border: 1px solid #d9d9d9; width: 400px; height: 50px;
     margin: 5px; padding-left: 10px; border-radius: 5px;
     box-sizing: border-box; font-size: 17px;
@@ -20,7 +20,7 @@ input {
     color: #fff; font-size: 18px;
 }
 
-p {
+form > p {
 	position: relative; left: 566px; font-size: 20px;  margin: 0;
 	padding: 0; text-align: left; width: 400px;
 }
@@ -35,16 +35,16 @@ p {
 	<form action="/member/modify" method="post" enctype="multipart/form-data" onsubmit="return chk()">
 	
         <p>프로필 이미지 첨부 또는 수정</p>
-        <input type="file" name="upfile" id="upfile" /><br><br>
+        <input type="file" name="upfile" id="upfile" class="put"/><br><br>
         
 		<p>이름</p>
-		<input type="text" id="username" name="user_name" value="<%=session.getAttribute("username") %>" autofocus class="textput"><br><br>
+		<input type="text" id="username" name="user_name" value="<%=session.getAttribute("username") %>" autofocus class="put"><br><br>
 		
 		<p>새 비밀번호</p> <p style="font-weight: normal; font-size: 11px;"> * 4자 이상 20자 이하</p>
-		<input type="text" id="user_pw" name="user_pw" placeholder="비밀번호를 입력하세요" class=""><br><br>
+		<input type="password" id="user_pw" name="user_pw" placeholder="비밀번호를 입력하세요" class="put"><br><br>
 		
 		<p>새 비밀번호 확인</p>
-		<input type="text" id="user_pwc" name="user_pwc" placeholder="비밀번호를 입력하세요" class=""><br><br>
+		<input type="password" id="user_pwc" name="user_pwc" placeholder="비밀번호를 입력하세요" class="put"><br><br>
 	
 		<button id="btnJoin" type="submit">수정 완료</button>
 	</form>
@@ -65,6 +65,12 @@ const chk = () => {
 		return false;
 	}
 	
+	 // userpw값이 4자 이상 20자 이하를 벗어나면 실행.
+    if(inputPw.value.length < 4 || inputPw.value.length > 20){
+        alert("비밀번호는 4자 이상 20자 이하로 입력해주세요.");
+        inputPw.focus();
+        return false;
+    }
 	
 	// userpw값과 userpw_ch값이 다르면 실행.
     if(inputPw.value != inputPwChk.value) {

@@ -15,17 +15,17 @@
 	padding: 0; text-align: left; width: 400px;
 }
 
-#joinform > .textput{
+#joinform  .textput{
 	border: 1px solid #d9d9d9; width: 400px; height: 50px;
     margin: 5px; padding-left: 10px; border-radius: 5px;
     box-sizing: border-box; font-size: 15px;
 }
 
-#useremail{
-	border: 1px solid #d9d9d9; width: 400px; height: 50px;
-    margin: 5px; padding-left: 10px; border-radius: 5px; position: relative;
-    box-sizing: border-box; font-size: 15px; font-weight: normal; left: -11px;
-}
+/* #useremail{ */
+/* 	border: 1px solid #d9d9d9; width: 400px; height: 50px; */
+/*     margin: 5px; padding-left: 10px; border-radius: 5px; position: relative; */
+/*     box-sizing: border-box; font-size: 15px; font-weight: normal; left: -5px; */
+/* } */
 
 #btnJoin{
 	width: 400px; height: 50px; margin: 10px; border-radius: 5px; border: 0; cursor: pointer;
@@ -53,17 +53,17 @@ textarea{
 		<input type="text" id="username" name="username" placeholder="예)홍길동" autofocus class="textput"><br><br>
 		
 		<p>이메일</p>
-		<p><input type="text" id="useremail" name="useremail" placeholder="이메일을 입력하세요" class="textput">
+		<input type="text" id="useremail" name="useremail" placeholder="이메일을 입력하세요" class="textput">
 		<p id="result">&nbsp;</p><br>
 		
 		<p>휴대폰 번호</p> 
 		<input type="text" id="userphone" name="userphone" placeholder="휴대폰번호를 입력하세요" class="textput"><br><br>
 		
 		<p>비밀번호</p> <p style="font-weight: normal; font-size: 11px;"> * 4자 이상 20자 이하</p>
-		<input type="text" id="userpw" name="userpw" placeholder="비밀번호를 입력하세요" class="textput"><br><br>
+		<input type="password" id="userpw" name="userpw" placeholder="비밀번호를 입력하세요" class="textput"><br><br>
 		
 		<p>비밀번호 확인</p>
-		<input type="text" id="userpwChk" name="userpwChk" placeholder="비밀번호를 입력하세요" class="textput"><br><br>
+		<input type="password" id="userpwChk" name="userpwChk" placeholder="비밀번호를 입력하세요" class="textput"><br><br>
 		
 		<input type="checkbox" id="chk" name="chk" class="check">
     	<label for="chk"><span class="check1">이용약관동의</span></label><br>
@@ -131,6 +131,7 @@ const sendLogin = () => {
 	const inputNum = document.querySelector("#userphone");
 	const inputPw = document.querySelector("#userpw");
 	const inputPwChk = document.querySelector("#userpwChk");
+	const chkBox = document.querySelector("#chk");
 	
 	
 	//이름이 비어있을 경우
