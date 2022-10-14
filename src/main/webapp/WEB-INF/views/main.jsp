@@ -28,6 +28,10 @@
 <style type="text/css">
 
 </style>
+<center>
+ <img src="/resources/image/mainImage.png" width="700" height="400">
+</center>
+
 
 <div id="result" class="result">
 </div>
