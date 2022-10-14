@@ -41,7 +41,7 @@ ul { list-style: none; text-align: center;}
 <body>
 
 
-<h2 style="text-align: center;">↓↓♥찜 많은 호텔♥↓↓</h2><br>
+<h2 style="text-align: center;">찜💗 많은 호텔</h2><br>
 
 <div id="hWrap">
 <ul>	

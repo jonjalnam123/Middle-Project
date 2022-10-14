@@ -26,12 +26,18 @@
 	
 
 <style type="text/css">
-
+#r { border: 1px solid #ccc; margin-top: 20px; margin-bottom: 20px; width: 650px; }
 </style>
-<center>
- <img src="/resources/image/mainImage.png" width="700" height="400">
-</center>
 
+<div>
+	<img src="/resources/image/ff.png" width="100%">
+</div>
+
+<br><br><br>
+
+<hr id="r">
+
+<br>
 
 <div id="result" class="result">
 </div>
