@@ -15,6 +15,7 @@
 
 <%-- <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/flatpicker.js"></script>   --%>  
 <% List<Room> roominfo = (List) request.getAttribute("roominfo"); %>
+<% Integer user_no = (Integer) session.getAttribute("user_no"); %>
 
 <style type="text/css">
 
@@ -86,17 +87,25 @@ width: 180px;
 </style>
 <script type="text/javascript">
 
- function check() {
+function check() {
   	
 	var checkin = document.getElementById("checkin");
 	var checkout = document.getElementById("checkout");
-
-	if( (checkin.value == "") || (checkout.value == "") ) {  
-		 alert("체크인/체크아웃 날짜를 모두 선택해주세요"); 
-		 checkin.focus();
-		 return false; 
+	var user_no = document.getElementById("user_no");
+	if( user_no.value == "null" ) { 
+		alert('로그인 후에 예약이 가능합니다.');
+		return false;
+	} else {
+		if( (checkin.value == "") || (checkout.value == "") ) {  
+			 alert("체크인/체크아웃 날짜를 모두 선택해주세요"); 
+			 checkin.focus();
+		 	return false; 
+		}
 	}
 } 
+		
+	
+	
 
 $(document).ready(function() {
 	var from = "";
@@ -165,6 +174,7 @@ $(document).ready(function() {
 			<tr>
 				<td><input type="hidden" name="hotel_no" id="hotel_no"value = "<%=roominfo.get(i).getHotel_no()%>"></td>
 			    <td><input type="hidden" id="room_price" name="room_price" value="<%=roominfo.get(i).getRoom_price() %>"></td>
+			    <td><input type="hidden" id="user_no" name="user_no" value="<%=user_no %>"></td>
 				<td colspan="3">
 			<button type="submit" id="bookingBtn" name="room_no" value="<%=roominfo.get(i).getRoom_no()%>" onclick="return check();">예약하기</button></td>
 				

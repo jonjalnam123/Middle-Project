@@ -34,7 +34,7 @@ public class HotelDetailController extends HttpServlet {
 
 		HttpSession session = req.getSession();
 		Integer user_no = (Integer) session.getAttribute("user_no");
-
+		
 		// 좋아요 클릭상태 체크
 		// 클릭전 -> 빈하트, 클릭후 -> 꽉찬하트로 보여지게함
 		if (user_no != null) {

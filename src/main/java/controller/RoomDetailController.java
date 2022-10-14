@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dto.Room;
 import service.face.RoomService;
@@ -28,10 +29,13 @@ public class RoomDetailController extends HttpServlet {
 
 
       int hotel_no = Integer.parseInt(req.getParameter("hotel_no"));
-      
+	  HttpSession session = req.getSession();
+	  Integer user_no = (Integer) session.getAttribute("user_no");
+	  System.out.println("user_no : " + user_no);
+	  
       List<Room> roominfo = roomService.detail(hotel_no);
       req.setAttribute("roominfo", roominfo);
-      
+      req.setAttribute("user_no", user_no);
       req.getRequestDispatcher("/WEB-INF/views/roomDetail.jsp").forward(req, resp);
 
    }
