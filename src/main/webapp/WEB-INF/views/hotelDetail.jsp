@@ -30,179 +30,67 @@
 
 <style type="text/css">
 
-.container {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-}
+.container { display: grid; grid-template-columns: repeat(2, 1fr); }
 
-.container div {
-	margin-top: 50px;
-	padding: 0 20px 0px 20px;
-}
+.container div { margin-top: 50px; padding: 0 20px 0px 20px; }
 
-.container::before {
-  content: "::before element";
-  order:9999;
-  visibility:hidden;
-  display:none;
-  height:0;
-  overflow:hidden;
-}
+.container::before { content: "::before element"; order:9999; visibility:hidden;
+  					 display:none; height:0; overflow:hidden; }
 
-.container::after {
-  content: "::before element";
-  order:9999;
-  visibility:hidden;
-  display:none;
-  height:0;
-  overflow:hidden;
-}
+.container::after { content: "::before element"; order:9999; visibility:hidden;
+  					display:none; height:0; overflow:hidden; }
 
-.htimg {
-	display: block;
-	width: 490px;
-	height: 350px;
-	border: 0px;
-	border-radius: 10px;
-}
+.htimg { display: block; width: 490px; height: 350px; border: 0px; border-radius: 10px; }
 
-.htinfo {
-font-family: 'Jua', sans-serif;
-}
+.htinfo { font-family: 'Jua', sans-serif; }
 
-.tab {
-	
-	text-align: left;
-	grid-column: span 2;	
-	font-family: 'Jua', sans-serif;
-	margin-bottom: -5%;
-}
+.tab { text-align: left; grid-column: span 2;	 font-family: 'Jua', sans-serif; margin-bottom: -5%; }
 
-.room {
-    width: 80px;
-	height: 40px;
- 	color: #fff; 
- 	background: #FF5050;
- 	border:none;
- 	border-radius: 5px;
-}
+.room { width: 80px; height: 40px; color: #fff; background: #FF5050; border:none; border-radius: 5px; }
 
-.room:hover {
- background: #B90000;
-}
+.room:hover { background: #B90000; }
+
+.intro { width: 80px; height: 40px; color: #fff;  background: #FF5050; border:none; border-radius: 5px; }
+
+.intro:hover { background: #B90000; }
+
+.tab_review { width: 80px; height: 40px; color: #fff; background: #FF5050; border:none; border-radius: 5px; }
+
+.tab_review:hover { background: #B90000; }
+
+.result { text-align: left; grid-column: span 2; }
+
+h2 {  font-weight: bold; }
+
+#mark { margin-top: -60%; margin-left: 160%; }
+
+table { border: #ccc; margin: 5%; font-family: 'Jua', sans-serif; margin-left: -10%; }
 
 
-.intro {
-	width: 80px;
-	height: 40px;
-	color: #fff; 
- 	background: #FF5050;
- 	border:none;
- 	border-radius: 5px;
+tr, td { text-align: center; vertical-align : middle; font-size: 20px; }
 
-}
+.checkDate { border-radius: 5px; margin-bottom: 5%; font-family: 'Jua', sans-serif;
+			 margin-left: -5%; margin-top: -5%; }
 
-.intro:hover {
-	background: #B90000;
-}
+#bookingBtn { width: 180px; height: 40px; color: #fff; background: #FF5050;
+ 			  border:none; border-radius: 5px; }
 
-.tab_review {
-	width: 80px;
-	height: 40px;
-	color: #fff; 
- 	background: #FF5050;
-	border:none;
-	border-radius: 5px;
-}
+#bookingBtn:hover { background: #B90000; }
 
-.tab_review:hover {
-	background: #B90000;
-}
+.roomimg { width: 350px; height: 250px; border:none; border-radius: 10px; }
 
-.result {
-	text-align: left;
-	grid-column: span 2;
-}
+#checkin { margin: 10px; width: 160px; height: 35px; border: 3px solid #FFCA9B;
+ 		   border-radius: 10px; text-align: center; }
 
-h2 { 
-	font-weight: bold; 
-}
-
-#mark {
-	margin-top: -60%;
-	margin-left: 160%;
-}
-
-table {
-	border: #ccc;
-	margin: 5%;
-	font-family: 'Jua', sans-serif;
-	margin-left: -10%;
-
-}
-
-
-tr, td {
-	text-align: center;
-	vertical-align : middle;
-	font-size: 20px;
-}
-
-.checkDate {
-	border-radius: 5px;
-	margin-bottom: 5%;
-	font-family: 'Jua', sans-serif;
-	margin-left: -5%;
-	margin-top: -5%;
-	
-}
-
-#bookingBtn {
-width: 180px;
-	height: 40px;
- 	color: #fff; 
- 	background: #FF5050;
- 	border:none;
- 	border-radius: 5px;
-
-}
-
-#bookingBtn:hover {
- background: #B90000;
-}
-
-.roomimg {
-	width: 350px;
-	height: 250px;
-	border:none;
-	border-radius: 10px;
-}
-
-#checkin {
-	margin: 10px;
-	width: 160px;
- 	height: 35px;
- 	border: 3px solid #FFCA9B;
- 	border-radius: 10px;
- 	text-align: center;
-
-}
-
-#checkout {
-	margin: 10px;
-	width: 160px;
- 	height: 35px;
- 	border: 3px solid #FFCA9B;
- 	border-radius: 10px;
- 	text-align: center;
-
-}
+#checkout { margin: 10px; width: 160px; height: 35px; border: 3px solid #FFCA9B;
+ 			border-radius: 10px; text-align: center; }
 
 </style>
 
 <script type="text/javascript">
 
- function check() {
+//-------------------체크인/체크아웃날짜 체크여부 검사---------------
+function check() {
   	
 	var checkin = document.getElementById("checkin");
 	var checkout = document.getElementById("checkout");
@@ -327,7 +215,8 @@ width: 180px;
 			})   //ajax 끝 }
  	  	 }) 
  	
- 	  	 	var from = "";
+ 	//----------------------------체크인/체크아웃----------------------------------  	 
+ 	var from = "";
 	var to = "";
 	var checkin = flatpickr("#checkin", {
 		locale: "ko",
@@ -353,14 +242,7 @@ width: 180px;
 			$("#checkout").val(to);
 		}
 	})
- 	  	 
- 	  	 
- 	  	 
- 	  	 
- 	  	 
- 	  	 
- 	  	 
-	}) 	// jQuery 끝	
+}) 	// jQuery 끝	
 		
 </script>
 </head>
@@ -369,7 +251,6 @@ width: 180px;
 <div class="container">
 	
  	<div>
-		<%-- <%=hotelDetail.getHotel_photo() %> --%>
 		<img src="/upload/<%=hotelDetail.getHotel_photo() %>" class="htimg" alt="이미지 아님">
 	</div>
 	
@@ -381,16 +262,12 @@ width: 180px;
 		<h3>대표번호 : <%=hotelDetail.getHotel_tel() %></h3>
 	</div> 
 	
-	<!-- <input type="text" id="datepicker" class="datepicker" name="checkin">
-	<input type="text" id="datepicker2" class="datepicker" name="checkout"> -->
-	
 	<!-- 찜하기 -->
 	<div id="mark">
 		<img src="/resources/image/empty_heart.png" id="heartimg">
 	</div>
 		
-
-	
+	<!-- 탭메뉴 -->
 	<div class="tab">
 		<button class="room" id="roomBtn">
 		<span>객실정보</span>
@@ -405,43 +282,44 @@ width: 180px;
 		</button>
 	</div>
 	
-		<div id="result" class="result">
+	<!-- #result 영역 -->
+	<div id="result" class="result">
 		
-			<form action="/hotel/booking">
-	<div class="checkDate">
-		<div>  	
-			<b>체크인</b>	
-			<input type="text" name="checkin" id="checkin" placeholder="체크인 날짜 선택" value="" required />
+	<form action="/hotel/booking">
+		<div class="checkDate">
+			<div>  	
+				<b>체크인</b>	
+				<input type="text" name="checkin" id="checkin" placeholder="체크인 날짜 선택" value="" required />
 			  
-			<b>체크아웃</b>	
-			<input type="text" name="checkout" id="checkout" placeholder="체크아웃 날짜 선택" value="" required /> 
-	
- 		</div>
-	</div>
+				<b>체크아웃</b>	
+				<input type="text" name="checkout" id="checkout" placeholder="체크아웃 날짜 선택" value="" required /> 
+ 	        </div>
+		</div>
 	
 <% for (int i = 0; i < roominfo.size(); i++) { %>
 
-<table class="table">
+<table class="table" style="vertical-align: middle;">
 
 		<tr>
 			<td rowspan="3">
 			<img src="/upload/<%=roominfo.get(i).getRoom_img() %>" class="roomimg" alt="이미지 아님">
 			</td>
-			<td colspan="3"><%=roominfo.get(i).getRoom_type() %></td>
+			<td colspan="4"><%=roominfo.get(i).getRoom_type() %></td>
 		</tr>
 			<tr>
-				<td>수용인원</td>
+				<td >수용인원</td>
 				<td><%=roominfo.get(i).getPeople() %></td>
+				<td>최대인원</td>
 				<td><%=roominfo.get(i).getMax_people() %></td>
 			</tr>
 			<tr>
-				<td>가격</td>
-				<td colspan="2"><%=roominfo.get(i).getRoom_price() %></td>
+				<td colspan="2">가격</td>
+				<td colspan="2"><%=roominfo.get(i).getRoom_price() %>원</td>
 			</tr>
 			<tr>
 				<td><input type="hidden" name="hotel_no" id="hotel_no"value = "<%=roominfo.get(i).getHotel_no()%>"></td>
 			    <td><input type="hidden" id="room_price" name="room_price" value="<%=roominfo.get(i).getRoom_price() %>"></td>
-				<td colspan="2">
+				<td colspan="3">
 			<button type="submit" id="bookingBtn" name="room_no" value="<%=roominfo.get(i).getRoom_no()%>" onclick="return check();">예약하기</button></td>
 				
 			</tr>
