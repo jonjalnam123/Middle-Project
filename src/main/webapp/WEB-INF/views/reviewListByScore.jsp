@@ -48,6 +48,10 @@ table.type01 td {
   vertical-align: top;
   border: 1px solid #ccc;
 }
+#bt{
+  background: linear-gradient(-45deg, #33ccff 0%, #ff99cc 100%);
+    color: white;
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {

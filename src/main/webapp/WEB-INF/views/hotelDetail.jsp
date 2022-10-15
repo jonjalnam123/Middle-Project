@@ -92,15 +92,14 @@ tr, td { text-align: center; vertical-align : middle; font-size: 20px; }
 	//리뷰 수정
 	$(document).on('click', '#bt', function(e) {
  		console.log('성공');
-
 		var val = this.parentNode.childNodes[3].childNodes[3].innerText;
- 		console.log(val);
-
 		this.parentNode.childNodes[3].childNodes[3].innerText= "";
 		this.parentNode.childNodes[3].childNodes[3].innerHTML='<textarea cols="10" rows="10" name="review_content">'+val+'</textarea>';
 		this.parentNode.childNodes[3].childNodes[3].innerHTML += '<button id="revModify"> 수정완료 </button>';
 
 		this.innerHTML= "";
+		
+		this.parentNode.childNodes[5].remove();
 		
  	});    
 		
