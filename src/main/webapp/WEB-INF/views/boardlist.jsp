@@ -16,7 +16,15 @@ td:nth-child(2) {
 	text-align: justify;
 }
 
-body{padding-bottom : 300px;} 
+body{
+	padding-bottom : 300px;
+}
+
+.keyword {
+	margin-left: 10px;
+	border-radius: 10px;
+}
+ 
 
 
 
@@ -39,8 +47,10 @@ $(document).ready(function() {
 <hr>
 
 <form action="/list" method="POST">
-검색<input type="text" name="keyword">
+<div class="keyword">
+제목<input type="text" name="keyword">
 <button>검색</button>
+</div>
 <table class="table table-striped table-hover table-condensed">
 <tr>
 	<th style="width: 10%">글번호</th>

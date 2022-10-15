@@ -40,7 +40,7 @@ $(document).ready(function() {
 <hr>
 <form action="/board/list" method="POST">
 
-검색<input type="text" name="keyword">
+제목<input type="text" name="keyword">
 <button>검색</button>
 
 <table class="table table-striped table-hover table-condensed">
@@ -51,7 +51,7 @@ $(document).ready(function() {
 	<th style="width: 15%">작성일</th>
 	<th style="width: 20%">조회수</th>
 </tr>
-
+ 
 <%	for(int i=0; i<searchlist.size(); i++) { %>
 <tr>
 	<td><%=searchlist.get(i).getBoardno() %></td>
