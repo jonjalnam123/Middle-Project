@@ -51,7 +51,7 @@ $(document).ready(function() {
 	<th style="width: 15%">작성일</th>
 	<th style="width: 20%">조회수</th>
 </tr>
-
+ 
 <%	for(int i=0; i<searchlist.size(); i++) { %>
 <tr>
 	<td><%=searchlist.get(i).getBoardno() %></td>
