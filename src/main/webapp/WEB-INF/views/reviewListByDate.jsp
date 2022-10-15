@@ -62,10 +62,15 @@ table.type01 td {
 					console.log("성공");
 					$("#result").html(data);
 				}
-				
-			})   //ajax 끝 }
-			
+			}) 	
 		}) 
+		//----------------------------------------------------------------------------------------
+
+		
+		
+		
+		
+	 	//----------------------------------------------------------------------------------------
 	 	})
 </script>
 
@@ -80,8 +85,8 @@ table.type01 td {
           </select>
         </div>
  		<div id="result" class ="result">
+ 		<ul class="reviewList">
         <%	for(int i=0; i< list.size(); i++) { %>
-        <ul class="reviewList">
           <li>
             <div class="profile">
                 <div>
@@ -92,18 +97,22 @@ table.type01 td {
                 </div>
             </div>
             <div class="reviewContent">
-              <div class="imgArea">
+              <div class="imgArea" >
               <% for(int j=0; j < ((List<ReviewImage>) list.get(i).get("ri")).size()  ; j++) { %>
-                <img src="/upload/<%=((List<ReviewImage>) list.get(i).get("ri")).get(j).getStoredname() %>" alt="이미지 아님" width="200" height="150">
+                <img src="/upload/<%=((List<ReviewImage>) list.get(i).get("ri")).get(j).getStoredname() %>" alt="이미지 아님" width="200" height="150" >
               <% } %>
               </div>
               <p>
                 <%=((Review)list.get(i).get("r")).getReview_content()  %>
               </p>
+              <input id="rno"value ="<%=((Review)list.get(i).get("r")).getReview_no()%>" style="display:none;">
             </div>
+            <% if ( (((Semi_User) list.get(i).get("u")).getUser_email()).equals( (String) request.getSession().getAttribute("user_email") ) ) { %>
+            <button id="bt"> 수정 </button>
+           <% } %>
           </li>
-        </ul>
           <%	} %> 
+                  </ul>
           </div>
       </div>
 </body>

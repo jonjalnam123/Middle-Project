@@ -256,7 +256,37 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 
+	@Override
+	public int update(Connection conn, int review_no, String review_content) {
+
+		System.out.println("review updateDaonImpl 실행()");
+		
+		String sql = "";
+		sql += "UPDATE review SET";
+		sql += " review_content = ?";
+		sql += " WHERE review_no = ?";
+				
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, review_content);
+			ps.setInt(2, review_no);
+			
+			res = ps.executeUpdate();
+			System.out.println(res);
+						
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
 	
+	}
+
 }
 
 

@@ -16,4 +16,6 @@ public interface ReviewDao {
 
 	public List<Map<String, Object>> selectReviewsByScoreByHotelNo(Connection conn, int hotel_no);
 
+	public int update(Connection conn, int review_no,String review_content);
+	
 }
