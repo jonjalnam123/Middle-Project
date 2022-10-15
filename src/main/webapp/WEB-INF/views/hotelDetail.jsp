@@ -126,8 +126,8 @@ tr, td { text-align: center; vertical-align : middle; font-size: 20px; }
 	     	url: "/review/list?hotel_no="+hotel_no+"&selectedOption="+selectedOption,   
 			datatype: "html",
 	         success: function(data) {
-	            console.log("성공");
 	            $("#result").html(data);
+	  	      console.log('프론트 바꾸기도 성공');
 	         }
 	      }) 
 			
