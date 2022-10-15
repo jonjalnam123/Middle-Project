@@ -392,6 +392,13 @@ public class BoardServiceImpl implements BoardService {
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
+		
+		//첨부파일 전부 삭제
+		if(boardDao.deleteFile(conn, board) > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
 
 
 		//첨부파일 정보 삽입
