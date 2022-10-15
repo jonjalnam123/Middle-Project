@@ -253,5 +253,27 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 
-	
+	@Override
+	public void modifyReview(HttpServletRequest request) {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int review_no = Integer.parseInt(request.getParameter("review_no"));
+		String review_content = request.getParameter("review_content");
+		
+		System.out.println("review_no"+review_no);
+		System.out.println("review_content"+review_content);
+		
+		int res = 0;
+		res = reviewDao.update(conn,review_no,review_content);
+		
+		if( res > 0 ) {
+			System.out.println("댓글 수정 성공!");
+			JDBCTemplate.commit(conn);
+		} else {
+			System.out.println("댓글 수정 실패!");
+			JDBCTemplate.rollback(conn);
+		}
+		
+	}
 }

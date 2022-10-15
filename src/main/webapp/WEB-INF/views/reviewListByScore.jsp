@@ -7,6 +7,9 @@
     pageEncoding="UTF-8"%>
 <%	List<Map<String, Object>> list =(List) request.getAttribute("list"); %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%
+	SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm:ss");
+%>
 
 
 <%	request.setCharacterEncoding("UTF-8"); %>
@@ -45,11 +48,15 @@ table.type01 td {
   vertical-align: top;
   border: 1px solid #ccc;
 }
+#bt{
+  background: linear-gradient(-45deg, #33ccff 0%, #ff99cc 100%);
+    color: white;
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
 	 	$("#select").change(function() {		
-	 		var hotel_no = <%=request.getParameter("hotel_no") %>
+			var hotel_no = <%=request.getParameter("hotel_no") %>
 			var selectedOption = this.value;
 			$.ajax({
 				type: "GET" ,
@@ -59,10 +66,15 @@ table.type01 td {
 					console.log("성공");
 					$("#result").html(data);
 				}
-				
-			})   //ajax 끝 }
-			
+			}) 	
 		}) 
+		//----------------------------------------------------------------------------------------
+
+		
+		
+		
+		
+	 	//----------------------------------------------------------------------------------------
 	 	})
 </script>
 
@@ -77,30 +89,34 @@ table.type01 td {
           </select>
         </div>
  		<div id="result" class ="result">
+ 		<ul class="reviewList">
         <%	for(int i=0; i< list.size(); i++) { %>
-        <ul class="reviewList">
           <li>
             <div class="profile">
                 <div>
                   <span><%= ((Semi_User) list.get(i).get("u")).getUser_email() %> ||    </span><span><%= ((Review)list.get(i).get("r")).getReview_date() %>||    </span><span><%=((Review)list.get(i).get("r")).getRoom_type() %>||    </span>
                    <span><% for(int p=0; p<(int)((Review)list.get(i).get("r")).getReview_score(); p++ ) {%>
-                   ★<% }%></span>
+                   ⭐<% }%></span>
                  <img src="/upload/<%= ((Semi_User) list.get(i).get("u")).getUser_pic() %>" alt="X" width="100" height="100">
                 </div>
             </div>
             <div class="reviewContent">
-              <div class="imgArea">
+              <div class="imgArea" >
               <% for(int j=0; j < ((List<ReviewImage>) list.get(i).get("ri")).size()  ; j++) { %>
-                <img src="/upload/<%=((List<ReviewImage>) list.get(i).get("ri")).get(j).getStoredname() %>" alt="이미지 아님" width="200" height="150">
+                <img src="/upload/<%=((List<ReviewImage>) list.get(i).get("ri")).get(j).getStoredname() %>" alt="이미지 아님" width="200" height="150" >
               <% } %>
               </div>
               <p>
                 <%=((Review)list.get(i).get("r")).getReview_content()  %>
               </p>
+              <input id="rno"value ="<%=((Review)list.get(i).get("r")).getReview_no()%>" style="display:none;">
             </div>
+            <% if ( (((Semi_User) list.get(i).get("u")).getUser_email()).equals( (String) request.getSession().getAttribute("user_email") ) ) { %>
+            <button id="bt"> 수정 </button>
+           <% } %>
           </li>
-        </ul>
           <%	} %> 
+                  </ul>
           </div>
       </div>
 </body>

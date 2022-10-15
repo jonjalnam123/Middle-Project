@@ -89,6 +89,55 @@ tr, td { text-align: center; vertical-align : middle; font-size: 20px; }
 
 <script type="text/javascript">
 
+//리뷰 수정
+$(document).on('click', '#bt', function(e) {
+		console.log('성공');
+	var val = this.parentNode.childNodes[3].childNodes[3].innerText;
+	this.parentNode.childNodes[3].childNodes[3].innerText= "";
+	this.parentNode.childNodes[3].childNodes[3].innerHTML='<textarea cols="10" rows="10" name="review_content">'+val+'</textarea>';
+	this.parentNode.childNodes[3].childNodes[3].innerHTML += '<button id="revModify"> 수정완료 </button>';
+
+	this.innerHTML= "";
+	
+	this.parentNode.childNodes[5].remove();
+	
+	});    
+	
+$(document).on('click', '#revModify', function(e) {
+	var review_no =  this.parentNode.nextSibling.nextSibling.value;
+		var review_content = this.previousSibling.value;
+
+		
+		
+		$.ajax({
+		
+			type: "GET",
+			url: "/review/modify?review_no="+review_no+"&review_content="+review_content,
+			datatype: "html",
+			async:false,
+			success: function(data) {
+				console.log("DB상 수정 완료");
+			}
+			
+		}) 
+	
+	  var hotel_no = <%=hotelDetail.getHotel_no() %>
+      var selectedOption = this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.childNodes[1].childNodes[3].value
+
+      $.ajax({
+         type: "GET",
+     	url: "/review/list?hotel_no="+hotel_no+"&selectedOption="+selectedOption,   
+		datatype: "html",
+		async:false,
+         success: function(data) {
+            $("#result").html(data);
+  	      console.log('프론트 바꾸기도 성공');
+         }
+      }) 
+		
+	}); 
+
+
 //-------------------체크인/체크아웃날짜 체크여부 검사---------------
 function check() {
   	

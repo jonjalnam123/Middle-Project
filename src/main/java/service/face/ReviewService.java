@@ -28,5 +28,5 @@ public interface ReviewService {
 	public List< Map<String, Object>> reviewListByScore(HttpServletRequest request, int hotel_no);
 	
 	
-
+	public void modifyReview(HttpServletRequest request);
 }
