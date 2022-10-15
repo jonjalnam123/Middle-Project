@@ -40,7 +40,7 @@ $(document).ready(function() {
 <hr>
 <form action="/board/list" method="POST">
 
-검색<input type="text" name="keyword">
+제목<input type="text" name="keyword">
 <button>검색</button>
 
 <table class="table table-striped table-hover table-condensed">
