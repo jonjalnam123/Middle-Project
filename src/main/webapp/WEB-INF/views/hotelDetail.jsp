@@ -96,18 +96,13 @@ $(document).on('click', '#bt', function(e) {
 	this.parentNode.childNodes[3].childNodes[3].innerText= "";
 	this.parentNode.childNodes[3].childNodes[3].innerHTML='<textarea cols="10" rows="10" name="review_content" style="background-color:white;">'+val+'</textarea>';
 	this.parentNode.childNodes[3].childNodes[3].innerHTML += '<button id="revModify"> 수정완료 </button>';
-
-	this.innerHTML= "";
-	
-	this.parentNode.childNodes[5].remove();
-	
+	this.innerHTML= "";	
+	this.parentNode.childNodes[5].remove();	
 	});    
 	
 $(document).on('click', '#revModify', function(e) {
-	var review_no =  this.parentNode.nextSibling.nextSibling.value;
+		var review_no =  this.parentNode.nextSibling.nextSibling.value;
 		var review_content = this.previousSibling.value;
-
-		
 		
 		$.ajax({
 		
@@ -117,8 +112,7 @@ $(document).on('click', '#revModify', function(e) {
 			async:false,
 			success: function(data) {
 				console.log("DB상 수정 완료");
-			}
-			
+			}			
 		}) 
 	
 	  var hotel_no = <%=hotelDetail.getHotel_no() %>
