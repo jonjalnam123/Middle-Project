@@ -91,7 +91,7 @@ tr, td { text-align: center; vertical-align : middle; font-size: 20px; }
 
 
 $(document).on('click', '#bt', function(e) {
-		console.log('성공');
+	
 	var val = this.parentNode.childNodes[3].childNodes[3].innerText;
 	this.parentNode.childNodes[3].childNodes[3].innerText= "";
 	this.parentNode.childNodes[3].childNodes[3].innerHTML='<textarea cols="10" rows="10" name="review_content" style="background-color:white;">'+val+'</textarea>';
