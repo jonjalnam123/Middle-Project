@@ -89,7 +89,7 @@ tr, td { text-align: center; vertical-align : middle; font-size: 20px; }
 
 <script type="text/javascript">
 
-//리뷰 수정
+
 $(document).on('click', '#bt', function(e) {
 		console.log('성공');
 	var val = this.parentNode.childNodes[3].childNodes[3].innerText;
