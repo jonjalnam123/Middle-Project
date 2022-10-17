@@ -111,7 +111,6 @@ $(document).on('click', '#revModify', function(e) {
 			datatype: "html",
 			async:false,
 			success: function(data) {
-				console.log("DB상 수정 완료");
 			}			
 		}) 
 	
@@ -125,7 +124,6 @@ $(document).on('click', '#revModify', function(e) {
 		async:false,
          success: function(data) {
             $("#result").html(data);
-  	      console.log('프론트 바꾸기도 성공');
          }
       }) 
 		
