@@ -124,6 +124,7 @@ $(document).on('click', '#revModify', function(e) {
 		async:false,
          success: function(data) {
             $("#result").html(data);
+
          }
       }) 
 		
