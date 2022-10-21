@@ -85,7 +85,7 @@ public class HotelDaoImpl implements HotelDao {
 			JDBCTemplate.close(ps);
 		}
 		return res;
-
+		
 	}
 
 	@Override
